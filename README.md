@@ -81,7 +81,7 @@
 
 [ER図](https://app.diagrams.net/#G1_44A_HueS2Dft4ZPpRpKPw7S8BW4lI6N)
 
-[アプリケーション設計書](https://app.diagrams.net/#G1gv_BDiduw2Q_8cRgqvaHdMNRBGtGU6kg)
+[アプリケーション設計書](https://docs.google.com/spreadsheets/d/199_Ykk3I39BiX7geTzDoGtNZeuS-dggK/edit#gid=1166209438)
 
 [詳細設計書](https://app.diagrams.net/#G1gv_BDiduw2Q_8cRgqvaHdMNRBGtGU6kg)
 
