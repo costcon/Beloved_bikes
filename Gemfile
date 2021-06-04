@@ -60,3 +60,9 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+#デプロイ(環境変数)のための記述
+gem 'dotenv-rails' 
+group :production do
+  gem 'mysql2'
+end
