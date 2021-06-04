@@ -59,10 +59,12 @@
 
 
 ### ターゲットユーザ
+
 【オーナー】<br>
 最近バイクに乗る機会が減ってきて手放すかどうか悩んでいる人（３０代〜男性中心）<br>
 【ユーザー】<br>
 新しいバイク購入を検討している or 他のバイク乗りのこだわりバイクを楽しみたい人（男性中心）
+
 
 ### 主な利用シーン
 
@@ -75,6 +77,7 @@
 - バイクの乗り換えに興味があり、他のバイク乗りのツーリング仕様や乗り心地に興味がある場合に
 - 昔バイクに乗っていて今は手放してしまったが久しぶりに風になりたい時に
 
+
 ## 設計書
 
 [ワイヤーフレーム](https://app.diagrams.net/#G1gv_BDiduw2Q_8cRgqvaHdMNRBGtGU6kg)
@@ -83,12 +86,13 @@
 
 [アプリケーション設計書](https://docs.google.com/spreadsheets/d/199_Ykk3I39BiX7geTzDoGtNZeuS-dggK/edit#gid=1166209438)
 
-[詳細設計書](https://app.diagrams.net/#G1gv_BDiduw2Q_8cRgqvaHdMNRBGtGU6kg)
+[詳細設計書](https://docs.google.com/spreadsheets/d/1qyOq1KEg7DrqOr8lavpKWAvQcCIOojPR/edit#gid=1802439833)
 
 
 ## チャレンジ要素一覧
 
 [こちらから](https://docs.google.com/spreadsheets/d/1Il6RXS7MLiayBDBoY7DQRGKk82_PDFGQTAWmgp4-eZQ/edit#gid=0)
+
 
 ## 開発環境
 
@@ -97,6 +101,7 @@
 - フレームワーク：Ruby on Rails
 - JS ライブラリ：jQuery
 - IDE：Cloud9
+
 
 ## 使用素材
 
