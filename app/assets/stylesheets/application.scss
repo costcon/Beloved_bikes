@@ -20,8 +20,8 @@
 
 
 .row.hoge{
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -36,10 +36,17 @@
   background-image: image-url("background1.jpg");
 }
 
-
 .navbar-item {
   padding-right: 10px;
 }
+
+
+.top_img {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
 
 body {
   background-image: image-url("hoge.jpg"); //image-urlはデプロイ対策で必ずつける

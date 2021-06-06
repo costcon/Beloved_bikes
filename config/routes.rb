@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
   root :to => 'homes#top'
   get 'homes/about'
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations',
+    :sessions => 'users/sessions'
+  }
+
+  devise_scope :user do
+    get "sign_in", :to => "users/sessions#new"
+    get "sign_out", :to => "users/sessions#destroy"
+  end
 
   resources :bikes, only: [:edit, :create, :index, :show, :update, :destroy]
   resources :users, only: [:edit, :show, :update, :destroy]
@@ -35,8 +44,6 @@ Rails.application.routes.draw do
   # get 'users/update'
   # get 'homes/top'
   # get 'homes/about'
-
-  devise_for :users
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
