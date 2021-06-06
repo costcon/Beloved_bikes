@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
   root :to => 'homes#top'
+  get 'homes/about'
 
+  resources :bikes, only: [:edit, :create, :index, :show, :update, :destroy]
+  resources :users, only: [:edit, :show, :update, :destroy]
   resources :reviews, only: [:index, :show, :create, :update]
   resources :reserves, only: [:new, :create, :index, :show, ] do
     collection do
       post 'confirm'
+      get 'reserves/thanks'
     end
   end
 
-  resources :bikes, only: [:edit, :create, :index, :show, :update, :destroy]
-  resources :users, only: [:edit, :show, :update, :destroy]
-  
   # get 'review/index'
   # get 'review/show'
   # get 'review/create'
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
   # get 'reserves/index'
   # get 'reserves/show'
 
-  get 'reserves/thanks'
+  # get 'reserves/thanks'
 
   # get 'bikes/index'
   # get 'bikes/show'
@@ -36,5 +37,6 @@ Rails.application.routes.draw do
   # get 'homes/about'
 
   devise_for :users
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -14,6 +14,32 @@
  *= require_self
  */
 
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+
+.row.hoge{
+    display: flex;
+    justify-content: center;
+}
+
+
+.fixed-background {
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-size: cover;
+  background-pozition: center;
+}
+
+.background1 {
+  background-image: image-url("background1.jpg");
+}
+
+
+.navbar-item {
+  padding-right: 10px;
+}
 
 body {
   background-image: image-url("hoge.jpg"); //image-urlはデプロイ対策で必ずつける
