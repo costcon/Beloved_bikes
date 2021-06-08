@@ -52,3 +52,21 @@
 body {
   background-image: image-url("hoge.jpg"); //image-urlはデプロイ対策で必ずつける
 }
+
+
+
+#box{
+  height: 600px;
+}
+.about-image1 {
+  image: url(about-image1.jpg);
+}
+.about-image2 {
+  image: url(about-image2.jpg);
+}
+.about-image3 {
+  image: url(about-image3.jpg);
+}
+.about-image4 {
+  image: url(about-image4.jpg);
+}
