@@ -26,6 +26,7 @@
 
 
 .fixed-background {
+  padding-top: 65px;
   min-height: 100vh;
   background-attachment: fixed;
   background-size: cover;
@@ -34,6 +35,10 @@
 
 .background1 {
   background-image: image-url("background1.jpg");
+}
+
+.background2 {
+  background-image: image-url("http://gahag.net/img/201511/19s/gahag-0027232771-1.jpg");
 }
 
 .navbar-item {
@@ -55,18 +60,16 @@ body {
 
 
 
-#box{
+
+.top-image {
   height: 600px;
+  width: 100%;
 }
-.about-image1 {
-  image: url(about-image1.jpg);
+
+
+
+
+.navbar {
+  background-color: rgba(255, 255, 255, 0.5);
 }
-.about-image2 {
-  image: url(about-image2.jpg);
-}
-.about-image3 {
-  image: url(about-image3.jpg);
-}
-.about-image4 {
-  image: url(about-image4.jpg);
-}
+
