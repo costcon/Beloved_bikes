@@ -1,15 +1,17 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-4 offset-1'>
-      <nav class="navbar navbar-light">
-      <h2 class='title'>Editing Item</h2>
-      </nav>
+    <div class='col-md-4'>
+      <h2 class='title'>New Bike</h2>
     </div>
     <div class='col-md-8'></div>
   </div>
-  <div class='row hoge'>
-    <div class='mx-auto newitem title'>
-      <%= form_with model:@bike, url: exhibit_bike_path(current_user), local:true do |f| %>
+  <div class='row'>
+    <div class='mx-auto newitem'>
+      <%= render partial: 'layouts/flash' %>
+      <%= form_with model:@bike, local:true do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+
+      <%= f.hidden_field :user_id, value:current_user.id %>
 
         <div>
           <label for='inputImage'>Image</label><br>
@@ -63,6 +65,7 @@
         <div>
           <%= f.submit 'Submit', class:'btn btn-lg btn-outline-dark' %>
         </div>
+
       <% end %>
     </div>
   </div>

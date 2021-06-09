@@ -3,6 +3,37 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
+
+  <div class="field">
+    <%= f.label :姓 %><br />
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :姓かな %><br />
+    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :名 %><br />
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :名かな %><br />
+    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :郵便番号 %><br />
+    <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :現住所 %><br />
+    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+  </div>
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -19,7 +50,40 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div><br>
+
+  <div>
+    免許情報入力
   </div>
+
+  <div><img src="https://cdn.piapro.jp/thumb_i/6w/6wahlcyb8b5sgyzo_20110827122115_0740_0500.png"></div><br>
+
+  <div class="field">
+    <%= f.label :免許証番号 %><br />
+    <%= f.text_field :license_number, autofocus: true, autocomplete: "license_number" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :交付日 %><br />
+    <%= f.text_field :license_date, autofocus: true, autocomplete: "license_date" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :有効期限 %><br />
+    <%= f.text_field :license_expiration, autofocus: true, autocomplete: "license_expiration" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :'免許証(表)' %><br />
+    <%= f.file_field :license_image_1, autofocus: true, autocomplete: "license_image_1" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :'免許証(裏)' %><br />
+    <%= f.file_field :license_image_2, autofocus: true, autocomplete: "license_image_2" %>
+  </div><br>
+
+
 
   <div class="actions">
     <%= f.submit "Sign up" %>

@@ -9,6 +9,7 @@ class CreateBikes < ActiveRecord::Migration[5.2]
       t.integer :price
       t.string :mileage
       t.string :modek_year
+      t.text :introduction
       t.boolean :favorite
       t.boolean :is_active
 

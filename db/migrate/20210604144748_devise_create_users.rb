@@ -2,20 +2,23 @@
 
 class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
-    create_table :users do |t|
+    create_table :Users do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :email, default: "", null: false
+      t.string :encrypted_password, default: "", null: false
 
       ## Recoverable
-      t.string   :reset_password_token
+      t.string :reset_password_token
       t.datetime :reset_password_sent_at
-      
+
+      ## Rememberable
+      t.datetime :remember_created_at
       t.string :last_name
       t.string :first_name
       t.string :last_name_kana
       t.string :first_name_kana
       t.string :postal_code
+      t.text :address
       t.string :telephone_number
       t.integer :profile_image_id
       t.text :profile_comment
@@ -24,12 +27,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :license_expiration
       t.integer :license_image_1
       t.integer :license_image_2
-      t.boolean :id_deleted
-      
-      
-
-      ## Rememberable
-      t.datetime :remember_created_at
+      t.boolean :id_deleted, default: false, null: false
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
@@ -48,7 +46,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-
 
       t.timestamps null: false
     end

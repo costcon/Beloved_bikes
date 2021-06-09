@@ -12,6 +12,33 @@
 
 ActiveRecord::Schema.define(version: 2021_06_04_152115) do
 
+  create_table "Users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "last_name"
+    t.string "first_name"
+    t.string "last_name_kana"
+    t.string "first_name_kana"
+    t.string "postal_code"
+    t.text "address"
+    t.string "telephone_number"
+    t.integer "profile_image_id"
+    t.text "profile_comment"
+    t.string "license_number"
+    t.string "license_date"
+    t.string "license_expiration"
+    t.integer "license_image_1"
+    t.integer "license_image_2"
+    t.boolean "id_deleted", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
   create_table "bikes", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
@@ -21,6 +48,7 @@ ActiveRecord::Schema.define(version: 2021_06_04_152115) do
     t.integer "price"
     t.string "mileage"
     t.string "modek_year"
+    t.text "introduction"
     t.boolean "favorite"
     t.boolean "is_active"
     t.datetime "created_at", null: false
@@ -44,32 +72,6 @@ ActiveRecord::Schema.define(version: 2021_06_04_152115) do
     t.text "review_comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.string "last_name"
-    t.string "first_name"
-    t.string "last_name_kana"
-    t.string "first_name_kana"
-    t.string "postal_code"
-    t.string "telephone_number"
-    t.integer "profile_image_id"
-    t.text "profile_comment"
-    t.string "license_number"
-    t.string "license_date"
-    t.string "license_expiration"
-    t.integer "license_image_1"
-    t.integer "license_image_2"
-    t.boolean "id_deleted"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

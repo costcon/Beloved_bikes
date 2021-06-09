@@ -1,7 +1,7 @@
 class Bike < ApplicationRecord
-  
+
   belongs_to :user
-  
-  attachment :image
-  
+
+  attachment :bike_image
+
 end

@@ -1,0 +1,37 @@
+ <div class="container">
+   <div class="row hoge">
+       <h1 class="heading08"><span>Your Bikes</span>出展バイク一覧</h1>
+   </div>
+    <div class="row hoge">
+      <div calss="col-10 mx-auto">
+        <%= link_to '出展する', new_bike_path,  class: "btn btn-outline-success" %>
+      <% if @bikes.empty? %>
+        <h4>出品中のバイクはありません</h4>
+      <% else %>
+       <table border="1" class="table">
+         <thead class="table-primary">
+           <tr>
+             <th>郵便番号</th>
+             <th>住所</th>
+             <th>宛名</th>
+             <th></th>
+           </tr>
+         </thead>
+         <tbody>
+           <% @bikes.each do |bike| %>
+           <tr>
+             <td><%=  %></td>
+             <td></td>
+             <td></td>
+             <td>
+              <%= link_to '編集する', edit_bike_path(bike), class: "btn btn-sm btn-success edit_send_address_#{@bikes.id}" %>
+              <%= link_to '削除する', bike_path(bike), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_send_address_#{@send_address.id}"%>
+             </td>
+           </tr>
+           <% end %>
+         </tbody>
+       </table>
+      <% end %>
+      </div>
+    </div>
+ </div>
