@@ -20,7 +20,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :postal_code
       t.text :address
       t.string :telephone_number
-      t.integer :profile_image_id
+      t.string :profile_image_id
       t.text :profile_comment
       t.string :license_number
       t.string :license_date

@@ -1,10 +1,12 @@
 class BikesController < ApplicationController
   def index
-    @bikes = Bikes.all
-
+    # @bikes = @bike.page(params[:page]).per(8)
+    @bikes = Bike.all.page(params[:page]).per(8)
   end
 
   def show
+    @bike = Bike.find(params[:id])
+    @reserves = Reserve.all
   end
 
   def exhibit
@@ -19,7 +21,7 @@ class BikesController < ApplicationController
   def create
     @bike = Bike.new(bike_params)
     if @bike.save
-      redirect_to bike_edit_path(@bike.id), success: "作成しました"
+      redirect_to user_path(current_user), success: "作成しました"
     else
       flash.now[:danger] = '作成に失敗しました。'
       render :new
@@ -31,9 +33,20 @@ class BikesController < ApplicationController
   end
 
   def update
+    @bike = Bike.find(params[:id])
+    if @bike.update(bike_params)
+      redirect_to user_path(current_user), success: "更新しました"
+    else
+      flash.now[:danger] = '作成に失敗しました。'
+      render :edit
+    end
   end
 
   def destroy
+    @bike = Bike.find(params[:id])
+    @bikes = current_user.bikes
+    @bike.destroy
+    redirect_to exhibit_bike_path(current_user)
   end
 
 

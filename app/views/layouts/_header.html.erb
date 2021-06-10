@@ -8,17 +8,20 @@
     <% if user_signed_in? %>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          <li class="navbar-item"><%= link_to ' My Page',user_path(current_user)%></li>
-          <li class="navbar-item"><%= link_to ' Index',root_path %></li>
+          <li class="navbar-item"><%= link_to ' My Page',user_path(current_user) %></li>
+          <li class="navbar-item"><%= link_to ' Index',bikes_path %></li>
           <li class="navbar-item"><%= link_to ' Exhibit',exhibit_bike_path(current_user) %></li>
           <li class="navbar-item"><%= link_to ' Sign out', destroy_user_session_path, method: :delete %></li>
         </ul>
       </div>
+      <!--<div class="row hoge">-->
+      <!-- <h4><#%= current_user.last_name %><#%= current_user.first_name %>様</h4>-->
+      <!--</div>-->
     <% else %>
      <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <li class="navbar-item"><%= link_to ' About',homes_about_path %></li>
-          <li class="navbar-item"><%= link_to ' Index',root_path %></li>
+          <li class="navbar-item"><%= link_to ' Index',bikes_path %></li>
           <li class="navbar-item"><%= link_to ' Sign up', new_user_registration_path %></li>
           <li class="navbar-item"><%= link_to ' Sign in', new_user_session_path %></li>
         </ul>

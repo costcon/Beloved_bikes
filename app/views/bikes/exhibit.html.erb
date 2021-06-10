@@ -11,21 +11,21 @@
        <table border="1" class="table">
          <thead class="table-primary">
            <tr>
-             <th>郵便番号</th>
-             <th>住所</th>
-             <th>宛名</th>
+             <th>名前</th></th>
+             <th>価格(1day)</th>
+             <th>排気量(cc)</th>
              <th></th>
            </tr>
          </thead>
          <tbody>
            <% @bikes.each do |bike| %>
            <tr>
-             <td><%=  %></td>
-             <td></td>
-             <td></td>
+             <td><%= bike.name %></td>
+             <td><%= bike.price %></td>
+             <td><%= bike.displacement %></td>
              <td>
-              <%= link_to '編集する', edit_bike_path(bike), class: "btn btn-sm btn-success edit_send_address_#{@bikes.id}" %>
-              <%= link_to '削除する', bike_path(bike), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_send_address_#{@send_address.id}"%>
+              <%= link_to '編集する', edit_bike_path(bike), class: "btn btn-sm btn-success" %>
+              <%= link_to '削除する', bike_path(bike), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
              </td>
            </tr>
            <% end %>

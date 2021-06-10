@@ -1,2 +1,20 @@
-<h1>Reserves#new</h1>
-<p>Find me in app/views/reserves/new.html.erb</p>
+<h1>テスト</h1>
+
+<%= form_with model:@reserve, local: true do |f| %>
+<%= f.hidden_field :user_id, value:current_user.id %>
+
+  <div class="reserve_name">
+    <%= f.label :reserve_name %>
+    <%= f.text_field :reserve_name %>
+  </div>
+
+  <div class="time">
+    <%= f.label :start_time %>
+    <%= f.datetime_select :start_time %>
+  </div>
+
+  <div class="submit">
+    <%= f.submit 'Reserve', class:'btn btn-lg btn-outline-dark' %>
+  </div>
+
+<% end %>

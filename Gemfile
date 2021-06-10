@@ -75,6 +75,8 @@ gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'kaminari','~> 1.2.1'
 
+gem 'simple_calendar'
+
 
 
 #デプロイ(環境変数)のための記述
