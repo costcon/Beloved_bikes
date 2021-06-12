@@ -11,7 +11,7 @@
       <span class="under">introduction</span>
       <h4><%= @bike.introduction %></h4><br>
       <h4 class="text-success">予約受付中</h4><br>
-      <%= form_with model: @reserve, url: root_path ,local: true do |f| %>
+      <%= form_with model: @reserve, url: new_reserf_path ,local: true do |f| %>
       <%= f.hidden_field :bike_id, value:@bike.id %>
           <%= f.button :type => "submit" do %>
             <i style="color: royalblue;">予約に進む</i>

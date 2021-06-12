@@ -55,14 +55,6 @@
 }
 
 
-
-body {
-  background-image: image-url("hoge.jpg"); //image-urlはデプロイ対策で必ずつける
-}
-
-
-
-
 .top-image {
   height: 600px;
   width: 100%;
@@ -70,8 +62,10 @@ body {
 
 
 
-
 .navbar {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
+body {
+  background-image: image-url("hoge.jpg"); //image-urlはデプロイ対策で必ずつける
+}
