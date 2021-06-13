@@ -21,7 +21,7 @@ class BikesController < ApplicationController
   def create
     @bike = Bike.new(bike_params)
     if @bike.save
-      redirect_to user_path(current_user), success: "作成しました"
+      redirect_to exhibit_bike_path(current_user), success: "作成しました"
     else
       flash.now[:danger] = '作成に失敗しました。'
       render :new
@@ -35,7 +35,7 @@ class BikesController < ApplicationController
   def update
     @bike = Bike.find(params[:id])
     if @bike.update(bike_params)
-      redirect_to user_path(current_user), success: "更新しました"
+      redirect_to exhibit_bike_path(current_user), success: "更新しました"
     else
       flash.now[:danger] = '作成に失敗しました。'
       render :edit

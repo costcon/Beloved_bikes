@@ -1,2 +1,69 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-4 offset-1'>
+      <nav class="navbar navbar-light">
+      <h2 class='title'>Editing User</h2>
+      </nav>
+    </div>
+    <div class='col-md-8'></div>
+  </div>
+  <div class='row hoge'>
+    <div class='mx-auto newitem title'>
+      <%= form_with model:@user, local:true do |f| %>
+
+        <div>
+          <label for='inputImage'>ProfileImage</label><br>
+          <%= f.attachment_field :profile_image,  placeholder:'写真' %>
+        </div>
+
+        <div>
+          <label for='inputName'>BikeName</label><br>
+          <%= f.text_field :name, autofocus: true, id:'inputName' %>
+        </div>
+
+        <div>
+          <label for='inputIntroduction'>Introduction</label><br>
+          <%= f.text_area :introduction, autofocus: true, id:'inputIntroduction' %>
+        </div>
+
+        <div>
+          <label for='inputMaker'>Maker</label><br>
+          <%= f.text_field :maker, autofocus: true, id:'inputMaker' %>
+        </div>
+
+        <div>
+          <label for='inputDisplacement'>排気量(cc)</label><br>
+          <%= f.text_field :displacement, autofocus: true, id:'inputDisplacement' %>
+        </div>
+
+        <div>
+          <label for='inputMileage'>総走行距離(km)</label><br>
+          <%= f.text_field :mileage, autofocus: true, id:'inputMileage' %>
+        </div>
+
+        <div>
+          <label for='inputModek_year'>年式</label><br>
+          <%= f.text_field :modek_year, autofocus: true, id:'inputModek_year' %>
+        </div>
+
+        <div>
+          <label for='inputPrice'>Price(1day)</label><br>
+          <%= f.number_field :price,  step: "1000", autofocus: true, id:'inputPrice', placeholder:'1日の価格' %>
+          <text>yen</text>
+        </div>
+
+        <div>
+          <label>Status</label><br>
+          <%= f.radio_button :is_active, :true %>
+          <%= f.label :is_active, '出展中', {value: :true, style: 'display: inline-block;'} %>
+          <%= f.radio_button :is_active, :false %>
+          <%= f.label :is_active, '出展停止中', {value: :false, style: 'display: inline-block;'} %>
+        </div>
+
+        <div>
+          <%= f.submit 'Submit', class:'btn btn-lg btn-outline-dark' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

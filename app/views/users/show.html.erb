@@ -9,6 +9,10 @@
           <%= link_to '編集する', edit_user_path(current_user),  class: "btn btn-outline-success edit_customer_#{@user.id}" %>
             <table class="table">
               <tr>
+                <th>プロフィール画像</th>
+                <th><%= attachment_image_tag(@user, :profile_image, height: "150", width: "150", fallback: "no_image.jpg") %></th>
+              </tr>
+              <tr>
                 <th>氏名</th>
                 <th><%= @user.last_name %><%= @user.first_name %></th>
               </tr>

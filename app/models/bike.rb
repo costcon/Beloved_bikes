@@ -4,4 +4,8 @@ class Bike < ApplicationRecord
 
   attachment :bike_image
 
+  validates :name, presence: true
+  validates :price, presence: true
+  validates :introduction, presence: true
+
 end

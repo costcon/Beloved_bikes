@@ -2,6 +2,7 @@
 
 <%= form_with model:@reserve, local: true do |f| %>
 <%= f.hidden_field :user_id, value:current_user.id %>
+<%= f.hidden_field :bike_id, value:bike.id %>
 
   <div class="reserve_name">
     <%= f.label :reserve_name %>

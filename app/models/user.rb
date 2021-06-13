@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :postal_code, presence: true, numericality: {only_integer: true}, length: { in: 6..7 }
   validates :address, presence: true
 
-  attachment :image
+  attachment :profile_image
 
   # 退会ユーザーを確認
   def active_for_authentication?

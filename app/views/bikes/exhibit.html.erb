@@ -1,7 +1,8 @@
  <div class="container">
    <div class="row hoge">
-       <h1 class="heading08"><span>Your Bikes</span>出展バイク一覧</h1>
+     <h1 class="heading08"><span>Your Bikes</span>出展バイク一覧</h1>
    </div>
+   <%= render partial: 'layouts/flash' %>
     <div class="row hoge">
       <div calss="col-10 mx-auto">
         <%= link_to '出展する', new_bike_path,  class: "btn btn-outline-success" %>
@@ -20,7 +21,10 @@
          <tbody>
            <% @bikes.each do |bike| %>
            <tr>
-             <td><%= bike.name %></td>
+             <td>
+              <%= attachment_image_tag(bike, :bike_image, :fill, 50, 50, fallback: "no_image_bike.jpg") %>
+              <%= bike.name %>
+             </td>
              <td><%= bike.price %></td>
              <td><%= bike.displacement %></td>
              <td>
