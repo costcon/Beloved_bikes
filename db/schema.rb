@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_06_04_152115) do
     t.string "first_name"
     t.string "last_name_kana"
     t.string "first_name_kana"
+    t.string "nickname"
     t.string "postal_code"
     t.text "address"
     t.string "telephone_number"
@@ -55,13 +56,14 @@ ActiveRecord::Schema.define(version: 2021_06_04_152115) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "reserves", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "reservations", force: :cascade do |t|
+    t.integer "reserver_id"
+    t.integer "reserved_id"
     t.integer "bike_id"
-    t.string "reserve_name"
-    t.string "reserve_date"
+    t.string "reservation_name"
+    t.string "reservation_date"
     t.integer "payment_method"
-    t.text "reserve_comment"
+    t.text "reservation_comment"
     t.datetime "start_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -70,7 +72,7 @@ ActiveRecord::Schema.define(version: 2021_06_04_152115) do
   create_table "reviews", force: :cascade do |t|
     t.integer "reviewer_id"
     t.integer "reviewed_id"
-    t.integer "rate"
+    t.float "evaluation"
     t.text "review_comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

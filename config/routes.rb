@@ -17,11 +17,11 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: [:edit, :show, :update, :destroy]
-  resources :reviews, only: [:index, :show, :create, :update]
-  resources :reserves, only: [:new, :create, :index, :show, ] do
+  resources :reviews, only: [:new, :index, :show, :create, :update]
+  resources :reservations, only: [:new, :create, :index, :show, ] do
     collection do
       post 'confirm'
-      get 'reserves/thanks'
+      get 'thanks'
     end
   end
 

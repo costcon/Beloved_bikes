@@ -6,7 +6,7 @@ class BikesController < ApplicationController
 
   def show
     @bike = Bike.find(params[:id])
-    @reserves = Reserve.all
+    @reservations = Reservation.all
   end
 
   def exhibit

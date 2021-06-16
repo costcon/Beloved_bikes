@@ -20,37 +20,37 @@
 
         <div>
           <label for='inputName'>BikeName</label><br>
-          <%= f.text_field :name, autofocus: true, id:'inputName' %>
+          <%= f.text_field :name, class:"form-control", id:'inputName' %>
         </div>
 
         <div>
           <label for='inputIntroduction'>Introduction</label><br>
-          <%= f.text_area :introduction, autofocus: true, id:'inputIntroduction' %>
+          <%= f.text_area :introduction, class:"form-control", id:'inputIntroduction' %>
         </div>
 
         <div>
           <label for='inputMaker'>Maker</label><br>
-          <%= f.text_field :maker, autofocus: true, id:'inputMaker' %>
+          <%= f.text_field :maker, class:"form-control", id:'inputMaker' %>
         </div>
 
         <div>
           <label for='inputDisplacement'>排気量(cc)</label><br>
-          <%= f.text_field :displacement, autofocus: true, id:'inputDisplacement' %>
+          <%= f.text_field :displacement, class:"form-control", id:'inputDisplacement' %>
         </div>
 
         <div>
           <label for='inputMileage'>総走行距離(km)</label><br>
-          <%= f.text_field :mileage, autofocus: true, id:'inputMileage' %>
+          <%= f.text_field :mileage, class:"form-control", id:'inputMileage' %>
         </div>
 
         <div>
           <label for='inputModek_year'>年式</label><br>
-          <%= f.text_field :modek_year, autofocus: true, id:'inputModek_year' %>
+          <%= f.text_field :modek_year, class:"form-control", id:'inputModek_year' %>
         </div>
 
         <div>
           <label for='inputPrice'>Price(1day)</label><br>
-          <%= f.number_field :price, autofocus: true, id:'inputPrice', placeholder:'1日の価格' %>
+          <%= f.number_field :price, class:"form-control", id:'inputPrice', step: "1000"  %>
           <text>yen</text>
         </div>
 
