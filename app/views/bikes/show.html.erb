@@ -11,13 +11,35 @@
       <span class="under">introduction</span>
       <h4><%= @bike.introduction %></h4><br>
       <h4 class="text-success">予約受付中</h4><br>
-      <%= form_with model: @reserve, url: new_reserf_path ,local: true do |f| %>
-      <%= f.hidden_field :bike_id, value:@bike.id %>
-          <%= f.button :type => "submit" do %>
-            <i style="color: royalblue;">予約に進む</i>
-          <% end %>
+      <%= form_with model: @reservation, url: new_reservation_path ,local: true, method: :get do |f| %>
+        <%= f.hidden_field :bike_id, value:@bike.id %>
+        <%= f.hidden_field :reserved_id, value:@bike.user_id %>
+        <%= f.hidden_field :reserver_id, value:current_user.id %>
+        <%= f.button :type => "submit" do %>
+          <i style="color: royalblue;">予約に進む</i>
+        <% end %>
       <% end %>
     </div>
+  </div>
+</div>
+
+<h4>オーナー</h4>
+<div class="container">
+  <div class="row">
+    <%= link_to user_path(@bike.user) do %>
+      <%= attachment_image_tag(@bike.user, :profile_image, :fill, 150, 150, fallback: "no_image.jpg") %>
+      <%= @bike.user.nickname %>
+      <!--<div class="review-evaluation" data-score="<#å%= @review.evaluation %>"></div>-->
+      <!--<script>-->
+      <!--  $('.review-evaluation').raty({-->
+      <!--    readOnly: true,-->
+      <!--    score: function() {-->
+      <!--      return $(this).attr('data-score');-->
+      <!--    },-->
+      <!--    path: '/assets/'-->
+      <!--  });-->
+      <!--</script>-->
+    <% end %>
   </div>
 </div>
 
@@ -35,20 +57,40 @@
 </div>
 <div></div>
 <!-- カレンダーテンプレを表示 -->
-<%= month_calendar events: @reserves do |date, reserves| %>
+<%= month_calendar events: @reservations do |date, reservations| %>
   <%= date.day %>
 
 
 <!-- 予約を表示させる-->
-  <% reserves.each do |reserve| %>
+  <% reservations.each do |reservation| %>
     <div>
-      <%= reserve.start_time.hour %>:<%= reserve.start_time.min %>
-      <%= reserve.reserve_name %>
+      <!--<#%= reservation.start_time.hour %>:<#%= reservation.start_time.min %>-->
+      <%= reservation.reservation_name %>
     </div>
   <% end %>
 <% end %>
 
+<h1>予約日を指定してください。</h1>
 
-<%= link_to '予約はこちらから', new_reserf_path %>
+<%= form_with model:@reservation, url: confirm_reservations_path, local: true do |f| %>
+  <%= f.hidden_field :bike_id, value:@bike.id %>
+  <%= f.hidden_field :reserved_id, value:@bike.user_id %>
+  <%= f.hidden_field :reserver_id, value:current_user.id %>
 
+  <!--名前はあとで消す-->
+  <!--<div class="reservation_name">-->
+  <!--  <#%= f.label :reservation_name %>-->
+  <!--  <#%= f.text_field :reservation_name %>-->
+  <!--</div>-->
+
+  <div class="time">
+    <%= f.label :start_time %>
+    <%= f.datetime_select :start_time %>
+  </div>
+
+  <div class="submit">
+    <%= f.submit 'Reserve', class:'btn btn-lg btn-outline-dark' %>
+  </div>
+
+<% end %>
 

@@ -1,0 +1,22 @@
+<h1>予約日を指定してください。</h1>
+
+<%= form_with model:@reservation, url: confirm_reservations_path, local: true do |f| %>
+<% f.hidden_field :reserver_id, value:current_user.id %>
+<!--<＃% f.hidden_field :reserved_id, value:@bike.user_id %>-->
+
+  <!--名前はあとで消す-->
+  <div class="reservation_name">
+    <%= f.label :reservation_name %>
+    <%= f.text_field :reservation_name %>
+  </div>
+
+  <div class="time">
+    <%= f.label :start_date %>
+    <%= f.datetime_select :start_date %>
+  </div>
+
+  <div class="submit">
+    <%= f.submit 'Reserve', class:'btn btn-lg btn-outline-dark' %>
+  </div>
+
+<% end %>

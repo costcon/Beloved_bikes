@@ -22,7 +22,7 @@
            <% @bikes.each do |bike| %>
            <tr>
              <td>
-              <%= attachment_image_tag(bike, :bike_image, :fill, 50, 50, fallback: "no_image_bike.jpg") %>
+              <%= attachment_image_tag(bike, :bike_image, :fill, 30, 30, fallback: "no_image_bike.jpg") %>
               <%= bike.name %>
              </td>
              <td><%= bike.price %></td>

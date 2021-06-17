@@ -9,61 +9,50 @@
   </div>
   <div class='row hoge'>
     <div class='mx-auto newitem title'>
+      <!--<#%= render partial: 'layouts/flash' %>-->
       <%= form_with model:@user, local:true do |f| %>
+      <!--<#%= render 'layouts/error_messages', model: f.object %>-->
+      <%= f.hidden_field :user_id, value:@user.id %>
+      <table class="table">
+        <tr>
+          <td><label for='inputImage'>ProfileImage</label></td>
+          <td><%= f.attachment_field :profile_image %></td>
+        </tr>
+        <tr>
+          <td><label for='imputNickname'>Nickname</label></td>
+          <td><%= f.text_field :nickname, class:"form-control", id:'imputTNickname' %></td>
+        </tr>
+        <tr>
+          <td><label for='imputTelephone_number'>Telephone Number</label></td>
+          <td><%= f.text_field :telephone_number, class:"form-control", id:'imputTelephone_number' %></td>
+        </tr>
 
-        <div>
-          <label for='inputImage'>ProfileImage</label><br>
-          <%= f.attachment_field :profile_image,  placeholder:'写真' %>
-        </div>
+        <tr>
+          <td><label for='inputProfile_comment'>Profile Comment</label></td>
+          <td><%= f.text_area :profile_comment, class:"form-control", id:'inputProfile_comment' %></td>
+        </tr>
 
-        <div>
-          <label for='inputName'>BikeName</label><br>
-          <%= f.text_field :name, autofocus: true, id:'inputName' %>
-        </div>
+        <tr>
+          <td><label for='inputPostal_code'>Postal Code</label></td>
+          <td><%= f.text_field :postal_code, class:"form-control", id:'inputPostal_code' %></td>
+        </tr>
 
-        <div>
-          <label for='inputIntroduction'>Introduction</label><br>
-          <%= f.text_area :introduction, autofocus: true, id:'inputIntroduction' %>
-        </div>
+        <tr>
+          <td><label for='inputAddress'>Address</label></td>
+          <td colspan="2"><%= f.text_field :address, class:"form-control", id:'inputAddress' %></td>
+        </tr>
 
-        <div>
-          <label for='inputMaker'>Maker</label><br>
-          <%= f.text_field :maker, autofocus: true, id:'inputMaker' %>
-        </div>
+        <tr>
+           <td><lebel for='inputEmail'>Email</lebel></td>
+           <td><%= f.email_field :email,class:"form-control", id:'inputEmail'  %></td>
+        </tr>
 
-        <div>
-          <label for='inputDisplacement'>排気量(cc)</label><br>
-          <%= f.text_field :displacement, autofocus: true, id:'inputDisplacement' %>
-        </div>
-
-        <div>
-          <label for='inputMileage'>総走行距離(km)</label><br>
-          <%= f.text_field :mileage, autofocus: true, id:'inputMileage' %>
-        </div>
-
-        <div>
-          <label for='inputModek_year'>年式</label><br>
-          <%= f.text_field :modek_year, autofocus: true, id:'inputModek_year' %>
-        </div>
-
-        <div>
-          <label for='inputPrice'>Price(1day)</label><br>
-          <%= f.number_field :price,  step: "1000", autofocus: true, id:'inputPrice', placeholder:'1日の価格' %>
-          <text>yen</text>
-        </div>
-
-        <div>
-          <label>Status</label><br>
-          <%= f.radio_button :is_active, :true %>
-          <%= f.label :is_active, '出展中', {value: :true, style: 'display: inline-block;'} %>
-          <%= f.radio_button :is_active, :false %>
-          <%= f.label :is_active, '出展停止中', {value: :false, style: 'display: inline-block;'} %>
-        </div>
-
-        <div>
-          <%= f.submit 'Submit', class:'btn btn-lg btn-outline-dark' %>
-        </div>
+      </table>
+      <div class="form-group">
+        <%= f.submit "編集内容を保存",class: "btn btn-outline-dark"%>
+      </div>
       <% end %>
+      <%= link_to '退会する', root_path, class: "btn btn-outline-warning" %>
     </div>
   </div>
 </div>

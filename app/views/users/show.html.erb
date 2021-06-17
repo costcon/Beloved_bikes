@@ -1,45 +1,105 @@
 <div class="container">
    <div class="row ">
-      <h1 class="heading08"><span>My page</span>マイページ</h1>
+      <h1 class="heading08"><span>User Profile</span>ユーザー情報</h1>
     </div>
+      <%= render partial: 'layouts/flash' %>
     <div class="row">
      <div class="col-2"></div>
       <div class="col-6">
-          <h3>登録情報</h3>
-          <%= link_to '編集する', edit_user_path(current_user),  class: "btn btn-outline-success edit_customer_#{@user.id}" %>
-            <table class="table">
-              <tr>
-                <th>プロフィール画像</th>
-                <th><%= attachment_image_tag(@user, :profile_image, height: "150", width: "150", fallback: "no_image.jpg") %></th>
-              </tr>
-              <tr>
-                <th>氏名</th>
-                <th><%= @user.last_name %><%= @user.first_name %></th>
-              </tr>
-              <tr>
-                <th>カナ</th>
-                <th><%= @user.last_name_kana %><%= @user.first_name_kana %></th>
-              </tr>
-              <tr>
-                <th>郵便番号</th>
-                <th><%= @user.postal_code %></th>
-              </tr>
-              <tr>
-                <th>住所</th>
-                <th><%= @user.address %></th>
-              </tr>
-              <tr>
-                <th>電話番号</th>
-                <th><%= @user.telephone_number %></th>
-              </tr>
-              <tr>
-                <th>メールアドレス</th>
-                <th><%= @user.email %></th>
-              </tr>
-            </table>
+        <h3>登録情報</h3>
+        <% if @user.id == current_user.id %>
+        <%= link_to '編集する', edit_user_path(current_user),  class: "btn btn-outline-success" %>
+          <table class="table">
+            <tr>
+              <th>プロフィール画像</th>
+              <th><%= attachment_image_tag(@user, :profile_image, height: "150", width: "150", fallback: "no_image.jpg") %></th>
+            </tr>
+            <tr>
+              <th>ニックネーム</th>
+              <th><%= @user.nickname %></th>
+            </tr>
+            <tr>
+              <th>氏名</th>
+              <th><%= @user.last_name %><%= @user.first_name %></th>
+            </tr>
+            <tr>
+              <th>カナ</th>
+              <th><%= @user.last_name_kana %><%= @user.first_name_kana %></th>
+            </tr>
+            <tr>
+              <th>郵便番号</th>
+              <th><%= @user.postal_code %></th>
+            </tr>
+            <tr>
+              <th>住所</th>
+              <th><%= @user.address %></th>
+            </tr>
+            <tr>
+              <th>電話番号</th>
+              <th><%= @user.telephone_number %></th>
+            </tr>
+            <tr>
+              <th>メールアドレス</th>
+              <th><%= @user.email %></th>
+            </tr>
+            <tr>
+              <th>自己紹介</th>
+              <th><%= @user.profile_comment %></th>
+            </tr>
+          </table>
 
-          <h4>予約履歴</h4>
-          <%= link_to '一覧を見る', root_path, data: {"turbolinks" => false}, class: "btn btn-outline-info" %>
+        <h4>予約履歴</h4>
+        <%= link_to '一覧を見る', root_path, data: {"turbolinks" => false}, class: "btn btn-outline-info" %>
+
+        <% else %>
+          <table class="table">
+            <tr>
+              <th>プロフィール画像</th>
+              <th><%= attachment_image_tag(@user, :profile_image, height: "150", width: "150", fallback: "no_image.jpg") %></th>
+            </tr>
+            <tr>
+              <th>ニックネーム</th>
+              <th><%= @user.nickname %></th>
+            </tr>
+            <tr>
+              <th>自己紹介</th>
+              <th><%= @user.profile_comment %></th>
+            </tr>
+          </table>
+        <h4>出展一覧</h4>
+        <%= link_to '一覧を見る', root_path, data: {"turbolinks" => false}, class: "btn btn-outline-info" %>
+
+
+        <h2>このユーザーを評価</h2>
+        <!--<#%= link_to 'このユーザーを評価する', new_review_path(@user.id), data: {"turbolinks" => false}, class: "btn btn-outline-info" %>-->
+          <%= form_with(model: @user, local: true) do |f| %>
+            <!--<div>-->
+            <!--  <#%= f.label :evaluation %>-->
+            <!--  <#% f.hidden_field :evaluation, id: :evaluate_stars %>-->
+            <!--</div>-->
+            <div>
+              <%= f.label :review_comment %>
+              <%= f.text_field :review_comment %>
+            </div>
+            <div id="evaluate_stars">
+              <label>評価</label>
+            </div>
+            <div class="actions">
+              <%= f.submit 'Review', class:'btn btn-lg btn-outline-dark'  %>
+            </div>
+          <% end %>
+          <script>
+            $('#evaluate_stars').raty({
+              size: 36,
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              scoreName: 'user[evaluation]' //登録するモデル名とカラム名を記述
+              half: true, // star-halfの入力を行う
+            });
+          </script>
+
+        <% end %>
        </div>
     </div>
  </div>
