@@ -15,6 +15,7 @@ class ReservationsController < ApplicationController
     redirect_to thanks_reservations_path
   end
 
+
   def index
   end
 
