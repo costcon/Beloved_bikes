@@ -1,13 +1,17 @@
 class ReservationsController < ApplicationController
+
+  # NEW必要ない
   def new
     @reservation = Reservation.new
   end
 
   def confirm
+    @reservation = Reservation.new(reservation_params)
   end
 
   def create
     Reservation.create(reservation_params)
+    @reservation.user_id = current_user.id
     redirect_to thanks_reservations_path
   end
 

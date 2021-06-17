@@ -52,7 +52,7 @@
         <%= link_to '一覧を見る', root_path, data: {"turbolinks" => false}, class: "btn btn-outline-info" %>
 
         <% else %>
-                    <table class="table">
+          <table class="table">
             <tr>
               <th>プロフィール画像</th>
               <th><%= attachment_image_tag(@user, :profile_image, height: "150", width: "150", fallback: "no_image.jpg") %></th>
@@ -71,8 +71,12 @@
 
 
         <h2>このユーザーを評価</h2>
-        <%= link_to 'このユーザーを評価する', new_review_path(@user.id), data: {"turbolinks" => false}, class: "btn btn-outline-info" %>
-          <%= form_with(model: review, local: true) do |f| %>
+        <!--<#%= link_to 'このユーザーを評価する', new_review_path(@user.id), data: {"turbolinks" => false}, class: "btn btn-outline-info" %>-->
+          <%= form_with(model: @user, local: true) do |f| %>
+            <!--<div>-->
+            <!--  <#%= f.label :evaluation %>-->
+            <!--  <#% f.hidden_field :evaluation, id: :evaluate_stars %>-->
+            <!--</div>-->
             <div>
               <%= f.label :review_comment %>
               <%= f.text_field :review_comment %>
@@ -86,11 +90,12 @@
           <% end %>
           <script>
             $('#evaluate_stars').raty({
+              size: 36,
               starOn: "<%= asset_path('star-on.png') %>",
               starOff: "<%= asset_path('star-off.png') %>",
               starHalf: "<%= asset_path('star-half.png') %>",
-              scoreName: 'review[evaluation]' //登録するモデル名とカラム名を記述
-              half: true, # ★の半分の入力を行う
+              scoreName: 'user[evaluation]' //登録するモデル名とカラム名を記述
+              half: true, // star-halfの入力を行う
             });
           </script>
 
