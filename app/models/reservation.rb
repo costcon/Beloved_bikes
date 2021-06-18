@@ -2,6 +2,7 @@ class Reservation < ApplicationRecord
 
   belongs_to :user
 
+  # 予約被り防止
   def start_time
     self.reservation_name
   end
