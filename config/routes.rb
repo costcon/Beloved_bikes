@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     member do
       get 'exhibit'
     end
+    collection do
+      get 'search'
+    end
   end
   resources :users, only: [:edit, :show, :update, :destroy]
   resources :reviews, only: [:new, :index, :show, :create, :update]

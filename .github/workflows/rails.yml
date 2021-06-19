@@ -1,0 +1,32 @@
+# ワークフローの名前を指定しています。任意の名前が指定できます。
+name: Rails CI/CD
+
+# ワークフローをトリガーするGitHubのイベントを指定します。
+# 今回の場合「mainのブランチにプッシュされた時」という意味になります。
+# ※デプロイ対象のブランチが違う方はブランチ名を変更してください。
+on:
+  push:
+    branches: [main]
+
+# 処理のひとかたまり（仮想環境単位）を宣言していると考えて下さい。
+# 単にジョブと言ったりします。ジョブは複数構成することが可能で、一つのワークフローに一つ以上のジョブが必要です。
+# ※後述のruns-onを読むと、イメージしやすいかもしれません。
+jobs:
+  build:    # ジョブの名前になります。任意の名前が指定できます。
+    runs-on: ubuntu-latest  #処理を実行する環境を指定しています。GitHub Actionsが動作するときはGitHub Actionsが独自に仮想環境を構築して、その中で動作します。
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy
+      env:
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        USER_NAME: ${{ secrets.USER_NAME }}
+        HOST_NAME: ${{ secrets.HOST_NAME }}
+      run: |
+        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} 'cd Beloved_bikes &&
+        git pull origin main &&
+        ~/.rbenv/shims/bundle install &&
+        ~/.rbenv/shims/bundle exec rails assets:precompile RAILS_ENV=production &&
+        ~/.rbenv/shims/bundle exec rails db:migrate RAILS_ENV=production &&
+        if [[ -e tmp/pids/puma.pid ]];then sudo kill $(cat tmp/pids/puma.pid); echo kill puma process;fi &&
+        ~/.rbenv/shims/rails s -e production'
