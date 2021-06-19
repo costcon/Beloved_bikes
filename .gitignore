@@ -32,3 +32,6 @@
 
 #デプロイ(環境変数)のための記述
 /.env
+
+/vendor/*
+!/vendor/.keep
