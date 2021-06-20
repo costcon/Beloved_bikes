@@ -1,2 +1,41 @@
-<h1>Reserves#index</h1>
-<p>Find me in app/views/reserves/index.html.erb</p>
+<div class="container">
+   <div class="row hoge">
+     <h1 class="heading08"><span>Your Reservations</span>予約履歴一覧</h1>
+   </div>
+   <%= render partial: 'layouts/flash' %>
+    <div class="row hoge">
+      <div calss="col-10 mx-auto">
+      <% if @bikes.empty? %>
+        <h4>予約履歴はまだありません</h4>
+      <% else %>
+       <table border="1" class="table">
+         <thead class="table-primary">
+           <tr>
+             <th>バイク名</th>
+             <th>利用開始日時</th>
+             <th>返却日時</th>
+             <th>オーナー</th>
+             <th></th>
+           </tr>
+         </thead>
+         <tbody>
+           <% @reservations.each do |reservation| %>
+           <tr>
+             <td>
+              <%= attachment_image_tag(@bike, :bike_image, :fill, 30, 30, fallback: "no_image_bike.jpg") %>
+              <%= @bike.name %>
+             </td>
+             <td><%= reservation.start_time %></td>
+             <td><%= reservation.end_time %></td>
+             <td><%= @user.nickname %></td>
+             <td>
+              <%= link_to '確認する', reservation_path(reservation), class: "btn btn-sm btn-success" %>
+             </td>
+           </tr>
+           <% end %>
+         </tbody>
+       </table>
+      <% end %>
+      </div>
+    </div>
+ </div>

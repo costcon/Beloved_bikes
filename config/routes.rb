@@ -22,8 +22,10 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :show, :update, :destroy]
   resources :reviews, only: [:new, :index, :show, :create, :update]
   resources :reservations, only: [:new, :create, :index, :show, ] do
-    collection do
+    member do
       post 'confirm'
+    end
+    collection do
       get 'thanks'
     end
   end

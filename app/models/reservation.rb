@@ -3,9 +3,9 @@ class Reservation < ApplicationRecord
   belongs_to :user
 
   # 予約被り防止
-  def start_time
-    self.reservation_name
-  end
+  # def start_time
+  #   self.reservation_name
+  # end
 
 
   # validate :date_before_start
@@ -14,5 +14,7 @@ class Reservation < ApplicationRecord
   # end
 
   validates :start_time, uniqueness: { message: '他のユーザーが予約しています' }
+  validates :start_time, presence: true
+  validates :end_time, presence: true
 
 end

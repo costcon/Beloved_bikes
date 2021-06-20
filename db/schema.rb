@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2021_06_04_152115) do
     t.integer "payment_method"
     t.text "reservation_comment"
     t.datetime "start_time"
+    t.datetime "end_time"
+    t.string "name"
+    t.string "bike_image_id"
+    t.string "maker"
+    t.string "displacement"
+    t.integer "price"
+    t.string "mileage"
+    t.string "modek_year"
+    t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

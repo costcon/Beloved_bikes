@@ -1,23 +1,55 @@
-<div class="container">
+ <div class="container">
    <div class="row ">
       <h1 class="heading08"><span>Reservation Check</span>予約確認</h1>
     </div>
       <%= render partial: 'layouts/flash' %>
     <div class="row">
      <div class="col-2"></div>
-      <div class="col-6">
-        <h3>予約情報</h3>
-          <table class="table">
-            <!--<tr>-->
-            <!--  <th>予約したバイク</th>-->
-            <!--  <th><#%= @bike_id.name %></th>-->
-            <!--</tr>-->
-            <tr>
-              <th>予約期間</th>
-              <th><%= @reservation.start_time %></th>
-            </tr>
+      <div class="col-8">
 
-          </table>
+        <h3>予約情報</h3>
+        <table class="table">
+          <tr>
+            <th>バイク画像</th>
+            <th><%= attachment_image_tag(@bike, :bike_image, :fill, 400, 300, fallback: "no_image.jpg") %></th>
+          </tr>
+          <tr>
+            <th>バイク名</th>
+            <th><%= @bike.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= @bike.introduction %></th>
+          </tr>
+          <tr>
+            <th>一日当たり単価(円)</th>
+            <th>¥ <%= @bike.price %></th>
+          </tr>
+          <tr>
+            <th>利用開始日時</th>
+            <th><%= @reservation.start_time %></th>
+          </tr>
+          <tr>
+            <th>返却日時</th>
+            <th><%= @reservation.end_time %></th>
+          </tr>
+          <tr>
+            <th>オーナー様への伝達事項</th>
+            <th><%= @reservation.reservation_comment %></th>
+          </tr>
+        </table>
+        <%= form_with model:@reservation, local: true do |f| %>
+          <%= f.hidden_field :reserved_id, value:@bike.user_id %>
+          <%= f.hidden_field :reserver_id, value:current_user.id %>
+          <!--TODO: ADD hidden_field -->
+
+          <div class="col-6">
+            <%= f.submit 'バイク詳細画面に戻る', name: 'back' %>
+          </div>
+          <div class="col-6">
+            <%= f.submit '予約する' %>
+          </div>
+        <% end %>
        </div>
     </div>
  </div>

@@ -69,28 +69,38 @@
     </div>
   <% end %>
 <% end %>
+<% if current_user.id == nil %>
+  <h1>ご予約は会員様限定です</h1>
+<% else %>
+<div class='container'>
+  <div class='row hoge'>
+    <div class="col-6 reservation_form">
+      <h1>予約登録</h1>
+      <%= form_with model:@reservation, url: confirm_reservation_path(@bike.id), local: true, data: { confirm: "【確認】予約リクエストを送信してよろしいですか" } do |f| %>
+        <%= f.hidden_field :bike_id, value:@bike.id %>
+        <%= f.hidden_field :reserved_id, value:@bike.user_id %>
+        <%= f.hidden_field :reserver_id, value:current_user.id %>
 
-<h1>予約日を指定してください。</h1>
+        <div class="start_time">
+          <%= f.label "利用開始日時" %>
+          <%= f.datetime_field :start_time, class:"form-control" %>
+        </div>
 
-<%= form_with model:@reservation, url: confirm_reservations_path, local: true do |f| %>
-  <%= f.hidden_field :bike_id, value:@bike.id %>
-  <%= f.hidden_field :reserved_id, value:@bike.user_id %>
-  <%= f.hidden_field :reserver_id, value:current_user.id %>
+        <div class="end_time">
+          <%= f.label "返却日時" %>
+          <%= f.datetime_field :end_time, class:"form-control" %>
+        </div>
 
-  <!--名前はあとで消す-->
-  <!--<div class="reservation_name">-->
-  <!--  <#%= f.label :reservation_name %>-->
-  <!--  <#%= f.text_field :reservation_name %>-->
-  <!--</div>-->
+        <div class="reservation_comment">
+          <%= f.label "オーナー様への伝達事項" %>
+          <%= f.text_area :reservation_comment, class:"form-control" %>
+        </div>
 
-  <div class="time">
-    <%= f.label :start_time %>
-    <%= f.datetime_select :start_time %>
+        <div class="mt-4 submit">
+          <%= f.submit 'Reserve', class:'btn btn-lg btn-outline-dark' %>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <div class="submit">
-    <%= f.submit 'Reserve', class:'btn btn-lg btn-outline-dark' %>
-  </div>
-
+</div>
 <% end %>
-
