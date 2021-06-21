@@ -26,6 +26,30 @@
   justify-content: center;
 }
 
+.under {
+   background: linear-gradient(transparent 80%, #a8eaff 70%)
+}
+
+.heading08 {
+	font-size: 26px;
+}
+
+.heading08 span {
+	display: flex;
+	align-items: center;
+	color: #498ee0;
+	font-size: 18px;
+	text-transform: uppercase;
+}
+
+.heading08 span::before {
+	content: '';
+	display: inline-block;
+	margin-right: 20px;
+	width: 40px;
+	height: 1px;
+	background-color: #498ee0;
+}
 
 .fixed-background {
   padding-top: 65px;
@@ -48,18 +72,17 @@
 }
 
 
-.top_img {
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-}
-
-
 .top-image {
-  height: 600px;
+  height: 500px;
   width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
+.bike-image {
+  height: 300px;
+  width: 400px;
+}
 
 
 .navbar {

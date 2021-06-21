@@ -1,4 +1,7 @@
 class BikesController < ApplicationController
+  before_action :authenticate_user!
+
+
   def index
     # @bikes = @bike.page(params[:page]).per(8)
     @bikes = Bike.all.page(params[:page]).per(8)
@@ -50,11 +53,20 @@ class BikesController < ApplicationController
     redirect_to exhibit_bike_path(current_user)
   end
 
+  def map
+    # respond_to以下の記述によって、
+    # remote: trueのアクセスに対して、
+    # map.js.erbが変えるようになります。
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
   private
 
   def bike_params
-    params.require(:bike).permit(:user_id, :bike_image, :name, :maker, :displacement, :mileage, :modek_year, :introduction, :price, :is_active)
+    params.require(:bike).permit(:user_id, {bike_images: []}, :name, :maker, :displacement, :mileage, :modek_year, :introduction, :price, :is_active)
   end
 
 end

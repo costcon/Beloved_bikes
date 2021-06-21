@@ -10,12 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_152115) do
+ActiveRecord::Schema.define(version: 2021_06_20_164815) do
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "bikes", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
     t.string "bike_image_id"
+    t.string "bike_images_id"
     t.string "maker"
     t.string "displacement"
     t.integer "price"
@@ -32,20 +54,10 @@ ActiveRecord::Schema.define(version: 2021_06_04_152115) do
     t.integer "reserver_id"
     t.integer "reserved_id"
     t.integer "bike_id"
-    t.string "reservation_name"
-    t.string "reservation_date"
-    t.integer "payment_method"
     t.text "reservation_comment"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.string "name"
-    t.string "bike_image_id"
-    t.string "maker"
-    t.string "displacement"
-    t.integer "price"
-    t.string "mileage"
-    t.string "modek_year"
-    t.text "introduction"
+    t.integer "payment_method"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

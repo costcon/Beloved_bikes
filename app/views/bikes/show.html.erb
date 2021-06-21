@@ -1,74 +1,149 @@
+<div class="container">
+  <div class="row">
+    <div class='col-4 offset-1'>
+      <h1 class="heading08"><span>Bike Ditail</span>バイク詳細</h1>
+    </div>
+  </div>
+</div>
 <%= render partial: 'layouts/flash' %>
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
-      <%= attachment_image_tag(@bike, :bike_image, :fill, 400, 300, fallback: "no_image.jpg") %>
+    <div class="col-md-6 mt-4 bike_images">
+      <div class="bike_image">
+      <!--<#% @bike.bike_images.each do |bike_image| %>-->
+        <%= attachment_image_tag(@bike, :bike_image, :fill, 400, 300, fallback: "no_image.jpg") %>
+      <!--<#% end %>-->
+      </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6 mt-4">
       <span class="under">name</span>
-      <h4><%= @bike.name %></h4><br>
-      <span class="under">introduction</span>
-      <h4><%= @bike.introduction %></h4><br>
-      <h4 class="text-success">予約受付中</h4><br>
-      <%= form_with model: @reservation, url: new_reservation_path ,local: true, method: :get do |f| %>
-        <%= f.hidden_field :bike_id, value:@bike.id %>
-        <%= f.hidden_field :reserved_id, value:@bike.user_id %>
-        <%= f.hidden_field :reserver_id, value:current_user.id %>
-        <%= f.button :type => "submit" do %>
-          <i style="color: royalblue;">予約に進む</i>
+      <h4><%= @bike.name %><p class="text-success">予約受付中</p></h4>
+      <span class="under">owner</span>
+      <div class="mb-4">
+        <%= link_to user_path(@bike.user) do %>
+          <%= attachment_image_tag(@bike.user, :profile_image, :fill, 150, 150, fallback: "no_image.jpg") %>
+          <%= @bike.user.nickname %>
+          <!--<div class="review-evaluation" data-score="<#å%= @review.evaluation %>"></div>-->
+          <!--<script>-->
+          <!--  $('.review-evaluation').raty({-->
+          <!--    readOnly: true,-->
+          <!--    score: function() {-->
+          <!--      return $(this).attr('data-score');-->
+          <!--    },-->
+          <!--    path: '/assets/'-->
+          <!--  });-->
+          <!--</script>-->
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
 
-<h4>オーナー</h4>
+
 <div class="container">
   <div class="row">
-    <%= link_to user_path(@bike.user) do %>
-      <%= attachment_image_tag(@bike.user, :profile_image, :fill, 150, 150, fallback: "no_image.jpg") %>
-      <%= @bike.user.nickname %>
-      <!--<div class="review-evaluation" data-score="<#å%= @review.evaluation %>"></div>-->
-      <!--<script>-->
-      <!--  $('.review-evaluation').raty({-->
-      <!--    readOnly: true,-->
-      <!--    score: function() {-->
-      <!--      return $(this).attr('data-score');-->
-      <!--    },-->
-      <!--    path: '/assets/'-->
-      <!--  });-->
-      <!--</script>-->
-    <% end %>
+    <div class="col-md-6 mt-4">
+      <span class="under">introduction</span><br>
+        <h4><%= @bike.introduction %></h4>
+    </div>
   </div>
 </div>
 
-<div class="yakkan">
-  <h2>利用約款</h2><br>
-  <h4>シェア条件</h4><br>
-  <p>損害発生時の責任分担	帰責割合に応じて負担</p><br>
-  <p>ドライバーの本人確認方法	受渡時に免許証を確認</p><br>
-  <p>バイクの管理方法	オーナーが一元管理</p><br>
+<div class="container yakkan">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>利用約款</h2><br>
+      <h4>シェア条件</h4><br>
+      <p>損害発生時の責任分担	帰責割合に応じて負担</p><br>
+      <p>ドライバーの本人確認方法	受渡時に免許証を確認</p><br>
+      <p>バイクの管理方法	オーナーが一元管理</p><br>
 
-  <h4>オーナーのキャンセルポリシー</h4><br>
-  <p>24時間前	100%</p><br>
-  <p>72時間前	50%</p><br>
-  <p>決済後	100%</p><br>
-</div>
-<div></div>
-<!-- カレンダーテンプレを表示 -->
-<%= month_calendar events: @reservations do |date, reservations| %>
-  <%= date.day %>
-
-
-<!-- 予約を表示させる-->
-  <% reservations.each do |reservation| %>
-    <div>
-      <!--<#%= reservation.start_time.hour %>:<#%= reservation.start_time.min %>-->
-      <%= reservation.reservation_name %>
+      <h4>オーナーのキャンセルポリシー</h4><br>
+      <p>24時間前	100%</p><br>
+      <p>72時間前	50%</p><br>
+      <p>決済後	100%</p><br>
     </div>
-  <% end %>
-<% end %>
+  </div>
+</div>
+
+<h2>gmap</h2>
+
+<!-- 地名入力用のinputを追加 -->
+<input id="address" type="textbox" value="Sydney, NSW">
+
+<!-- buttonをクリックしたらcodeAddressを実行　-->
+<input type="button" value="Encode" onclick="codeAddress()">
+<div id='map'>
+</div>
+
+<style>
+#map{
+  height: 400px;
+}
+</style>
+
+<script>
+/*
+mapを関数の外で定義(codeAddressでも使うため)
+geocoderを用意
+*/
+
+let map
+let geocoder
+
+function initMap(){
+  // geocoderを初期化
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: -34.397, lng: 150.644},
+  zoom: 8
+  });
+}
+
+function codeAddress(){
+  // 入力を取得
+  let inputAddress = document.getElementById('address').value;
+
+  // geocodingしたあとmapを移動
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+　　　　　　　　　　　　// map.setCenterで地図が移動
+      map.setCenter(results[0].geometry.location);
+
+　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs9fDVYkB6NXDWJkai-szrQmfxEYEE6AQ&callback=initMap" async defer></script>
+
+<div class="container yakkan">
+  <div class="row hoge">
+    <div class="col-md-8">
+    <!-- カレンダーテンプレを表示 -->
+    <%= month_calendar events: @reservations do |date, reservations| %>
+      <%= date.day %>
+
+
+    <!-- 予約を表示させる-->
+      <% reservations.each do |reservation| %>
+        <div>
+          <!--<#%= reservation.start_time.hour %>:<#%= reservation.start_time.min %>-->
+          <%= reservation.reservation_name %>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+</div>
 <% if current_user.id == nil %>
   <h1>ご予約は会員様限定です</h1>
 <% else %>
@@ -97,7 +172,9 @@
         </div>
 
         <div class="mt-4 submit">
+          <div class="row hoge">
           <%= f.submit 'Reserve', class:'btn btn-lg btn-outline-dark' %>
+          </div>
         </div>
       <% end %>
     </div>

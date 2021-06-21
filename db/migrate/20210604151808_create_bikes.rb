@@ -4,6 +4,7 @@ class CreateBikes < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.string :name
       t.string :bike_image_id
+      t.string :bike_images_id
       t.string :maker
       t.string :displacement
       t.integer :price

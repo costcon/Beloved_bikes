@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+  before_action :authenticate_user!
 
   # NEW必要ない
   def new
@@ -12,7 +13,8 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
-    Reservation.create(reservation_params)
+    # Reservation.create(reservation_params)
+    @reservation.save
     # @reservation.user_id = current_user.id
     redirect_to thanks_reservations_path
   end

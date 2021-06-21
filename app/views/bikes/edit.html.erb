@@ -1,9 +1,7 @@
 <div class='container'>
   <div class='row'>
     <div class='col-4 offset-1'>
-      <nav class="navbar navbar-light">
-      <h2 class='title'>Editing Bike</h2>
-      </nav>
+      <h1 class="heading08"><span>Edit Bike</span>バイク情報編集</h1>
     </div>
     <div class='col-md-8'></div>
   </div>
@@ -13,13 +11,9 @@
       <%= f.hidden_field :user_id, value:@bike.id %>
 
         <div>
-          <label for='inputImage'>Image</label><br>
-          <%= f.attachment_field :bike_image,  placeholder:'写真' %>
+          <label for='inputImage'>Images</label><br>
+          <%= f.file_field :bike_images, multiple: true, placeholder:'写真' %>
         </div>
-        <!--<div class="form-group">-->
-        <!--  <3%= f.label :bike_image %>-->
-        <!--  <3%= f.attachment_field :bike_image, class: "form-control-file bike_image" %>-->
-        <!--</div>-->
 
         <div>
           <label for='inputName'>BikeName</label><br>
@@ -64,6 +58,34 @@
           <%= f.radio_button :is_active, :false %>
           <%= f.label :is_active, '出展停止中', {value: :false, style: 'display: inline-block;'} %>
         </div>
+
+        <h2>gmap</h2>
+          <!-- form_withはデフォルトでremote: trueの挙動になります -->
+          <%= form_with url: map_request_path, method: :get do |f|%>
+            <%= f.text_field :address %>
+            <%= f.submit '地図表示' %>
+          <% end %>
+
+          <div id="map mt-5">
+          </div>
+
+          <style>
+          #map{
+            height: 400px;
+          }
+          </style>
+
+          <script>
+            let mapInstance //この変数はmap.js.erbでも使うのでタイプミスに注意
+
+            function initMap(){
+              mapInstance = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: -34.397, lng: 150.644},
+              zoom: 8
+              });
+            }
+          </script>
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs9fDVYkB6NXDWJkai-szrQmfxEYEE6AQ&callback=initMap" async defer></script>
 
         <div>
           <%= f.submit 'Submit', class:'btn btn-lg btn-outline-dark' %>

@@ -35,3 +35,15 @@ $(function() {
     });
 });
 
+$(function() {
+    $('.bike_images').slick({
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        speed: 500,
+        infinite: true,
+        fade: true,
+        cssEase: 'linear'
+    });
+});
+
