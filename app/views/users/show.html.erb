@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row ">
+  <div class="row">
     <div class='col-4 offset-1'>
       <h1 class="heading08"><span>User Detail</span>ユーザー情報</h1>
     </div>
@@ -49,9 +49,18 @@
             <th><%= @user.profile_comment %></th>
           </tr>
         </table>
-
-      <h4>予約履歴</h4>
-      <%= link_to '一覧を見る', reservations_path, data: {"turbolinks" => false}, class: "btn btn-outline-info" %>
+      <div class="container">
+        <div class="row d-flex justify-content-between">
+         <div class="mb-5">
+            <h4>予約履歴</h4>
+            <%= link_to '一覧を見る', reservations_path, data: {"turbolinks" => false}, class: "btn btn-outline-info" %>
+          </div>
+          <div class="mb-5">
+            <h4>リクエスト履歴</h4>
+            <%= link_to '一覧を見る', requests_reservations_path, data: {"turbolinks" => false}, class: "btn btn-outline-info" %>
+          </div>
+        </div>
+       </div>
 
       <% else %>
         <table class="table">

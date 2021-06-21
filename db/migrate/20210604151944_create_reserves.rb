@@ -8,14 +8,8 @@ class CreateReserves < ActiveRecord::Migration[5.2]
       t.datetime :start_time
       t.datetime :end_time
       t.integer :payment_method
-      # t.string :bike_name
-      # t.string :bike_image_id
-      # t.string :bike_maker
-      # t.string :bike_displacement
-      # t.integer :bike_price
-      # t.string :bike_mileage
-      # t.string :bike_modek_year
-      # t.text :introduction
+      t.integer :room_id
+      t.string :chat_message
 
       t.timestamps
     end

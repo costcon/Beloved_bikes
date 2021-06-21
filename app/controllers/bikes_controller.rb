@@ -10,7 +10,7 @@ class BikesController < ApplicationController
   def show
     @bike = Bike.find(params[:id])
     @reservation = Reservation.new
-    @reservations = Reservation.all
+    @reservations = Reservation.where(bike_id: @bike)
   end
 
   def exhibit

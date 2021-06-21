@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :bikes, dependent: :destroy
   has_many :reserves, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :user_rooms, dependent: :destroy
 
 
   validates :last_name, presence: true

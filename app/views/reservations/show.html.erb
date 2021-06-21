@@ -1,2 +1,42 @@
-<h1>Reserves#show</h1>
-<p>Find me in app/views/reserves/show.html.erb</p>
+<div class="container">
+  <div class="row ">
+    <div class='col-4 offset-1'>
+      <h1 class="heading08"><span>Reservation Detail</span>予約詳細</h1>
+    </div>
+      <%= render partial: 'layouts/flash' %>
+  </div>
+  <div class="row">
+   <div class="col-2"></div>
+    <div class="col-6">
+      <h3>予約情報</h3>
+      <%= link_to '取引メッセージ画面へ', root_path,  class: "btn btn-outline-info" %>
+      <table class="table">
+        <tr>
+          <th>バイク名</th>
+          <th><%= @bike.name %></th>
+        </tr>
+        <tr>
+          <th>オーナー名</th>
+          <th><%= @user.nickname %></th>
+        </tr>
+        <tr>
+          <th>一日当たり単価(円)</th>
+          <th>¥ <%= @bike.price %></th>
+        </tr>
+        <tr>
+          <th>利用開始日時</th>
+          <th><%= @reservation.start_time %></th>
+        </tr>
+        <tr>
+          <th>返却日時</th>
+          <th><%= @reservation.end_time %></th>
+        </tr>
+        <tr>
+          <th>オーナー様への伝達事項</th>
+          <th><%= @reservation.reservation_comment %></th>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+ </div>

@@ -24,9 +24,12 @@ Rails.application.routes.draw do
   resources :reservations, only: [:new, :create, :index, :show, ] do
     member do
       post 'confirm'
+      get 'chat_show'
     end
     collection do
       get 'thanks'
+      get 'requests'
+      post 'chat_create'
     end
   end
 

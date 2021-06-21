@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_20_164815) do
+ActiveRecord::Schema.define(version: 2021_06_21_195854) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 2021_06_20_164815) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer "payment_method"
+    t.integer "room_id"
+    t.string "chat_message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -67,6 +69,18 @@ ActiveRecord::Schema.define(version: 2021_06_20_164815) do
     t.integer "reviewed_id"
     t.float "evaluation"
     t.text "review_comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_rooms", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
