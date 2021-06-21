@@ -1,6 +1,8 @@
 class Reservation < ApplicationRecord
 
-  belongs_to :user
+  belongs_to :reserver, class_name:"User"
+  belongs_to :reserved, class_name:"User"
+  belongs_to :bike
 
   # 予約被り防止
   # def start_time
