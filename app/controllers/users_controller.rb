@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  
+
   def edit
     @user = User.find(params[:id])
   end
@@ -10,6 +10,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @review = Review.create
+    @reviews = Review.where(reviewed_id: @user)
+    if @reviews.blank?
+      @average_review = 0
+    else
+      @average_review = @reviews.average(:evaluation).round(2)
+    end
   end
 
   def update

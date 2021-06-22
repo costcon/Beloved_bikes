@@ -8,8 +8,6 @@ class CreateReserves < ActiveRecord::Migration[5.2]
       t.datetime :start_time
       t.datetime :end_time
       t.integer :payment_method
-      t.integer :room_id
-      t.string :chat_message
 
       t.timestamps
     end

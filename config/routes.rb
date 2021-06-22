@@ -24,14 +24,15 @@ Rails.application.routes.draw do
   resources :reservations, only: [:new, :create, :index, :show, ] do
     member do
       post 'confirm'
-      get 'chat_show'
     end
     collection do
       get 'thanks'
       get 'requests'
-      post 'chat_create'
     end
   end
+
+  get 'chat/:id' => 'chats#show', as: 'chat'
+  resources :chats, only: [:create]
 
   get '/map_request', to: 'maps#map', as: 'map_request'
 

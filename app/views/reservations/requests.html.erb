@@ -23,16 +23,18 @@
          <tbody>
            <% @reservations.each do |reservation| %>
            <tr>
-             <!--<td>-->
-             <!-- <#%= attachment_image_tag(@bike, :bike_image, :fill, 30, 30, fallback: "no_image_bike.jpg") %>-->
-             <!-- <#%= @bike.name %>-->
-             <!--</td>-->
+             <td>
+              <%= attachment_image_tag(reservation.bike, :bike_image, :fill, 30, 30, fallback: "no_image_bike.jpg") %>
+              <%= reservation.bike.name %>
+             </td>
              <td><%= reservation.start_time %></td>
              <td><%= reservation.end_time %></td>
-             <!--<td><#%= @user.nickname %></td>-->
+             <td><%= reservation.reserver.nickname %></td>
              <td>
               <%= link_to '確認する', reservation_path(reservation), class: "btn btn-sm btn-success" %>
-              <%= link_to 'チャット', root_path, class: "btn btn-sm btn-info" %>
+              <% if current_user != reservation.reserver %>
+               <%= link_to 'チャット', chat_path(reservation.reserver_id),  class: "btn btn-outline-info" %>
+              <% end %>
              </td>
            </tr>
            <% end %>

@@ -22,7 +22,7 @@
       <span class="under">owner</span>
       <div class="mb-4">
         <%= link_to user_path(@bike.user) do %>
-          <%= attachment_image_tag(@bike.user, :profile_image, :fill, 150, 150, fallback: "no_image.jpg") %>
+          <%= attachment_image_tag(@bike.user, :profile_image, :fill, 150, 150, fallback: "no_image.jpg", class: "rounded-circle") %>
           <%= @bike.user.nickname %>
           <!--<div class="review-evaluation" data-score="<#å%= @review.evaluation %>"></div>-->
           <!--<script>-->
@@ -142,7 +142,6 @@
     <!-- 予約を表示させる-->
       <% reservations.each do |reservation| %>
         <div>
-          <!--<#%= reservation.start_time.hour %>:<#%= reservation.start_time.min %>-->
           <p class="text-danger">予約済</p>
         </div>
       <% end %>

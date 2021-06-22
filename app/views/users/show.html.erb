@@ -52,7 +52,7 @@
       <div class="container">
         <div class="row d-flex justify-content-between">
          <div class="mb-5">
-            <h4>予約履歴</h4>
+          <h4>予約履歴</h4>
             <%= link_to '一覧を見る', reservations_path, data: {"turbolinks" => false}, class: "btn btn-outline-info" %>
           </div>
           <div class="mb-5">
@@ -83,40 +83,43 @@
 
       <h2>このユーザーを評価</h2>
       <!--<#%= link_to 'このユーザーを評価する', new_review_path(@user.id), data: {"turbolinks" => false}, class: "btn btn-outline-info" %>-->
-        <%= form_with(model: @user, local: true) do |f| %>
-          <!--<div>-->
-          <!--  <#%= f.label :evaluation %>-->
-          <!--  <#% f.hidden_field :evaluation, id: :evaluate_stars %>-->
-          <!--</div>-->
+        <%= form_with(model: @review, local: true) do |f| %>
+          <%= f.hidden_field :evaluation, :value => 'score' %>
+          <%= f.hidden_field :reviewer_id, value:current_user.id  %>
+          <%= f.hidden_field :reviewed_id, value:@user.id  %>
+
           <div>
             <%= f.label :review_comment %>
             <%= f.text_field :review_comment %>
           </div>
           <div id="evaluate_stars">
-            <label>評価</label>
-            <div class="movie-evaluation" data-score="<%= user.evaluation %>"></div>
-            <script>
-              $('.movie-evaluation').raty({
-                readOnly: true,
-                score: function() {
-                  return $(this).attr('data-score');
-                },
-                path: '/assets/'
-              });
-            </script>
+            <label>評価：</label>
           </div>
           <div class="actions">
-            <%= f.submit 'Review', class:'btn btn-lg btn-outline-dark'  %>
+            <%= f.submit '評価する', class:'btn btn-lg btn-outline-dark'  %>
           </div>
         <% end %>
+
         <script>
           $('#evaluate_stars').raty({
             size: 36,
             starOn: "<%= asset_path('star-on.png') %>",
             starOff: "<%= asset_path('star-off.png') %>",
             starHalf: "<%= asset_path('star-half.png') %>",
-            scoreName: 'user[evaluation]' //登録するモデル名とカラム名を記述
-            half: true, // star-halfの入力を行う
+            scoreName: 'review[evaluation]', //登録するモデル名とカラム名を記述
+            half: true // star-halfの入力を行う
+          });
+        </script>
+
+        <div id="average-review-evaluation" data-score=<%= @average_review %>><%= @reviews.count %> Reviews</div>
+
+        <script>
+          $('#average-review-evaluation').raty({
+            readOnly: true,
+            path: '/assets/',
+            score: function() {
+              return $(this).attr('data-score')
+            }
           });
         </script>
 
