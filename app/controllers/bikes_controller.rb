@@ -1,5 +1,5 @@
 class BikesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except:[:index, :show]
 
 
   def index
@@ -11,6 +11,25 @@ class BikesController < ApplicationController
     @bike = Bike.find(params[:id])
     @reservation = Reservation.new
     @reservations = Reservation.where(bike_id: @bike)
+    @user = @bike.user_id
+    @reviews = Review.where(reviewed_id: @user)
+
+
+    # @post = Review.find(params[:id])
+    # @lat = @review.spot.latitude
+    # @lng = @review.spot.longitude
+
+    @lat = @bike.spot.latitude
+    @lng = @bike.spot.longitude
+    gon.lat = @lat
+    gon.lng = @lng
+
+
+    if @reviews.blank?
+      @average_review = 0
+    else
+      @average_review = @reviews.average(:evaluation).round(1)
+    end
   end
 
   def exhibit
@@ -20,6 +39,11 @@ class BikesController < ApplicationController
 
   def new
     @bike = Bike.new
+    @bike.build_spot
+    # @lat = @bike.spot.latitude
+    # @lng = @bike.spot.longitude
+    gon.lat = 35.6594666
+    gon.lng = 139.7005536
   end
 
   def create
@@ -34,6 +58,13 @@ class BikesController < ApplicationController
 
   def edit
     @bike = Bike.find(params[:id])
+    if @bike.spot.blank?
+      @bike.build_spot
+    end
+    @lat = @bike.spot.latitude
+    @lng = @bike.spot.longitude
+    gon.lat = @lat
+    gon.lng = @lng
   end
 
   def update
@@ -53,22 +84,23 @@ class BikesController < ApplicationController
     redirect_to exhibit_bike_path(current_user)
   end
 
-  def map
-    results = Geocoder.search(params[:address])
-    @latlng = results.first.coordinates
-    # respond_to以下の記述によって、
-    # remote: trueのアクセスに対して、
-    # map.js.erbが変えるようになります。
-    respond_to do |format|
-      format.js
-    end
-  end
+  # def map
+  #   results = Geocoder.search(params[:address])
+  #   @latlng = results.first.coordinates
+  #   # respond_to以下の記述によって、
+  #   # remote: trueのアクセスに対して、
+  #   # map.js.erbが変えるようになります。
+  #   respond_to do |format|
+  #     format.js
+  #   end
+  # end
 
 
   private
 
   def bike_params
-    params.require(:bike).permit(:user_id, :bike_image, {bike_images: []}, :name, :maker, :displacement, :mileage, :modek_year, :introduction, :price, :is_active)
+    params.require(:bike).permit(:user_id, :bike_image, :name, :maker, :displacement, :mileage, :modek_year, :introduction, :price, :is_active, spot_attributes: [:address, :latitude, :longitude])
   end
+
 
 end

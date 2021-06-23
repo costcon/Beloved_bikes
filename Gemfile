@@ -78,6 +78,8 @@ gem 'kaminari','~> 1.2.1'
 gem 'simple_calendar'
 gem 'ransack'
 gem 'geocoder'
+gem "gmaps4rails"
+gem "gon"
 
 
 #デプロイ(環境変数)のための記述

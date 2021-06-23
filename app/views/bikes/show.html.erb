@@ -24,16 +24,20 @@
         <%= link_to user_path(@bike.user) do %>
           <%= attachment_image_tag(@bike.user, :profile_image, :fill, 150, 150, fallback: "no_image.jpg", class: "rounded-circle") %>
           <%= @bike.user.nickname %>
-          <!--<div class="review-evaluation" data-score="<#å%= @review.evaluation %>"></div>-->
-          <!--<script>-->
-          <!--  $('.review-evaluation').raty({-->
-          <!--    readOnly: true,-->
-          <!--    score: function() {-->
-          <!--      return $(this).attr('data-score');-->
-          <!--    },-->
-          <!--    path: '/assets/'-->
-          <!--  });-->
-          <!--</script>-->
+          <div id="average-review-evaluation" data-score=<%= @average_review %>></div>
+          <p><%= @reviews.count %> Reviews</p>
+
+          <script>
+          $('#average-review-evaluation').empty();
+            $('#average-review-evaluation').raty({
+              readOnly: true,
+              path: '/assets/',
+              score: function() {
+                return $(this).attr('data-score')
+              }
+            });
+          </script>
+
         <% end %>
       </div>
     </div>
@@ -69,64 +73,12 @@
 
 <div class="container">
   <div class="row hoge">
-    <div class="col-md-8">
-      <h2>gmap</h2>
-
-      <!-- 地名入力用のinputを追加 -->
-      <input id="address" type="textbox" value="Sydney, NSW">
-
-      <!-- buttonをクリックしたらcodeAddressを実行　-->
-      <input type="button" value="Encode" onclick="codeAddress()">
-      <div id='map'>
-      </div>
-
-      <style>
-      #map{
-        height: 400px;
-      }
-      </style>
-
-      <script>
-      /*
-      mapを関数の外で定義(codeAddressでも使うため)
-      geocoderを用意
-      */
-
-      let map
-      let geocoder
-
-      function initMap(){
-        // geocoderを初期化
-        geocoder = new google.maps.Geocoder()
-
-        map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8
-        });
-      }
-
-      function codeAddress(){
-        // 入力を取得
-        let inputAddress = document.getElementById('address').value;
-
-        // geocodingしたあとmapを移動
-        geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-          if (status == 'OK') {
-      　　　　　　　　　　　　// map.setCenterで地図が移動
-            map.setCenter(results[0].geometry.location);
-
-      　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-            });
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
-      }
-      </script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs9fDVYkB6NXDWJkai-szrQmfxEYEE6AQ&callback=initMap" async defer></script>
+    <div class="show">
+      <div class="show__address">
+        <h2>バイク受け取り場所</h2>
+        <%= @bike.spot.address %>
+      <div class="show__maps", id="show_map", style="height: 320px; width: 100vh;"></div>
+      <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs9fDVYkB6NXDWJkai-szrQmfxEYEE6AQ&callback=initMap" async defer></script>-->
     </div>
   </div>
 </div>
@@ -172,7 +124,7 @@
         </div>
 
         <div class="reservation_comment">
-          <%= f.label "オーナー様への伝達事項" %>
+          <%= f.label "オーナー様への伝達事項(500字まで)" %>
           <%= f.text_area :reservation_comment, class:"form-control" %>
         </div>
 

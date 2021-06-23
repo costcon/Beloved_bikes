@@ -6,12 +6,12 @@
   </div>
   <div class='row hoge'>
     <div class='col-8 newbike'>
-      <%= form_with model:@bike, local:true do |f| %>
+      <%= form_with(model:@bike, local:true, multipart: true) do |f| %>
       <%= f.hidden_field :user_id, value:@bike.id %>
 
         <div>
           <label for='inputImage'>Images</label><br>
-          <%= f.file_field :bike_images, multiple: true, placeholder:'写真' %>
+          <%= f.file_field :bike_image, multiple: true, placeholder:'写真' %>
         </div>
 
         <div>
@@ -59,33 +59,16 @@
         </div>
 
         <div class='mt-3 mb-5'>
-          <h2>gmap</h2>
-            <%= form_with url: map_request_path, method: :get do |f|%>
-              <%= f.text_field :address %>
-              <%= f.submit '地図表示' %>
+          <div class="spot">
+            <%= f.fields_for :spot do |s| %>
+              <%= s.label :address, "バイク受け渡し場所(Google Mapで検索)", class: 'spot__title' %>
+              <%= s.text_field :address, placeholder: "住所、地名を入力", id: "address", class: 'spot__text' %>
+            <input onclick="codeAddress()", type="button", value="検索する"></input>
+            <div class="map", id="show_map", style="height: 320px; width: 640px;"></div>
             <% end %>
-
-            <div id="map">
-            </div>
-
-            <style>
-            #map{
-              height: 400px;
-            }
-            </style>
-
-            <script>
-              let mapInstance //この変数はmap.js.erbでも使うのでタイプミスに注意
-
-              function initMap(){
-                mapInstance = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: -34.397, lng: 150.644},
-                zoom: 8
-                });
-              }
-            </script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs9fDVYkB6NXDWJkai-szrQmfxEYEE6AQ&callback=initMap" async defer></script>
+            <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs9fDVYkB6NXDWJkai-szrQmfxEYEE6AQ&callback=initMap" async defer></script>-->
           </div>
+        </div>
         <div>
           <%= f.submit 'Submit', class:'btn btn-lg btn-outline-dark' %>
         </div>

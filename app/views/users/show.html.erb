@@ -89,7 +89,7 @@
           <%= f.hidden_field :reviewed_id, value:@user.id  %>
 
           <div>
-            <%= f.label :review_comment %>
+            <%= f.label "コメント(200字まで)" %>
             <%= f.text_field :review_comment %>
           </div>
           <div id="evaluate_stars">
@@ -111,9 +111,14 @@
           });
         </script>
 
-        <div id="average-review-evaluation" data-score=<%= @average_review %>><%= @reviews.count %> Reviews</div>
+        <%= link_to review_path(@user), class: "m-5" do %>
+          <h2 class="text-success">このユーザーの評価</h2>
+          <div id="average-review-evaluation" data-score=<%= @average_review %>></div>
+          <p><%= @reviews.count %> Reviews</p>
+        <% end %>
 
         <script>
+          $('#average-review-evaluation').empty();
           $('#average-review-evaluation').raty({
             readOnly: true,
             path: '/assets/',

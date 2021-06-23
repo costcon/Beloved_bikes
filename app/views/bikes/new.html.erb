@@ -16,7 +16,7 @@
 
         <div>
           <label for='inputImage'>Images</label><br>
-          <%= f.file_field :bike_images, multiple: true, placeholder:'写真' %>
+          <%= f.file_field :bike_image, multiple: true, placeholder:'写真' %>
         </div>
 
         <div>
@@ -61,6 +61,18 @@
           <%= f.label :is_active, '出展中', {value: :true, style: 'display: inline-block;'} %>
           <%= f.radio_button :is_active, :false %>
           <%= f.label :is_active, '出展停止中', {value: :false, style: 'display: inline-block;'} %>
+        </div>
+
+        <div class='mt-3 mb-5'>
+          <div class="spot">
+            <%= f.fields_for :spot do |s| %>
+              <%= s.label :address, "バイク受け渡し場所場所(Google Mapで検索)", class: 'spot__title' %>
+              <%= s.text_field :address, placeholder: "住所、地名を入力", id: "address", class: 'spot__text' %>
+            <input onclick="codeAddress()", type="button", value="検索する"></input>
+            <div class="map", id="map", style="height: 320px; width: 640px;"></div>
+            <% end %>
+            <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs9fDVYkB6NXDWJkai-szrQmfxEYEE6AQ&callback=initMap" async defer></script>-->
+          </div>
         </div>
 
         <div>

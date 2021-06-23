@@ -18,5 +18,6 @@ class Reservation < ApplicationRecord
   # validates :start_time, uniqueness: { message: '他のユーザーが予約しています' }
   validates :start_time, presence: true
   validates :end_time, presence: true
+  validates :reservation_comment, length: { maximum: 500 }
 
 end

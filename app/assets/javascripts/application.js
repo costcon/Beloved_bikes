@@ -18,9 +18,10 @@
 //= require activestorage
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 //= require jquery.raty.js
+//= require underscore
+//= require gmaps/google
 
 
 $(function() {

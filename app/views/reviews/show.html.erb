@@ -1,0 +1,51 @@
+<div class="container">
+   <div class="row">
+    <div class='col-4 offset-1'>
+     <h1 class="heading08"><span>Reviews</span><%= @user.nickname %>様へのレビュー</h1>
+    </div>
+   </div>
+   <%= render partial: 'layouts/flash' %>
+    <div class="row hoge">
+      <div calss="col-10 mx-auto">
+      <% if @reviews.empty? %>
+        <h4>レビューはまだありません</h4>
+      <% else %>
+       <table border="1" class="table">
+         <thead class="table-primary">
+           <tr>
+             <th>ユーザー名</th>
+             <th>評価</th>
+             <th>投稿日</th>
+             <th>コメント</th>
+           </tr>
+         </thead>
+         <tbody>
+           <% @reviews.each do |review| %>
+           <tr>
+             <td>
+               <%= link_to user_path(review.reviewer_id) do %>
+                 <%= attachment_image_tag(review.reviewer, :profile_image, :fill, 30, 30, fallback: "no_image_bike.jpg") %>
+                 <%= review.reviewer.nickname %>
+               <% end %>
+             </td>
+             <td class="evaluate_stars" data-score="<%= review.evaluation %>"></td>
+             <td><%= review.created_at %></td>
+             <td><%= review.review_comment %></td>
+           </tr>
+           <% end %>
+         </tbody>
+       </table>
+      <% end %>
+      </div>
+    </div>
+ </div>
+<script>
+  $('.evaluate_stars').empty();
+  $('.evaluate_stars').raty({
+    readOnly: true,
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>
