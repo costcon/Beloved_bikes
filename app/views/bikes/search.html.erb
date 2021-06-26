@@ -2,42 +2,8 @@
   <div class="row">
     <%= render partial: 'layouts/flash' %>
   </div>
-    <div class='offset-1 mt-5'>
-    <h1 class="heading08"><span>PV Ranking</span>人気のバイク</h1>
-  </div>
-  <div class="row">
-    <% @rankings.each.with_index(1) do |ranking, i| %>
-      <% if ranking.is_active == true %>
-      <div class="col-md-4 pb-5">
-        <div class="card border-0">
-          <%= link_to bike_path(ranking.id) do %>
-          <h2 class="text-dark"><i class="fas fa-crown"></i><%= " #{i}位" %></h2>
-          <div class="bike_img">
-            <%= attachment_image_tag(ranking, :bike_image, height: "250", width: "100%", fallback: "no_image.jpg") %>
-          </div>
-          <div class="card-body text-center">
-            <h2 class="card-title"><%= ranking.name %></h2>
-            <span class="badge badge-pill badge-secondary"><%= ranking.area %></span>
-            <span class="badge badge-pill badge-info"><%= ranking.maker %></span>
-            <span class="badge badge-pill badge-success"><%= ranking.displacement %></span>
-            <span class="badge badge-pill badge-warning">¥<%= ranking.price %>/24h</span>
-          </div>
-          <% end %>
-        </div>
-      </div>
-      <%end%>
-    <%end%>
-  </div>
-  <div class='container mt-5'>
-    <div class='row'>
-      <div class='mx-auto'>
-        <!--<p><#%= paginate @rankings %></p>-->
-      </div>
-    </div>
-  </div>
-
   <div class='offset-1'>
-    <h1 class="heading08"><span>New Arrival</span>新着バイク</h1>
+    <h1 class="heading08"><span>Search Result</span>検索結果</h1>
   </div>
   <div class="row">
     <% @bikes.each do |bike| %>
@@ -50,10 +16,10 @@
           </div>
           <div class="card-body text-center">
             <h3 class="card-title"><%= bike.name %></h3>
-            <span class="badge badge-pill badge-secondary shadow"><%= bike.area %></span>
-            <span class="badge badge-pill badge-info shadow"><%= bike.maker %></span>
-            <span class="badge badge-pill badge-success shadow"><%= bike.displacement %></span>
-            <span class="badge badge-pill badge-warning shadow">¥<%= bike.price %>/24h</span>
+            <span class="badge badge-pill badge-secondary"><%= bike.area %></span>
+            <span class="badge badge-pill badge-info"><%= bike.maker %></span>
+            <span class="badge badge-pill badge-success"><%= bike.displacement %></span>
+            <span class="badge badge-pill badge-warning">¥<%= bike.price %>/24h</span>
           </div>
           <% end %>
         </div>
@@ -90,12 +56,13 @@
             <th>AT / MT</th>
             <th>
               <%= f.radio_button :at_mt_eq, '', {:checked => true} %>指定なし
-              <%= f.radio_button :at_mt_eq, "MT" %>MT
-              <%= f.radio_button :at_mt_eq, "AT" %>AT
+              <%= f.radio_button :at_mt_eq, "1" %>MT
+              <%= f.radio_button :at_mt_eq, "2" %>AT
             </th>
           </tr>
           <tr>
             <th>エリア</th>
+            <!--{|k,v| [k, Bike.areas[k]] }→ハッシュ k=key(県名), v=value(登録番号),Bike.areas[k]=県名を登録番号として扱う-->
             <th><%= f.select :area_eq, Bike.areas.keys.map{|k,v| [k, Bike.areas[k]] }, {}, class:"form-control" %></th>
           </tr>
         </table>

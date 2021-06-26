@@ -18,7 +18,6 @@ class CreateBikes < ActiveRecord::Migration[5.2]
       t.string :vehicle_inspection
       t.integer :impressions_count, default: 0
       t.integer :area, null: false, default: 0
-      t.boolean :favorite
       t.boolean :is_active
 
       t.timestamps

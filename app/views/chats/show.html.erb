@@ -5,8 +5,8 @@
       <h1 class="heading08"><span>CHAT WITH <%= @user.nickname %></span><%= @user.nickname %>様とのチャットルーム</h1>
     </div>
   </div>
-    <table class="table">
-      <thead class="bg-secondary">
+    <table class="table my-5">
+      <thead class="bg-dark">
         <tr>
           <th class="text-white" style="text-align: left; font-size: 20px;"><%= current_user.nickname %></th>
           <th class="text-white" style="text-align: right; font-size: 20px;"><%= @user.nickname %></th>
@@ -16,16 +16,15 @@
         <% if chat.user_id == current_user.id %>
         <tbody>
           <tr>
-            <th>
-              <p style="margin-right: 20%; text-align: left;"><%= chat.message %></p>
+            <th class="badge badge-pill bg-success shadow mt-2">
+              <p class="text-white", style="margin-right: 20%; text-align: left;"><%= chat.message %></p>
             </th>
             <th></th>
           </tr>
         <% else %>
           <tr>
-            <th></th>
-            <th>
-              <p style="margin-left: 20%; text-align: right;"><%= chat.message %></p>
+            <th class="badge-pill bg-secondary shadow">
+              <p class="text-white", style="margin-left: 20%; text-align: right;"><%= chat.message %></p>
             </th>
           </tr>
         </tbody>
@@ -38,7 +37,7 @@
         <%= form_with model: @chat, local: true do |f| %>
           <%= f.text_area :message, class:"form-control" %>
           <%= f.hidden_field :room_id %>
-          <div class="row hoge m-3"><%= f.submit "送信", class:"btn btn-sm btn-success chat-btn px-5", include_blank: "200字まで" %></div>
+          <div class="m-3"><%= f.submit "送信", class:"btn btn-success chat-btn form-control", include_blank: "200字まで" %></div>
         <% end %>
       </div>
     </div>

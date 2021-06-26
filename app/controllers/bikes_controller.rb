@@ -1,11 +1,14 @@
 class BikesController < ApplicationController
   before_action :authenticate_user!, except:[:index, :show]
-  impressionist :actions=> [:show]
+  # impressionist :actions=> [:show]
 
 
   def index
     @bikes = Bike.all.page(params[:page]).per(8)
+    # tweet一覧をPV数の多い順に並び替える。
     @rankings = Bike.order('impressions_count DESC').take(3)
+    @q = Bike.ransack(params[:q])
+    @bikes_search = @q.result(distinct: true)
   end
 
   def show
@@ -13,7 +16,9 @@ class BikesController < ApplicationController
     @reservation = Reservation.new
     @reservations = Reservation.where(bike_id: @bike)
     @user = @bike.user_id
+    # ip_addressを識別して同一ユーザーのPVカウントを抑止、その後再度データを反映
     impressionist(@bike, nil, unique: [:ip_address])
+    @bike = Bike.find(params[:id])
 
     @reviews = Review.where(reviewed_id: @user)
     @lat = @bike.spot.latitude
@@ -80,22 +85,21 @@ class BikesController < ApplicationController
     redirect_to exhibit_bike_path(current_user)
   end
 
-  # def map
-  #   results = Geocoder.search(params[:address])
-  #   @latlng = results.first.coordinates
-  #   # respond_to以下の記述によって、
-  #   # remote: trueのアクセスに対して、
-  #   # map.js.erbが変えるようになります。
-  #   respond_to do |format|
-  #     format.js
-  #   end
-  # end
-
+  def search
+    @q = Bike.search(search_params)
+    # @q = Bike.ransack(params[:q]) #ransackの検索処理
+    @bikes = @q.result(distinct: true).page(params[:page]).per(8)
+    pp @bikes
+  end
 
   private
 
   def bike_params
     params.require(:bike).permit(:user_id, :vehicle_inspection, :bike_image, :name, :maker, :displacement, :mileage, :modek_year, :introduction, :price, :is_active, :cancel_fee_otd, :cancel_fee24, :cancel_fee72, :at_mt, spot_attributes: [:address, :latitude, :longitude])
+  end
+
+  def search_params
+    params.require(:q).permit(:name_or_area_cont, :price_gteq, :price_lteq, :at_mt_eq, :area_eq)
   end
 
 
