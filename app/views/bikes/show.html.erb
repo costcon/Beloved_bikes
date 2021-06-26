@@ -34,7 +34,10 @@
           $('#average-review-evaluation').empty();
             $('#average-review-evaluation').raty({
               readOnly: true,
-              path: '/assets/',
+              // path: '/assets/'assets_path,
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
               score: function() {
                 return $(this).attr('data-score')
               }
@@ -74,11 +77,11 @@
         </tr>
         <tr>
           <th>排気量</th>
-          <th><%= @bike.displacement %> cc</th>
+          <th><%= @bike.displacement %></th>
         </tr>
         <tr>
           <th>総走行距離</th>
-          <th><%= @bike.mileage %> km</th>
+          <th><%= @bike.mileage %></th>
         </tr>
         <tr>
           <th>年式</th>
@@ -116,6 +119,31 @@
     </div>
   </div>
 </div>
+
+<div class="border mb-3"></div>
+
+<div class="container yakkan">
+  <div class="row hoge">
+    <div class="col-md-6 my-3">
+      <h2>キャンセル規定</h2>
+      <table class="table">
+        <tr>
+          <th>3日前(72時間前)まで</th>
+          <th><%= @bike.cancel_fee72 %></th>
+        </tr>
+        <tr>
+          <th>前日(24時間前)まで</th>
+          <th><%= @bike.cancel_fee24 %></th>
+        </tr>
+        <tr>
+          <th>当日</th>
+          <th><%= @bike.cancel_fee_otd %></th>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
 <div class="border mb-3"></div>
 
 <div class="container">
@@ -125,7 +153,6 @@
         <h2>バイク受け取り場所</h2>
         <%= @bike.spot.address %>
       <div class="show__maps shadow", id="show_map", style="height: 320px; width: 100vh;"></div>
-      <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs9fDVYkB6NXDWJkai-szrQmfxEYEE6AQ&callback=initMap" async defer></script>-->
     </div>
   </div>
 </div>
