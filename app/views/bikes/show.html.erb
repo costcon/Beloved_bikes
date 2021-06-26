@@ -11,14 +11,17 @@
     <div class="col-md-6 mt-4 bike_images">
       <div class="bike_image">
       <!--<#% @bike.bike_images.each do |bike_image| %>-->
-        <%= attachment_image_tag(@bike, :bike_image, :fill, 400, 300, fallback: "no_image.jpg") %>
+        <%= attachment_image_tag(@bike, :bike_image, :fill, 500, 400, fallback: "no_image.jpg") %>
       <!--<#% end %>-->
       </div>
     </div>
 
     <div class="col-md-6 mt-4">
+      <div class="bg-info text-white text-center"><%= @bike.impressions_count %> PV</div>
+      <span class="under">エリア</span>
+      <h4><%= @bike.area %></h4>
       <span class="under">name</span>
-      <h4><%= @bike.name %><p class="text-success">予約受付中</p></h4>
+      <h4><%= @bike.name %></h4>
       <span class="under">owner</span>
       <div class="mb-4">
         <%= link_to user_path(@bike.user) do %>
@@ -101,10 +104,8 @@
     </div>
   </div>
 </div>
-<% if current_user.id == nil %>
-  <h1>ご予約は会員様限定です</h1>
-<% else %>
-<div class='container'>
+<% if user_signed_in? %>
+  <div class='container'>
   <div class='row hoge'>
     <div class="col-6 reservation_form">
       <h1>予約登録</h1>
@@ -124,7 +125,7 @@
         </div>
 
         <div class="reservation_comment">
-          <%= f.label "オーナー様への伝達事項(500字まで)" %>
+          <%= f.label "オーナー様への伝達事項・(500字まで)" %>
           <%= f.text_area :reservation_comment, class:"form-control" %>
         </div>
 
@@ -137,4 +138,7 @@
     </div>
   </div>
 </div>
+<% else %>
+  <h1 class="row hoge">ご予約は会員様限定です</h1>
+
 <% end %>

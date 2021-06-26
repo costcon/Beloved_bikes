@@ -1,0 +1,29 @@
+  ===============================
+  <%= @user.nickname %> 様
+  ===============================
+
+  この度は、お問い合わせありがとうございました。
+　以下でご質問の回答となっておりますでしょうか。
+
+  オーナー名
+  <%= @reservation.reserved.nickname %>
+
+  バイク名
+  <%= @bike.name %>
+
+  利用開始日時
+  <%= @reservation.start_time %>
+
+  返却日時
+  <%= @reservation.end_time %>
+
+  オーナーからのメッセージ
+  <%= @reservation.reservation_reply %>
+  
+  __________________________________________________
+
+
+  今後とも Beloved_bikes をよろしくお願いいたします。
+  Beloved_bikes運営局
+  
+  <%= @url %>

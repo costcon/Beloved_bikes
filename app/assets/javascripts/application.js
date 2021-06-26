@@ -48,3 +48,18 @@ $(function() {
     });
 });
 
+$(".fadein").css("visibility","hidden").css("opacity","0");
+
+// .targetのついた画像をスクロールに合わせfadeIn
+$(window).on("load scroll resize", function(){
+    $(".fadein").each(function(){
+        var imgPos = $(this).offset().top;
+        var scroll = $(window).scrollTop();
+        var windowHeight = $(window).height();
+        if (scroll > imgPos - windowHeight + windowHeight / 5){
+            // ここに処理を書く
+            $(this).css("visibility","visible")
+            $(this).animate({opacity: 1}, 300);  
+        }
+    });
+});

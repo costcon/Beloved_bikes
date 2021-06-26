@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:edit, :show, :update, :destroy]
   resources :reviews, only: [:new, :index, :show, :create, :update]
-  resources :reservations, only: [:new, :create, :index, :show, ] do
+  resources :reservations, only: [:new, :create, :index, :show, :update] do
     member do
       post 'confirm'
     end

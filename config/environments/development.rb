@@ -37,14 +37,14 @@ Rails.application.configure do
     port:                 587,
     address:              'smtp.gmail.com',
     domain:               'gmail.com',
-    user_name:            '<YOUR EMAIL ADDRESS>',
-    password:             '<YOUR EMAIL PASSWORD>',
-    authentication:       'login',
+    user_name:            ENV["YOUR_EMAIL_ADDRESS"],
+    password:             ENV["YOUR_EMAIL_PASSWORD"],
+    authentication:       'plain',
     enable_starttls_auto: true
   }
 
   config.action_mailer.perform_caching = false
-  
+
 
 
   # Print deprecation notices to the Rails logger.

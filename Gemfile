@@ -75,11 +75,19 @@ gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'kaminari','~> 1.2.1'
 
+# 予約
 gem 'simple_calendar'
+
+# 検索
 gem 'ransack'
+
+# Google API
 gem 'geocoder'
 gem "gmaps4rails"
 gem "gon"
+
+# PV数、ランキング
+gem 'impressionist', '~>1.6.1'
 
 
 #デプロイ(環境変数)のための記述

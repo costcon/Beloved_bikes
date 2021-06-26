@@ -76,6 +76,12 @@ Bike.create!(
   price: '5000',
   mileage: '20000km',
   modek_year: '2000年式',
+  area: '東京都',
+  at_mt: 'MT',
+  cancel_fee72: '30',
+  cancel_fee24: '50',
+  cancel_fee_otd: '100',
+  vehicle_inspection: File.open("./app/assets/images/licence.png"),
   is_active: true,
   bike_image: File.open("./app/assets/images/YAMAHA FZR600.jpeg"),
 )
@@ -96,6 +102,12 @@ Bike.create!(
   price: '6000',
   mileage: '15000km',
   modek_year: '2010年式',
+  at_mt: 'MT',
+  cancel_fee72: '30',
+  cancel_fee24: '50',
+  cancel_fee_otd: '100',
+  vehicle_inspection: File.open("./app/assets/images/licence.png"),
+  area: '東京都',
   is_active: true,
   bike_image: File.open("./app/assets/images/YAMAHA XT500.jpeg"),
 )
@@ -116,6 +128,12 @@ Bike.create!(
   price: '8000',
   mileage: '20000km',
   modek_year: '2000年',
+  at_mt: 'MT',
+  cancel_fee72: '30',
+  cancel_fee24: '50',
+  cancel_fee_otd: '100',
+  vehicle_inspection: File.open("./app/assets/images/licence.png"),
+  area: '東京都',
   is_active: true,
   bike_image: File.open("./app/assets/images/ハーレー.jpeg"),
 )
@@ -136,6 +154,12 @@ Bike.create!(
   price: '4000',
   mileage: '7000km',
   modek_year: '2008年',
+  at_mt: 'AT',
+  cancel_fee72: '30',
+  cancel_fee24: '50',
+  cancel_fee_otd: '100',
+  vehicle_inspection: File.open("./app/assets/images/licence.png"),
+  area: '東京都',
   is_active: true,
   bike_image: File.open("./app/assets/images/Honda cub.jpeg"),
 )
@@ -146,3 +170,33 @@ Spot.create!(
   latitude: '35.6806303',
   longitude: '139.7687578'
 )
+
+20.times do |n|
+  Bike.create!(
+    user_id: '3',
+    name: "テスト#{n + 1}",
+    introduction: 'テスト!#{n + 1}台目 最高の走りをします！おすすめです',
+    maker: 'Honda',
+    displacement: '50cc',
+    price: "#{n + 1}000",
+    mileage: "#{n + 1}000km",
+    modek_year: '2010年',
+    at_mt: 'MT',
+    cancel_fee72: '50',
+    cancel_fee24: '70',
+    cancel_fee_otd: '100',
+    vehicle_inspection: File.open("./app/assets/images/licence.png"),
+    area: '東京都',
+    is_active: true,
+    bike_image: File.open("./app/assets/images/ハーレー２.jpeg"),
+  )
+end
+
+20.times do |n|
+  Spot.create!(
+    bike_id: "#{n + 5}",
+    address: '東京駅',
+    latitude: '35.6806303',
+    longitude: '139.7687578'
+  )
+end

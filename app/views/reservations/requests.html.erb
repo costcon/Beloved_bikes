@@ -17,6 +17,7 @@
              <th>利用開始日時</th>
              <th>返却日時</th>
              <th>ユーザー名</th>
+             <th>予約ステータス</th>
              <th></th>
            </tr>
          </thead>
@@ -30,6 +31,13 @@
              <td><%= reservation.start_time %></td>
              <td><%= reservation.end_time %></td>
              <td><%= reservation.reserver.nickname %></td>
+             <% if reservation.reservation_status == "承認" %>
+               <td class="text-success">承認済</td>
+             <% elsif reservation.reservation_status == "キャンセル"  %>
+               <td class="text-secondary">キャンセル済</td>
+             <% else %>
+               <td class="text-danger">未確定</td>
+             <% end %>
              <td>
               <%= link_to '確認する', reservation_path(reservation), class: "btn btn-sm btn-success" %>
               <% if current_user != reservation.reserver %>

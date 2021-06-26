@@ -14,6 +14,7 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.save
+    NotificationMailer.reservation_request(@reservation).deliver_now
     redirect_to thanks_reservations_path
   end
 
@@ -33,6 +34,16 @@ class ReservationsController < ApplicationController
     @user = User.find(@reservation.reserved_id)
   end
 
+  def update
+    @reservation = Reservation.find(params[:id])
+    if @reservation.update(reservation_params)
+      NotificationMailer.reservation_approval(@reservation).deliver_now
+      redirect_to request.referer, success: "ステータスを更新しました"
+    else
+      redirect_to request.referer, danger: "ステータスの更新に失敗しました"
+    end
+  end
+
 
 
   def thanks
@@ -44,7 +55,7 @@ class ReservationsController < ApplicationController
 
   def reservation_params
     # []は中間テーブルの場合必ずつけておく
-    params.require(:reservation).permit([:start_time, :end_time, :bike_id, :reserver_id, :reserved_id, :reservation_comment])
+    params.require(:reservation).permit([:start_time, :end_time, :bike_id, :reserver_id, :reserved_id, :reservation_comment, :reservation_status, :reservation_reply])
   end
 
 

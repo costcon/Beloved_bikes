@@ -32,11 +32,46 @@
           <th><%= @reservation.end_time %></th>
         </tr>
         <tr>
-          <th>オーナー様への伝達事項</th>
+          <th>オーナー様への伝達事項・要望</th>
           <th><%= @reservation.reservation_comment %></th>
         </tr>
       </table>
-
+      <% if current_user.id == @reservation.reserved_id %>
+        <% if @reservation.reservation_status == 1 %>
+        <!--<#% if @reservation.reservation_status == "承認" %>-->
+          <div class="row hoge bg-success text-white">承認済</div>
+        <% elsif @reservation.reservation_status == 2  %>
+        <!--<#% elsif @reservation.reservation_status == "キャンセル"  %>-->
+          <div class="row hoge bg-secondary text-white">キャンセル済</div>
+        <% else %>
+          <div>
+            <%= form_with model:@reservation, method: :patch, local: true do |f| %>
+              <div class="field row hoge">
+                <label class="reservation_status bg-info text-white px-4">予約ステータス</label><br>
+                <div class="radio-inline ml-5 mr-3">
+                  <%= f.radio_button :reservation_status, :未承認 %>
+                  <%= f.label :未承認, class: "reservation_status" %>
+                </div>
+                <div class="radio-inline mr-3">
+                  <%= f.radio_button :reservation_status, :承認 %>
+                  <%= f.label :承認, class: "reservation_status" %>
+                </div>
+                <div class="radio-inline mr-3">
+                  <%= f.radio_button :reservation_status, :キャンセル %>
+                  <%= f.label :キャンセル, class: "jreservation_status" %>
+                </div>
+                <div class="reservation_reply w-100 mt-3">
+                  <%= f.label "ユーザーへのメッセージ(500字まで)", class:"row hoge" %>
+                  <%= f.text_area :reservation_reply, class:"form-control" %>
+                </div>
+              <div class="mr-3">
+                <%= f.submit 'ステータスを更新する', class:'btn btn-lg btn-outline-dark m-3' %>
+              </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
  </div>

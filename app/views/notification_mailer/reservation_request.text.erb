@@ -1,0 +1,30 @@
+  ===============================
+  <%= @user.nickname %> 様
+  ===============================
+
+  予約リクエストが届きました。
+　内容をご確認の上、マイページのリクエスト詳細画面よりご返答ください。
+　予約内容は以下になります
+
+  ユーザー名
+  <%= @reservation.reserver.nickname %>
+
+  バイク名
+  <%= @bike.name %>
+
+  利用開始日時
+  <%= @reservation.start_time %>
+
+  返却日時
+  <%= @reservation.end_time %>
+
+  オーナー様への伝達事項・要望
+  <%= @reservation.reservation_comment %>
+
+  __________________________________________________
+
+
+  今後とも Beloved_bikes をよろしくお願いいたします。
+  Beloved_bikes運営局
+
+  <%= @url %>

@@ -1,27 +1,63 @@
 <div class="container">
   <div class="row">
-    <div class='col-4 offset-1'>
+    <div class='col-6 offset-1'>
       <h1 class="heading08"><span>All Bikes</span>出展されているバイク一覧</h1>
     </div>
     <%= render partial: 'layouts/flash' %>
   </div>
+  <div class='offset-1 mt-5'>
+    <h1 class="heading08"><span>PV Ranking</span>人気のバイク</h1>
+  </div>
   <div class="row">
-    <% @bikes.each do |bike| %>
-      <% if bike.is_active == true %>
-      <div class="col-md-3 pb-5">
+    <% @rankings.each.with_index(1) do |ranking, i| %>
+      <% if ranking.is_active == true %>
+      <div class="col-md-4 pb-5">
         <div class="card border-0">
-          <%= link_to bike_path(bike.id) do %>
-          <div class="item_img">
-            <%= attachment_image_tag(bike, :bike_image, height: "150", width: "100%", fallback: "no_image.jpg") %>
+          <%= link_to bike_path(ranking.id) do %>
+          <h2 class="text-dark"><i class="fas fa-crown"></i><%= " #{i}位" %></h2>
+          <div class="bike_img">
+            <%= attachment_image_tag(ranking, :bike_image, height: "250", width: "100%", fallback: "no_image.jpg") %>
           </div>
           <div class="card-body text-center">
-            <p class="card-title"><%= bike.name %></p>
+            <h2 class="card-title"><%= ranking.name %></h2>
+            <p class="card-title">エリア：<%= ranking.area %></p>
           </div>
           <% end %>
         </div>
       </div>
       <%end%>
     <%end%>
+  </div>
+  <div class='container mt-5'>
+    <div class='row'>
+      <div class='mx-auto'>
+        <!--<p><#%= paginate @rankings %></p>-->
+      </div>
+    </div>
+  </div>
+
+  <div class='offset-1'>
+    <h1 class="heading08"><span>New Bikes</span>新着バイク一覧</h1>
+  </div>
+  <div class="row">
+    <% @bikes.each do |bike| %>
+      <% if bike.is_active == true %>
+      <div class="fadein col-md-3 pb-5">
+        <div class="card border-0">
+          <%= link_to bike_path(bike.id), class: "link" do %>
+          <div class="bike_img">
+            <%= attachment_image_tag(bike, :bike_image, height: "180", width: "100%", fallback: "no_image.jpg") %>
+          </div>
+          <div class="card-body text-center">
+            <h3 class="card-title"><%= bike.name %></h3>
+            <p class="card-title">エリア：<%= bike.area %></p>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <%end%>
+    <%end%>
+  </div>
   <div class='container mt-5'>
     <div class='row'>
       <div class='mx-auto'>

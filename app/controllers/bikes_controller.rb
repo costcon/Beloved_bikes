@@ -1,10 +1,11 @@
 class BikesController < ApplicationController
   before_action :authenticate_user!, except:[:index, :show]
+  impressionist :actions=> [:show]
 
 
   def index
-    # @bikes = @bike.page(params[:page]).per(8)
     @bikes = Bike.all.page(params[:page]).per(8)
+    @rankings = Bike.order('impressions_count DESC').take(3)
   end
 
   def show
@@ -12,24 +13,19 @@ class BikesController < ApplicationController
     @reservation = Reservation.new
     @reservations = Reservation.where(bike_id: @bike)
     @user = @bike.user_id
+    impressionist(@bike, nil, unique: [:ip_address])
+
     @reviews = Review.where(reviewed_id: @user)
-
-
-    # @post = Review.find(params[:id])
-    # @lat = @review.spot.latitude
-    # @lng = @review.spot.longitude
-
     @lat = @bike.spot.latitude
     @lng = @bike.spot.longitude
     gon.lat = @lat
     gon.lng = @lng
-
-
     if @reviews.blank?
       @average_review = 0
     else
       @average_review = @reviews.average(:evaluation).round(1)
     end
+
   end
 
   def exhibit
@@ -99,7 +95,7 @@ class BikesController < ApplicationController
   private
 
   def bike_params
-    params.require(:bike).permit(:user_id, :bike_image, :name, :maker, :displacement, :mileage, :modek_year, :introduction, :price, :is_active, spot_attributes: [:address, :latitude, :longitude])
+    params.require(:bike).permit(:user_id, :vehicle_inspection, :bike_image, :name, :maker, :displacement, :mileage, :modek_year, :introduction, :price, :is_active, :cancel_fee_otd, :cancel_fee24, :cancel_fee72, :at_mt, spot_attributes: [:address, :latitude, :longitude])
   end
 
 

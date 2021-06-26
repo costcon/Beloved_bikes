@@ -16,7 +16,7 @@
  */
 
 
-@import "bootstrap";
+@import 'bootstrap';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
@@ -60,7 +60,7 @@
 }
 
 .background1 {
-  background-image: image-url("background2.jpg");
+  background-image: image-url("background1.jpeg");
 }
 
 .background2 {
@@ -80,14 +80,42 @@
 }
 
 .bike-image {
-  height: 300px;
-  width: 400px;
+  height: 400px;
+  width: 500px;
 }
+
 
 
 .navbar {
   background-color: rgba(255, 255, 255, 0.5);
 }
+
+
+.card {
+  background-color:transparent;
+}
+
+
+a {
+  color: #666666;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+
+.bike_img img:hover{
+  transform: scale(1.1) rotate(-9deg);
+  transition-duration: 0.5s;
+}
+.bike_img img{
+  width: 100%;
+  cursor: pointer;
+  transition-duration: 0.5s;
+}
+
+
 
 body {
   background-image: image-url("hoge.jpg"); //image-urlはデプロイ対策で必ずつける

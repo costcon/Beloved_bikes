@@ -10,6 +10,11 @@
       <%= f.hidden_field :user_id, value:@bike.id %>
 
         <div>
+          <label for='inputVehicleInspection'>車検証(必ず有効なものを添付してください)</label><br>
+          <%= f.file_field :vehicle_inspection, multiple: true, placeholder:'車検証' %>
+        </div>
+
+        <div>
           <label for='inputImage'>Images</label><br>
           <%= f.file_field :bike_image, multiple: true, placeholder:'写真' %>
         </div>
@@ -22,6 +27,11 @@
         <div>
           <label for='inputIntroduction'>Introduction</label><br>
           <%= f.text_area :introduction, class:"form-control", id:'inputIntroduction' %>
+        </div>
+
+        <div>
+          <label for='inputAtMt'>AT / MT</label><br>
+          <%= f.select :at_mt, Bike.at_mts.keys, {}, class:"form-control" %>
         </div>
 
         <div>
@@ -41,14 +51,35 @@
 
         <div>
           <label for='inputModek_year'>年式</label><br>
-          <%= f.text_field :modek_year, class:"form-control", id:'inputModek_year' %>
+          <%= f.text_field :modek_year, class:"form-control", id:'inputModekYear' %>
         </div>
 
         <div>
           <label for='inputPrice'>Price(1day)</label><br>
-          <%= f.number_field :price,  step: "1000", class:"form-control", id:'inputPrice', placeholder:'1日の価格' %>
+          <%= f.number_field :price,  step: "1000", min: "0", id:'inputPrice', placeholder:'1日の価格' %>
           <text>yen</text>
         </div>
+
+        <div>
+          <label for='inputArea'>都道府県</label><br>
+          <%= f.select :area, Bike.areas.keys, {}, class:"form-control" %>
+        </div>
+
+        <table class="table">
+          <h4>キャンセル規定</h4>
+          <tr>
+            <th>3日前(72時間前)まで</th>
+            <th><%= f.number_field :cancel_fee72,  step: "10", max: "100", min: "0", id:'inputCancelFee72', placeholder:'0' %> %</th>
+          </tr>
+          <tr>
+            <th>前日(24時間前)まで</th>
+            <th><%= f.number_field :cancel_fee24,  step: "10", max: "100", min: "0", id:'inputCancelFee24', placeholder:'0' %> %</th>
+          </tr>
+          <tr>
+            <th>当日</th>
+            <th><%= f.number_field :cancel_fee_otd,  step: "10", max: "100", min: "0", id:'inputCancelFeeOtd', placeholder:'0' %> %</th>
+          </tr>
+        </table>
 
         <div>
           <label>Status</label><br>
