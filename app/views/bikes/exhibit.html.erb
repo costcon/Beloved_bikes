@@ -11,7 +11,7 @@
       <% if @bikes.empty? %>
         <h4>出品中のバイクはありません</h4>
       <% else %>
-       <table border="1" class="table">
+       <table border="1" class="table mt-3">
          <thead class="table-primary">
            <tr>
              <th>名前</th></th>
@@ -30,8 +30,8 @@
              <td><%= bike.price %></td>
              <td><%= bike.displacement %></td>
              <td>
-              <%= link_to '編集する', edit_bike_path(bike), class: "btn btn-sm btn-success" %>
-              <%= link_to '削除する', bike_path(bike), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+              <%= link_to '編集する', edit_bike_path(bike), class: "btn btn-sm btn-outline-dark" %>
+              <%= link_to '削除する', bike_path(bike), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-outline-danger"%>
              </td>
            </tr>
            <% end %>

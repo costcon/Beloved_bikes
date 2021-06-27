@@ -36,8 +36,8 @@
   </div>
 </div>
 <div class='container'>
-  <div class='row hoge'>
-    <div class=" col-xs-12 col-sm-12 col-md-8 reservation_form">
+  <div class='row'>
+    <div class="mx-auto col-xs-12 col-sm-12 col-md-8 reservation_form">
       <h1 class="mt-5">バイク検索</h1>
       <%= search_form_for(@q, url:search_bikes_path) do |f| %>
         <table class="table">
@@ -67,7 +67,7 @@
           </tr>
         </table>
 
-      <div class="row hoge">
+      <div>
         <%= f.submit 'Search', class:'btn btn-lg btn-outline-dark form-control' %>
       </div>
 

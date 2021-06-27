@@ -1,11 +1,11 @@
 <div class='container col-xs-12 col-sm-12 col-md-10'>
   <div class='row'>
-    <div class=' col-xs-12 col-sm-12 col-md-10 offset-1'>
+    <div class='offset-1'>
       <h1 class="heading08"><span>Edit Bike</span>バイク情報編集</h1>
     </div>
   </div>
-  <div class='row hoge'>
-    <div class='newbike'>
+  <div class='row'>
+    <div class='editbike mx-auto col-xs-12 col-sm-12 col-md-10'>
       <%= form_with(model:@bike, local:true, multipart: true) do |f| %>
       <%= f.hidden_field :user_id, value:@bike.id %>
 
@@ -65,7 +65,7 @@
           <%= f.select :area, Bike.areas.keys, {}, class:"form-control" %>
         </div>
 
-        <table class="table  col-xs-12 col-sm-12 col-md-8">
+        <table class="table">
           <h4>キャンセル規定</h4>
           <tr>
             <th>3日前(72時間前)まで</th>
@@ -89,19 +89,18 @@
           <%= f.label :is_active, '出展停止中', {value: :false, style: 'display: inline-block;'} %>
         </div>
 
-        <div class=' col-xs-12 col-sm-12 col-md-8 mt-3 mb-5'>
+        <div class='mt-3 mb-5'>
           <div class="spot">
             <%= f.fields_for :spot do |s| %>
               <%= s.label :address, "バイク受け渡し場所(Google Mapで検索)", class: 'spot__title' %>
               <%= s.text_field :address, placeholder: "住所、地名を入力", id: "address", class: 'spot__text' %>
             <input onclick="codeAddress()", type="button", value="検索する"></input>
-            <div class="map", id="show_map", style="height: 320px; width: 640px;"></div>
+            <div class="map mx-auto", id="show_map", style="height: 500px; width: 95%;"></div>
             <% end %>
-            <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs9fDVYkB6NXDWJkai-szrQmfxEYEE6AQ&callback=initMap" async defer></script>-->
           </div>
         </div>
-        <div class="row hoge">
-          <%= f.submit 'Submit', class:'btn btn-lg btn-outline-dark form-control form-control' %>
+        <div>
+          <%= f.submit 'Submit', class:'btn btn-lg btn-outline-dark form-control' %>
         </div>
       <% end %>
     </div>

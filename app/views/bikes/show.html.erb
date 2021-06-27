@@ -52,8 +52,8 @@
 
 
 <div class="container">
-  <div class="row hoge">
-    <div class="col-xs-12 col-sm-12 col-md-8 my-4">
+  <div class="row">
+    <div class="mx-auto col-xs-12 col-sm-12 col-md-8 my-4">
       <span class="under">introduction</span><br>
         <h4><%= @bike.introduction %></h4>
     </div>
@@ -152,7 +152,7 @@
       <div class="show__address">
         <h2>バイク受け取り場所</h2>
         <%= @bike.spot.address %>
-      <div class="show__maps shadow", id="show_map", style="height: 500px; width: 90vh;"></div>
+      <div class="show__maps shadow mx-auto", id="show_map", style="height: 500px; width: 95vh;"></div>
     </div>
   </div>
 </div>
@@ -177,8 +177,8 @@
 </div>
 <% if user_signed_in? %>
   <div class='container'>
-  <div class='row hoge'>
-    <div class="col-xs-12 col-sm-12 col-md-6 reservation_form">
+  <div class='row'>
+    <div class="mx-auto col-xs-12 col-sm-12 col-md-6 reservation_form">
       <h1>予約登録</h1>
       <%= form_with model:@reservation, url: confirm_reservation_path(@bike.id), local: true do |f| %>
         <%= f.hidden_field :bike_id, value:@bike.id %>
@@ -201,8 +201,8 @@
         </div>
 
         <div class="mt-4 submit">
-          <div class="row hoge">
-          <%= f.submit 'Reserve', class:'btn btn-lg btn-outline-dark' %>
+          <div class="row">
+          <%= f.submit 'Reserve', class:'btn btn-lg btn-outline-dark form-control' %>
           </div>
         </div>
       <% end %>

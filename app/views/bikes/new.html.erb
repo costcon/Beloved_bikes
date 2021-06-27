@@ -5,8 +5,8 @@
       <h1 class="heading08"><span>NEW Exhibit</span>出展登録</h1>
     </div>
   </div>
-  <div class='row col-xs-12 col-sm-12'>
-    <div class='mx-auto newitem'>
+  <div class='row'>
+    <div class='newbike mx-auto col-xs-12 col-sm-12 col-md-10'>
       <%= render partial: 'layouts/flash' %>
       <%= form_with model:@bike, local:true do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
@@ -99,14 +99,14 @@
               <%= s.label :address, "バイク受け渡し場所場所(Google Mapで検索)", class: 'spot__title' %>
               <%= s.text_field :address, placeholder: "住所、地名を入力", id: "address", class: 'spot__text' %>
             <input onclick="codeAddress()", type="button", value="検索する"></input>
-            <div class="map", id="map", style="height: 320px; width: 640px;"></div>
+            <div class="map mx-auto", id="map", style="height: 320px; width: 95%;"></div>
             <% end %>
             <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs9fDVYkB6NXDWJkai-szrQmfxEYEE6AQ&callback=initMap" async defer></script>-->
           </div>
         </div>
 
-        <div class="row hoge">
-          <%= f.submit 'Submit', class:'btn btn-lg btn-outline-dark form-control' %>
+        <div>
+          <%= f.submit 'Update', class:'btn btn-lg btn-outline-dark form-control' %>
         </div>
 
       <% end %>
