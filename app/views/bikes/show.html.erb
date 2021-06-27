@@ -4,9 +4,8 @@
       <h1 class="heading08"><span>Bike Ditail</span>バイク詳細</h1>
     </div>
   </div>
-</div>
-<%= render partial: 'layouts/flash' %>
-<div class="container">
+
+  <%= render partial: 'layouts/flash' %>
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 mt-4 bike_images">
       <div class="bike_image">
@@ -48,21 +47,15 @@
       </div>
     </div>
   </div>
-</div>
-
-
-<div class="container">
   <div class="row">
     <div class="mx-auto col-xs-12 col-sm-12 col-md-8 my-4">
       <span class="under">introduction</span><br>
         <h4><%= @bike.introduction %></h4>
     </div>
   </div>
-</div>
 
-<div class="border mb-3"></div>
+  <div class="border mb-3"></div>
 
-<div class="container spec">
   <div class="row hoge">
     <div class="col-xs-12 col-sm-12 col-md-6 my-3">
       <h2>詳細スペック</h2>
@@ -94,11 +87,9 @@
       </table>
     </div>
   </div>
-</div>
 
-<div class="border mb-3"></div>
+  <div class="border mb-3"></div>
 
-<div class="container yakkan">
   <div class="row hoge">
     <div class="col-xs-12 col-sm-12 col-md-6 my-3">
       <h2>利用約款</h2>
@@ -118,11 +109,9 @@
       </table>
     </div>
   </div>
-</div>
 
-<div class="border mb-3"></div>
+  <div class="border mb-3"></div>
 
-<div class="container yakkan">
   <div class="row hoge">
     <div class="col-xs-12 col-sm-12 col-md-6 my-3">
       <h2>キャンセル規定</h2>
@@ -142,24 +131,21 @@
       </table>
     </div>
   </div>
-</div>
+  <div class="border mb-3"></div>
 
-<div class="border mb-3"></div>
-
-<div class="container">
   <div class="row hoge">
-    <div class="show">
+    <div class="show col-12">
       <div class="show__address">
         <h2>バイク受け取り場所</h2>
         <%= @bike.spot.address %>
-      <div class="show__maps shadow mx-auto", id="show_map", style="height: 500px; width: 95vh;"></div>
+      <div class="show__maps shadow", id="show_map", style="height: 500px; width: 95%;"></div>
     </div>
   </div>
 </div>
 
-<div class="container mt-5 mb-5">
+<div class="container col-xs-12 col-sm-12 col-md-10">
   <div class="row hoge">
-    <div class="col-xs-12 col-sm-12 col-md-8">
+    <div class="col-12 my-5">
     <!-- カレンダーテンプレを表示 -->
     <%= month_calendar events: @reservations do |date, reservations| %>
       <%= date.day %>
@@ -174,11 +160,9 @@
     <% end %>
     </div>
   </div>
-</div>
-<% if user_signed_in? %>
-  <div class='container'>
+  <% if user_signed_in? %>
   <div class='row'>
-    <div class="mx-auto col-xs-12 col-sm-12 col-md-6 reservation_form">
+    <div class="mx-auto col-xs-12 col-sm-12 col-md-8 reservation_form">
       <h1>予約登録</h1>
       <%= form_with model:@reservation, url: confirm_reservation_path(@bike.id), local: true do |f| %>
         <%= f.hidden_field :bike_id, value:@bike.id %>
