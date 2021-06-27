@@ -21,6 +21,21 @@
 @import 'font-awesome';
 
 
+/*タブレット表示時*/
+@media (max-width: 1000px) {
+  p {
+   font-size: 25px;
+ }
+}
+
+/*スマホ表示時*/
+@media (max-width: 500px) {
+  p {
+   font-size: 20px;
+ }
+}
+
+
 .row.hoge {
   display: flex;
   justify-content: center;
