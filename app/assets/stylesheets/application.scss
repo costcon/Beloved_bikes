@@ -22,14 +22,14 @@
 
 
 /*タブレット表示時*/
-@media (max-width: 1000px) {
+@media (max-width: 992px) {
   p {
    font-size: 25px;
  }
 }
 
 /*スマホ表示時*/
-@media (max-width: 500px) {
+@media (max-width: 768px) {
   p {
    font-size: 20px;
  }
