@@ -1,46 +1,46 @@
 
-<div class="container">
+<div class="container col-xs-12 col-sm-12 col-md-10">
   <div class="row">
-    <div class='col-6 offset-1'>
+    <div class='offset-1 my-5'>
       <h1 class="heading08"><span>CHAT WITH <%= @user.nickname %></span><%= @user.nickname %>様とのチャットルーム</h1>
     </div>
   </div>
-    <table class="table my-5">
-      <thead class="bg-dark">
-        <tr>
-          <th class="text-white" style="text-align: left; font-size: 20px;"><%= current_user.nickname %></th>
-          <th class="text-white" style="text-align: right; font-size: 20px;"><%= @user.nickname %></th>
-        </tr>
-      </thead>
-      <% @chats.each do |chat| %>
-        <% if chat.user_id == current_user.id %>
-        <tbody>
-          <tr>
-            <th class="badge badge-pill mychat shadow mt-2", style="margin-rigth: 100%;">
-              <p style="text-align: left;"><%= chat.message %></p>
-              <h6 class="created_at"><%= chat.created_at %></h6>
-            </th>
-          </tr>
-        <% else %>
-          <tr>
-            <th class="badge badge-pill yourchat shadow", style="margin-left: 100%;">
-              <p style="text-align: right;"><%= chat.message %></p>
-              <p class="created_at"><%= chat.created_at %></p>
-            </th>
-          </tr>
-        </tbody>
-        <% end %>
-      <% end %>
-    </table>
-
-    <div class="container">
-      <div class="row hoge">
-        <%= form_with model: @chat, local: true do |f| %>
-          <%= f.text_area :message, class:"form-control" %>
-          <%= f.hidden_field :room_id %>
-          <div class="m-3"><%= f.submit "送信", class:"btn btn-success chat-btn form-control", include_blank: "200字まで" %></div>
-        <% end %>
+  <% @chats.each do |chat| %>
+    <% if chat.user_id == current_user.id %>
+      <div class="messages">
+        <div class="row left">
+          <div class="badge badge-pill mychat shadow mt-2">
+            <p class="message px-3", style="text-align: left;"><%= chat.message %></p>
+          </div>
+        </div>
+        <h6 class="created_at"><%= chat.created_at %></h6>
       </div>
+    <% else %>
+      <div class="messages">
+        <div class="row right">
+          <div class="badge badge-pill yourchat shadow mt-2">
+            <p style="message px-3", style="text-align: left;"><%= chat.message %></p>
+          </div>
+          <%= attachment_image_tag(@user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", class: "rounded-circle") %>
+        </div>
+        <h6 class="created_at row right"><%= chat.created_at %></h6>
+      </div>
+    <% end %>
+  <% end %>
+</table>
+
+  <div class="container">
+    <div class="row hoge">
+      <%= form_with model: @chat, local: true do |f| %>
+        <%= f.text_area :message, class:"form-control", placeholder:"200字まで" %>
+        <%= f.hidden_field :room_id %>
+        <div class="m-3"><%= f.submit "送信", class:"btn btn-success chat-btn form-control" %></div>
+      <% end %>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  const $scrollAuto = $('.messages');
+  $scrollAuto.animate({scrollTop: ($scrollAuto[0].scrollHeight + 1000)}, 'fast')
+</script>

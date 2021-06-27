@@ -1,12 +1,12 @@
-<div class="container">
+<div class="container col-xs-12 col-sm-12 col-md-10">
    <div class="row">
-    <div class='col-4 offset-1'>
+    <div class='offset-1'>
      <h1 class="heading08"><span>Reviews</span><%= @user.nickname %>様へのレビュー</h1>
     </div>
    </div>
    <%= render partial: 'layouts/flash' %>
     <div class="row hoge">
-      <div calss="col-10 mx-auto">
+      <div calss="mx-auto">
       <% if @reviews.empty? %>
         <h4>レビューはまだありません</h4>
       <% else %>

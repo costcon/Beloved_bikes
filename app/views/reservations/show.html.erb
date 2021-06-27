@@ -1,15 +1,14 @@
-<div class="container">
-  <div class="row ">
-    <div class='col-4 offset-1'>
+<div class="container col-xs-12 col-sm-12 col-md-10">
+  <div class="row">
+    <div class='offset-1'>
       <h1 class="heading08"><span>Reservation Detail</span>予約詳細</h1>
     </div>
       <%= render partial: 'layouts/flash' %>
   </div>
-  <div class="row">
-   <div class="col-2"></div>
-    <div class="col-6">
+  <div class="row hoge">
+    <div>
       <h3>予約情報</h3>
-      <%= link_to '取引メッセージ画面へ', chat_path(@user),  class: "btn btn-outline-info" %>
+      <%= link_to '取引メッセージ画面へ', chat_path(@user),  class: "btn btn-outline-info form-control" %>
       <table class="table">
         <tr>
           <th>バイク名</th>

@@ -1,13 +1,13 @@
- <div class="container">
+ <div class="container col-xs-12 col-sm-12 col-md-10">
    <div class="row">
-    <div class='col-12 col-md-8 offset-1'>
+    <div class='offset-1'>
      <h1 class="heading08"><span>New Exhibit</span>出展登録</h1>
     </div>
    </div>
    <%= render partial: 'layouts/flash' %>
     <div class="row hoge">
-      <div calss="col-12 col-md-10 mx-auto">
-        <%= link_to '出展する', new_bike_path,  class: "btn btn-outline-success" %>
+      <div calss="mx-auto">
+        <%= link_to '出展する', new_bike_path,  class: "btn btn-outline-success form-control" %>
       <% if @bikes.empty? %>
         <h4>出品中のバイクはありません</h4>
       <% else %>

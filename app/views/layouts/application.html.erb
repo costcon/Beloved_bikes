@@ -28,14 +28,30 @@
 
   <footer>
     <div class='container mt-5'>
+      <a class="row right", href="#top"><i class="fas fa-arrow-up fa-3x"></i></a>
       <div class='row'>
         <div class='footer mx-auto'>
-          <h3>© Beloved Bikes.inc All rights reserved.</h3>
+          <h3 class="small">© Beloved Bikes.inc All rights reserved.</h3>
         </div>
       </div>
     </div>
+
   </footer>
 
   </body>
+
+<script>
+  $('a[href^="#top"]').click(function() {
+  // スクロールの速度
+  let speed = 400; // ミリ秒で記述
+  let href = $(this).attr("href");
+  let target = $(href == "#" || href == "" ? 'html' : href);
+  let position = target.offset().top;
+  $('body,html').animate({
+    scrollTop: position
+  }, speed, 'swing');
+  return false;
+});
+</script>
 
 </html>

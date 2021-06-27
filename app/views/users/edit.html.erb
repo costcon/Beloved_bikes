@@ -1,11 +1,9 @@
-<div class='container'>
+<div class='container col-xs-12 col-sm-12 col-md-10'>
   <div class='row'>
-    <div class='col-4 offset-1'>
-      <nav class="navbar navbar-light">
-      <h2 class='title'>Editing User</h2>
-      </nav>
+    <div class='offset-1'>
+      <h1 class="heading08"><span>Edit User</span>ユーザー編集</h1>
     </div>
-    <div class='col-md-8'></div>
+      <%= render partial: 'layouts/flash' %>
   </div>
   <div class='row hoge'>
     <div class='mx-auto newitem title'>
@@ -49,7 +47,7 @@
 
       </table>
       <div class="form-group">
-        <%= f.submit "編集内容を保存",class: "btn btn-outline-dark"%>
+        <%= f.submit "編集内容を保存",class: "btn btn-outline-dark form-control"%>
       </div>
       <% end %>
       <%= link_to '退会する', 'unsubscribe', class: "btn btn-outline-warning" %>

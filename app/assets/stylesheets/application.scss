@@ -21,9 +21,28 @@
 @import 'font-awesome';
 
 
-.row.hoge{
+.row.hoge {
   display: flex;
   justify-content: center;
+}
+
+.row.left {
+  display: flex;
+  justify-content: start;
+}
+
+.row.right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar-toggler {
+  border-color: #ffffff;
+  background-color: #000000;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
 .under {
@@ -145,15 +164,24 @@ a:hover {
   font-size: 2px;
 }
 
+.head {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
 .mychat {
   background-color: #CBFFD3;
 }
 
 .yourchat {
   background-color: #EEEEEE;
-  position: relative;
-  right: auto;
 }
+
+.message {
+  width: 60vh;
+  white-space: pre-wrap;
+}
+
+
 
 
 body {

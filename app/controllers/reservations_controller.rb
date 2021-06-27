@@ -1,11 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
 
-  # NEW必要ない
-  def new
-    @reservation = Reservation.new
-  end
-
   def confirm
     @reservation = Reservation.new(reservation_params)
     @bike = Bike.find(params[:id])

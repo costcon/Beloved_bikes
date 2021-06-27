@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
+
+  devise_for :admins, :controllers => {
+    :sessions => 'admins/sessions'
+  }
+
+  devise_scope :admin do
+    get "sign_in", :to => "admins/sessions#new"
+    get "sign_out", :to => "admins/sessions#destroy"
+  end
+
   root :to => 'homes#top'
   get 'homes/about'
+
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions'
@@ -19,14 +30,11 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
-  resources :users, only: [:edit, :show, :update, :destroy]
-  # get 'unsubscribe/:name' => 'homes#unsubscribe', as: 'confirm_unsubscribe'
-  # patch ':id/withdraw/:name' => 'homes#withdraw', as: 'withdraw_user'
-  # put 'withdraw/:name' => 'users#withdraw'
+  resources :users, only: [:edit, :show, :update]
   get "users/:id/unsubscribe" => "users#unsubscribe"
   put "/users/:id/withdraw" => "users#withdraw", as: "user_withdraw"
 
-  resources :reviews, only: [:new, :index, :show, :create, :update]
+  resources :reviews, only: [:new, :show, :create, :update]
   resources :reservations, only: [:new, :create, :index, :show, :update] do
     member do
       post 'confirm'
