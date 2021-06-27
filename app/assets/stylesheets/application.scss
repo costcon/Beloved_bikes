@@ -106,17 +106,17 @@ a:hover {
 }
 
 
-.bike_img img:hover{
+.bike_img img:hover {
   transform: scale(1.1) rotate(-9deg);
   transition-duration: 0.5s;
 }
-.bike_img img{
+.bike_img img {
   width: 100%;
   cursor: pointer;
   transition-duration: 0.5s;
 }
 
-.border{
+.border {
   width: 80%;
   height: auto;
   margin: auto;
@@ -131,16 +131,29 @@ a:hover {
   background: linear-gradient(to right, #4689FF 0%, #D9E5FF 100%);
 }
 
-.impressions{
+.impressions {
   background-color: #FF97C2;
   float: right;
 }
 
-.footer{
+.footer {
   font-family: 'IM Fell DW Pica SC', serif;
   margin: 7px 0;
 }
 
+.created_at {
+  font-size: 2px;
+}
+
+.mychat {
+  background-color: #CBFFD3;
+}
+
+.yourchat {
+  background-color: #EEEEEE;
+  position: relative;
+  right: auto;
+}
 
 
 body {

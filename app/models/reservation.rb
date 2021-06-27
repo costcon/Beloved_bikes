@@ -5,7 +5,7 @@ class Reservation < ApplicationRecord
   belongs_to :bike
 
   enum reservation_status: {
-    '未承認':0, '承認':1, 'キャンセル':2
+    '未承認':0, '承認':1, 'キャンセル':2, '支払済':3
   }
 
   # 予約被り防止

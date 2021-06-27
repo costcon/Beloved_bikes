@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class='col-4 offset-1'>
+    <div class='offset-1'>
       <h1 class="heading08"><span>Bike Ditail</span>バイク詳細</h1>
     </div>
   </div>
@@ -8,15 +8,15 @@
 <%= render partial: 'layouts/flash' %>
 <div class="container">
   <div class="row">
-    <div class="col-md-6 mt-4 bike_images">
+    <div class="col-12 col-md-6 mt-4 bike_images">
       <div class="bike_image">
       <!--<#% @bike.bike_images.each do |bike_image| %>-->
-        <%= attachment_image_tag(@bike, :bike_image, :fill, 500, 400, fallback: "no_image.jpg") %>
+        <%= attachment_image_tag(@bike, :bike_image, :fill, 500, 400, fallback: "no_image.jpg", size:'500x400') %>
       <!--<#% end %>-->
       </div>
     </div>
 
-    <div class="col-md-6 mt-4">
+    <div class="col-12 col-md-6 mt-4">
       <div class="impressions text-white text-center shadow rounded-pill px-3"><i class="fas fa-eye"></i> <%= @bike.impressions_count %> PV</div>
       <span class="under">エリア</span>
       <h4><%= @bike.area %></h4>
@@ -52,8 +52,8 @@
 
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-6 mt-4">
+  <div class="row hoge">
+    <div class="col-12 col-md-8 my-4">
       <span class="under">introduction</span><br>
         <h4><%= @bike.introduction %></h4>
     </div>
@@ -64,7 +64,7 @@
 
 <div class="container spec">
   <div class="row hoge">
-    <div class="col-md-6 my-3">
+    <div class="col-12 col-md-6 my-3">
       <h2>詳細スペック</h2>
       <table class="table">
         <tr>
@@ -100,7 +100,7 @@
 
 <div class="container yakkan">
   <div class="row hoge">
-    <div class="col-md-6 my-3">
+    <div class="col-12 col-md-6 my-3">
       <h2>利用約款</h2>
       <table class="table">
         <tr>
@@ -124,20 +124,20 @@
 
 <div class="container yakkan">
   <div class="row hoge">
-    <div class="col-md-6 my-3">
+    <div class="col-12 col-md-6 my-3">
       <h2>キャンセル規定</h2>
       <table class="table">
         <tr>
           <th>3日前(72時間前)まで</th>
-          <th><%= @bike.cancel_fee72 %></th>
+          <th><%= @bike.cancel_fee72 %>%</th>
         </tr>
         <tr>
           <th>前日(24時間前)まで</th>
-          <th><%= @bike.cancel_fee24 %></th>
+          <th><%= @bike.cancel_fee24 %>%</th>
         </tr>
         <tr>
           <th>当日</th>
-          <th><%= @bike.cancel_fee_otd %></th>
+          <th><%= @bike.cancel_fee_otd %>%</th>
         </tr>
       </table>
     </div>
@@ -152,14 +152,14 @@
       <div class="show__address">
         <h2>バイク受け取り場所</h2>
         <%= @bike.spot.address %>
-      <div class="show__maps shadow", id="show_map", style="height: 320px; width: 100vh;"></div>
+      <div class="show__maps shadow", id="show_map", style="height: 500px; width: 90vh;"></div>
     </div>
   </div>
 </div>
 
 <div class="container mt-5 mb-5">
   <div class="row hoge">
-    <div class="col-md-8">
+    <div class="col-12 col-md-8">
     <!-- カレンダーテンプレを表示 -->
     <%= month_calendar events: @reservations do |date, reservations| %>
       <%= date.day %>
@@ -178,7 +178,7 @@
 <% if user_signed_in? %>
   <div class='container'>
   <div class='row hoge'>
-    <div class="col-6 reservation_form">
+    <div class="col-12 col-md-6 reservation_form">
       <h1>予約登録</h1>
       <%= form_with model:@reservation, url: confirm_reservation_path(@bike.id), local: true, data: { confirm: "【確認】予約リクエストを送信してよろしいですか" } do |f| %>
         <%= f.hidden_field :bike_id, value:@bike.id %>

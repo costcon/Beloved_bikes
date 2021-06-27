@@ -5,9 +5,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def destroy
-  end
-
   def show
     @user = User.find(params[:id])
     @review = Review.create
@@ -27,6 +24,17 @@ class UsersController < ApplicationController
       flash.now[:danger] = '作成に失敗しました。'
       render :edit
     end
+  end
+
+  def unsubscribe
+    @user = User.find(params[:id])
+  end
+
+  def withdraw
+    @user = User.find(params[:id])
+    @user.update(id_deleted: true)
+    reset_session
+    redirect_to root_path
   end
 
 

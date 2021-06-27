@@ -37,11 +37,9 @@
         </tr>
       </table>
       <% if current_user.id == @reservation.reserved_id %>
-        <% if @reservation.reservation_status == 1 %>
-        <!--<#% if @reservation.reservation_status == "承認" %>-->
+        <% if @reservation.reservation_status == "承認" %>
           <div class="row hoge bg-success text-white">承認済</div>
-        <% elsif @reservation.reservation_status == 2  %>
-        <!--<#% elsif @reservation.reservation_status == "キャンセル"  %>-->
+        <% elsif @reservation.reservation_status == "キャンセル"  %>
           <div class="row hoge bg-secondary text-white">キャンセル済</div>
         <% else %>
           <div>

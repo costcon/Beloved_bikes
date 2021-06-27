@@ -77,11 +77,28 @@
             <th><%= @user.profile_comment %></th>
           </tr>
         </table>
-      <h4>出展一覧</h4>
-      <%= link_to '一覧を見る', root_path, data: {"turbolinks" => false}, class: "btn btn-outline-info" %>
+
+      <%= link_to review_path(@user), class: "m-5" do %>
+        <h2 class="text-success">このユーザーの評価</h2>
+        <div id="average-review-evaluation" data-score=<%= @average_review %>></div>
+        <p><%= @reviews.count %> Reviews</p>
+      <% end %>
+
+      <script>
+        $('#average-review-evaluation').empty();
+        $('#average-review-evaluation').raty({
+          readOnly: true,
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          score: function() {
+            return $(this).attr('data-score')
+          }
+        });
+      </script>
 
 
-      <h2>このユーザーを評価</h2>
+      <h2>このユーザーを評価する</h2>
       <!--<#%= link_to 'このユーザーを評価する', new_review_path(@user.id), data: {"turbolinks" => false}, class: "btn btn-outline-info" %>-->
         <%= form_with(model: @review, local: true) do |f| %>
           <%= f.hidden_field :evaluation, :value => 'score' %>
@@ -108,23 +125,6 @@
             starHalf: "<%= asset_path('star-half.png') %>",
             scoreName: 'review[evaluation]', //登録するモデル名とカラム名を記述
             half: true // star-halfの入力を行う
-          });
-        </script>
-
-        <%= link_to review_path(@user), class: "m-5" do %>
-          <h2 class="text-success">このユーザーの評価</h2>
-          <div id="average-review-evaluation" data-score=<%= @average_review %>></div>
-          <p><%= @reviews.count %> Reviews</p>
-        <% end %>
-
-        <script>
-          $('#average-review-evaluation').empty();
-          $('#average-review-evaluation').raty({
-            readOnly: true,
-            path: '/assets/',
-            score: function() {
-              return $(this).attr('data-score')
-            }
           });
         </script>
 

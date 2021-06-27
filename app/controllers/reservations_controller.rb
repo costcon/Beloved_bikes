@@ -47,7 +47,6 @@ class ReservationsController < ApplicationController
 
 
   def thanks
-
   end
 
 

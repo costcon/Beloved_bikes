@@ -20,6 +20,12 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: [:edit, :show, :update, :destroy]
+  # get 'unsubscribe/:name' => 'homes#unsubscribe', as: 'confirm_unsubscribe'
+  # patch ':id/withdraw/:name' => 'homes#withdraw', as: 'withdraw_user'
+  # put 'withdraw/:name' => 'users#withdraw'
+  get "users/:id/unsubscribe" => "users#unsubscribe"
+  put "/users/:id/withdraw" => "users#withdraw", as: "user_withdraw"
+
   resources :reviews, only: [:new, :index, :show, :create, :update]
   resources :reservations, only: [:new, :create, :index, :show, :update] do
     member do

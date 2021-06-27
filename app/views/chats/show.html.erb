@@ -16,15 +16,16 @@
         <% if chat.user_id == current_user.id %>
         <tbody>
           <tr>
-            <th class="badge badge-pill bg-success shadow mt-2">
-              <p class="text-white", style="margin-right: 20%; text-align: left;"><%= chat.message %></p>
+            <th class="badge badge-pill mychat shadow mt-2", style="margin-rigth: 100%;">
+              <p style="text-align: left;"><%= chat.message %></p>
+              <h6 class="created_at"><%= chat.created_at %></h6>
             </th>
-            <th></th>
           </tr>
         <% else %>
           <tr>
-            <th class="badge-pill bg-secondary shadow">
-              <p class="text-white", style="margin-left: 20%; text-align: right;"><%= chat.message %></p>
+            <th class="badge badge-pill yourchat shadow", style="margin-left: 100%;">
+              <p style="text-align: right;"><%= chat.message %></p>
+              <p class="created_at"><%= chat.created_at %></p>
             </th>
           </tr>
         </tbody>
