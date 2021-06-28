@@ -1,5 +1,6 @@
 class ChatsController < ApplicationController
-  before_action :check_login_user
+  before_action :authenticate_user!
+  # before_action :check_login_user
 
   def show
     # どのユーザーとチャットするかを取得。

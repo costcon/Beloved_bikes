@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
+   # before_action :check_login_user
 
   def confirm
     @reservation = Reservation.new(reservation_params)

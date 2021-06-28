@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_login_user
+  # before_action :check_login_user
 
   def index
   end
