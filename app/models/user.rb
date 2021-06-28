@@ -10,6 +10,11 @@ class User < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :user_rooms, dependent: :destroy
+  
+  
+  enum approval: {
+    '未対応':0, '承認済':1, '非承認':2
+  }
 
 
   validates :last_name, presence: true
@@ -20,6 +25,8 @@ class User < ApplicationRecord
   validates :address, presence: true
 
   attachment :profile_image
+  attachment :license_front_image
+  attachment :license_back_image
 
   # 退会ユーザーを確認
   def active_for_authentication?

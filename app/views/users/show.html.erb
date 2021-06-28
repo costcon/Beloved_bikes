@@ -5,8 +5,18 @@
     </div>
       <%= render partial: 'layouts/flash' %>
   </div>
-  <div class="row hoge">
-    <div>
+  <div class="row d-flex justify-content-between mx-auto col-7">
+   <div class="mb-5">
+    <h4>予約履歴</h4>
+      <%= link_to '一覧を見る', reservations_path, class: "btn btn-outline-info" %>
+    </div>
+    <div class="mb-5">
+      <h4>リクエスト履歴</h4>
+      <%= link_to '一覧を見る', requests_reservations_path, class: "btn btn-outline-info" %>
+    </div>
+  </div>
+<div class="container col-xs-12 col-sm-12 col-md-10">
+   <div class="row hoge">
       <h3>登録情報</h3>
       <% if @user.id == current_user.id %>
       <%= link_to '編集する', edit_user_path(current_user),  class: "btn btn-outline-success form-control" %>
@@ -48,18 +58,30 @@
             <th><%= @user.profile_comment %></th>
           </tr>
         </table>
-      <div class="container">
-        <div class="row d-flex justify-content-between">
-         <div class="mb-5">
-          <h4>予約履歴</h4>
-            <%= link_to '一覧を見る', reservations_path, class: "btn btn-outline-info" %>
-          </div>
-          <div class="mb-5">
-            <h4>リクエスト履歴</h4>
-            <%= link_to '一覧を見る', requests_reservations_path, class: "btn btn-outline-info" %>
-          </div>
-        </div>
-       </div>
+
+        <div class="border my-5"></div>
+        <table class="table">
+          <tr>
+            <th>免許証(表)画像</th>license_front_image_id
+            <th><%= attachment_image_tag(@user, :license_front_image, height: "300", width: "400", fallback: "no_image.jpg") %></th>
+          </tr>
+          <tr>
+            <th>免許証(裏)画像</th>
+            <th><%= attachment_image_tag(@user, :license_back_image, height: "300", width: "400", fallback: "no_image.jpg") %></th>
+          </tr>
+          <tr>
+            <th>免許証番号</th>
+            <th><%= @user.license_number %></th>
+          </tr>
+          <tr>
+            <th>交付日</th>
+            <th><%= @user.license_date %></th>
+          </tr>
+          <tr>
+            <th>有効期限</th>
+            <th><%= @user.license_expiration %></th>
+          </tr>
+        </table>
 
       <% else %>
         <table class="table">
@@ -96,6 +118,7 @@
         });
       </script>
 
+      <div class="border mb-7"></div>
 
       <h2>このユーザーを評価する</h2>
       <!--<#%= link_to 'このユーザーを評価する', new_review_path(@user.id), data: {"turbolinks" => false}, class: "btn btn-outline-info" %>-->
@@ -130,4 +153,4 @@
       <% end %>
     </div>
   </div>
- </div>
+</div>

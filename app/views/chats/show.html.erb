@@ -27,14 +27,13 @@
       </div>
     <% end %>
   <% end %>
-</table>
 
-  <div class="container">
-    <div class="row hoge">
+  <div class="row hoge">
+    <div class="col-xs-12 col-sm-12 col-md-8">
       <%= form_with model: @chat, local: true do |f| %>
         <%= f.text_area :message, class:"form-control", placeholder:"200字まで" %>
         <%= f.hidden_field :room_id %>
-        <div class="m-3"><%= f.submit "送信", class:"btn btn-success chat-btn form-control" %></div>
+        <div class="m-3"><%= f.submit "送信", class:"btn btn-outline-success chat-btn form-control" %></div>
       <% end %>
     </div>
   </div>

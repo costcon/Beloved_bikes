@@ -26,9 +26,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :license_number
       t.string :license_date
       t.string :license_expiration
-      t.integer :license_image_1
-      t.integer :license_image_2
+      t.string :license_front_image_id
+      t.string :license_back_image_id
+      t.integer :approval, default: 0
       t.boolean :id_deleted, default: false, null: false
+
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false

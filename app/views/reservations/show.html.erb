@@ -37,9 +37,9 @@
       </table>
       <% if current_user.id == @reservation.reserved_id %>
         <% if @reservation.reservation_status == "承認" %>
-          <div class="row hoge bg-success text-white">承認済</div>
+          <div class="text-center col-10 bg-success text-white">承認済</div>
         <% elsif @reservation.reservation_status == "キャンセル"  %>
-          <div class="row hoge bg-secondary text-white">キャンセル済</div>
+          <div class="text-center col-10 bg-secondary text-white">キャンセル済</div>
         <% else %>
           <div>
             <%= form_with model:@reservation, method: :patch, local: true do |f| %>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="radio-inline mr-3">
                   <%= f.radio_button :reservation_status, :キャンセル %>
-                  <%= f.label :キャンセル, class: "jreservation_status" %>
+                  <%= f.label :キャンセル, class: "reservation_status" %>
                 </div>
                 <div class="reservation_reply w-100 mt-3">
                   <%= f.label "ユーザーへのメッセージ(500字まで)", class:"row hoge" %>

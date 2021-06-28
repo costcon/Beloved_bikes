@@ -10,7 +10,7 @@
     <div class="col-xs-12 col-sm-12 col-md-6 mt-4 bike_images">
       <div class="bike_image">
       <!--<#% @bike.bike_images.each do |bike_image| %>-->
-        <%= attachment_image_tag(@bike, :bike_image, :fill, 500, 400, fallback: "no_image.jpg", size:'500x400') %>
+        <%= attachment_image_tag(@bike, :bike_image, :fill, 400, 300, fallback: "no_image.jpg", size:'400x300') %>
       <!--<#% end %>-->
       </div>
     </div>
@@ -138,7 +138,7 @@
       <div class="show__address">
         <h2>バイク受け取り場所</h2>
         <%= @bike.spot.address %>
-      <div class="show__maps shadow", id="show_map", style="height: 500px; width: 95%;"></div>
+      <div class="show__maps shadow", id="show_map", style="height: 350px; width: 100%;"></div>
     </div>
   </div>
 </div>

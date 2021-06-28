@@ -1,0 +1,101 @@
+<div class="container col-xs-12 col-sm-12 col-md-10">
+  <div class="row">
+    <div class='offset-1'>
+      <h1 class="heading08"><span>User Detail</span>ユーザー情報</h1>
+    </div>
+      <%= render partial: 'layouts/flash' %>
+  <div class="row hoge">
+    <h3>登録情報</h3>
+    <table class="table">
+      <tr>
+        <th>プロフィール画像</th>
+        <th><%= attachment_image_tag(@user, :profile_image, height: "150", width: "150", fallback: "no_image.jpg") %></th>
+      </tr>
+      <tr>
+        <th>ニックネーム</th>
+        <th><%= @user.nickname %></th>
+      </tr>
+      <tr>
+        <th>氏名</th>
+        <th><%= @user.last_name %><%= @user.first_name %></th>
+      </tr>
+      <tr>
+        <th>カナ</th>
+        <th><%= @user.last_name_kana %><%= @user.first_name_kana %></th>
+      </tr>
+      <tr>
+        <th>郵便番号</th>
+        <th><%= @user.postal_code %></th>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <th><%= @user.address %></th>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <th><%= @user.telephone_number %></th>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <th><%= @user.email %></th>
+      </tr>
+      <tr>
+        <th>自己紹介</th>
+        <th><%= @user.profile_comment %></th>
+      </tr>
+    </table>
+
+    <div class="border my-5"></div>
+
+    <table class="table">
+      <tr>
+        <th>免許証(表)画像</th>
+        <th><%= attachment_image_tag(@user, :license_front_image, height: "300", width: "400", fallback: "no_image.jpg") %></th>
+      </tr>
+      <tr>
+        <th>免許証(裏)画像</th>
+        <th><%= attachment_image_tag(@user, :license_back_image, height: "300", width: "400", fallback: "no_image.jpg") %></th>
+      </tr>
+      <tr>
+        <th>免許証番号</th>
+        <th><%= @user.license_number %></th>
+      </tr>
+      <tr>
+        <th>交付日</th>
+        <th><%= @user.license_date %></th>
+      </tr>
+      <tr>
+        <th>有効期限</th>
+        <th><%= @user.license_expiration %></th>
+      </tr>
+    </table>
+    <% if @user.approval == "承認済" %>
+      <div class="text-center col-10 bg-success text-white">有効なユーザーです</div>
+    <% elsif @user.approval == "非承認"  %>
+      <div class="text-center col-10 bg-secondary text-white">無効なユーザーです</div>
+    <% else %>
+      <div class="mt-5">
+      <%= form_with model:@user, url: admin_path(@user), method: :patch, local: true do |f| %>
+        <div class="field row hoge">
+          <label class="reservation_status bg-info text-white px-4">予約ステータス</label><br>
+          <div class="radio-inline ml-5 mr-3">
+            <%= f.radio_button :approval, :未対応 %>
+            <%= f.label :未対応, class: "approval" %>
+          </div>
+          <div class="radio-inline mr-3">
+            <%= f.radio_button :approval, :承認済 %>
+            <%= f.label :承認, class: "approval" %>
+          </div>
+          <div class="radio-inline mr-3">
+            <%= f.radio_button :approval, :非承認 %>
+            <%= f.label :非承認, class: "approval" %>
+          </div>
+        </div>
+        <div class="my-3">
+          <%= f.submit 'ステータスを更新する', class:'btn btn-lg btn-outline-dark form-control' %>
+        </div>
+      <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

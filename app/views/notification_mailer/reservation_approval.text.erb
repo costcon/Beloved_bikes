@@ -2,8 +2,8 @@
   <%= @user.nickname %> 様
   ===============================
 
-  この度は、お問い合わせありがとうございました。
-　以下でご質問の回答となっておりますでしょうか。
+  予約リクエストが<%= @reservation.reservation_status %>されました。
+　以下の情報をご確認ください
 
   オーナー名
   <%= @reservation.reserved.nickname %>
@@ -19,11 +19,11 @@
 
   オーナーからのメッセージ
   <%= @reservation.reservation_reply %>
-  
+
   __________________________________________________
 
 
   今後とも Beloved_bikes をよろしくお願いいたします。
   Beloved_bikes運営局
-  
+
   <%= @url %>

@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 2021_06_27_091454) do
     t.string "vehicle_inspection"
     t.integer "impressions_count", default: 0
     t.integer "area", default: 0, null: false
-    t.boolean "favorite"
     t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -147,8 +146,9 @@ ActiveRecord::Schema.define(version: 2021_06_27_091454) do
     t.string "license_number"
     t.string "license_date"
     t.string "license_expiration"
-    t.integer "license_image_1"
-    t.integer "license_image_2"
+    t.string "license_front_image_id"
+    t.string "license_back_image_id"
+    t.integer "approval", default: 0
     t.boolean "id_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

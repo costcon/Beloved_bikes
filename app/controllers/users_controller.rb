@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_login_user
+
 
   def edit
     @user = User.find(params[:id])
@@ -41,7 +43,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:nickname, :profile_image, :last_name, :last_name_kana, :first_name, :first_name_kana, :postal_code, :address, :telephone_number, :profile_comment, :email, :license_number, :license_date, :license_expiration, :license_image_1, :license_image_2, :id_deleted)
+    params.require(:user).permit(:nickname, :profile_image, :last_name, :last_name_kana, :first_name, :first_name_kana, :postal_code, :address, :telephone_number, :profile_comment, :email, :license_number, :license_date, :license_expiration, :license_front_image, :license_back_image, :approval, :id_deleted)
   end
 
 end

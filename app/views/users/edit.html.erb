@@ -3,11 +3,10 @@
     <div class='offset-1'>
       <h1 class="heading08"><span>Edit User</span>ユーザー編集</h1>
     </div>
-      <%= render partial: 'layouts/flash' %>
+    <%= render partial: 'layouts/flash' %>
   </div>
   <div class='row hoge'>
-    <div class='mx-auto newitem title'>
-      <!--<#%= render partial: 'layouts/flash' %>-->
+    <div class='mx-auto col-xs-12 col-sm-12 col-md-10 edituser'>
       <%= form_with model:@user, local:true do |f| %>
       <!--<#%= render 'layouts/error_messages', model: f.object %>-->
       <%= f.hidden_field :user_id, value:@user.id %>
@@ -41,8 +40,34 @@
         </tr>
 
         <tr>
-           <td><lebel for='inputEmail'>Email</lebel></td>
-           <td><%= f.email_field :email,class:"form-control", id:'inputEmail'  %></td>
+          <th>免許証(表)画像</th>
+          <th><%= attachment_image_tag(@user, :license_front_image_1, height: "300", width: "400", fallback: "no_image.jpg") %></th>
+        </tr>
+        <tr>
+           <td><lebel for='inputlicense_image'>免許証(表)画像</lebel></td>
+           <td><%= f.attachment_field :license_front_image_1 %></td>
+        </tr>
+
+        <tr>
+          <th>免許証(裏)画像</th>
+          <th><%= attachment_image_tag(@user, :license_front_image_2, height: "300", width: "400", fallback: "no_image.jpg") %></th>
+        </tr>
+        <tr>
+           <td><lebel for='inputlicense_image'>免許証(裏)画像</lebel></td>
+           <td><%= f.attachment_field :license_front_image_2 %></td>
+        </tr>
+
+        <tr>
+           <td><lebel for='inputlicense_number'>免許証番号</lebel></td>
+           <td><%= f.email_field :license_number,class:"form-control", id:'inputlicense_number'  %></td>
+        </tr>
+        <tr>
+           <td><lebel for='inputlicense_date'>交付日</lebel></td>
+           <td><%= f.email_field :license_date,class:"form-control", id:'inputlicense_date'  %></td>
+        </tr>
+        <tr>
+           <td><lebel for='inputlicense_expiration'>有効期限</lebel></td>
+           <td><%= f.email_field :license_expiration,class:"form-control", id:'inputlicense_expiration'  %></td>
         </tr>
 
       </table>

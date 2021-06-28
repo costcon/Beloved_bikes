@@ -16,6 +16,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_login_user
+    unless current_user.approval == "承認"
+      redirect_to request.referer, danger: "先にユーザー認証を済ませてください"
+    end
+  end
+
 
 
 
@@ -33,7 +39,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     if resource_class == User
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :license_number, :license_date, :license_expiration, :license_image_1, :license_image_2, :id_deleted])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :license_number, :license_date, :license_expiration, :license_front_image, :license_back_image, :id_deleted])
     end
   end
 

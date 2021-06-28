@@ -13,7 +13,24 @@ class NotificationMailer < ApplicationMailer
     @user = @reservation.reserver
     @bike = @reservation.bike
     @url  = 'http://beloved-bikes.site'
-    mail to: @user.email, subject: '【Beloved_bikes】 予約リクエストが承認されました'
+    mail to: @user.email, subject: '【Beloved_bikes】 予約リクエストに返答がありました'
+  end
+
+  def user_approval(user)
+    @user = user
+    @url  = 'http://beloved-bikes.site'
+    mail to: @user.email, subject: '【Beloved_bikes】 ユーザー申請が承認されました'
+  end
+  def user_disapproval(user)
+    @user = user
+    @url  = 'http://beloved-bikes.site'
+    mail to: @user.email, subject: '【Beloved_bikes】 ユーザー申請が拒否されました'
+  end
+
+  def user_registration(user)
+    @user = user
+    @url  = 'http://beloved-bikes.site/admins/sign_in'
+    mail to: @user.email, subject: '【Beloved_bikes】 新規ユーザー登録がありました'
   end
 
 

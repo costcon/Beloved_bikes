@@ -1,6 +1,6 @@
 class BikesController < ApplicationController
   before_action :authenticate_user!, except:[:index, :show]
-  # impressionist :actions=> [:show]
+  before_action :check_login_user, {only: [:exhibit, :new, :create, :edit, :update, :destroy]}
 
 
   def index

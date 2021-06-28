@@ -1,0 +1,30 @@
+  <h2><%= @user.nickname %> 様</h2>
+　<p>予約リクエストが<%= @user.approval %>されました。<br>
+　以下の情報をご確認ください。</p>
+
+  <table>
+    <tr>
+      <th>オーナー名</th>
+      <th><%= @reservation.reserved.nickname %></th>
+    </tr>
+    <tr>
+      <th>バイク名</th>
+      <th><%= @bike.name %></th>
+    </tr>
+    <tr>
+      <th>利用開始日時</th>
+      <th><%= @reservation.start_time %></th>
+    </tr>
+    <tr>
+      <th>返却日時</th>
+      <th><%= @reservation.end_time %></th>
+    </tr>
+    <tr>
+      <th>オーナーからのメッセージ</th>
+      <th><%= @reservation.reservation_reply %></th>
+    </tr>
+  </table>
+
+  <p>今後とも Beloved_bikes をよろしくお願いいたします。</p>
+  <p>Beloved_bikes運営局</p>
+  <span><%= @url %></span>

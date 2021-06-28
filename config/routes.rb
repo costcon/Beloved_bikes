@@ -50,4 +50,9 @@ Rails.application.routes.draw do
 
   get '/map_request', to: 'maps#map', as: 'map_request'
 
+  namespace :admin do
+    resources :users, only: [:index,:show,:edit]
+    patch 'users/:id' => 'users#update'
+  end
+
 end
