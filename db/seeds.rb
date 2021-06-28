@@ -31,7 +31,7 @@ User.create!(
   license_expiration: '20221131',
   license_front_image: File.open("./app/assets/images/licence.png"),
   license_back_image: File.open("./app/assets/images/licence.png"),
-  approval: '承認',
+  approval: '承認済',
   email: 'test@test.com',
   password: 'testtest',
 )
@@ -52,7 +52,7 @@ User.create!(
   license_expiration: '20221231',
   license_front_image: File.open("./app/assets/images/licence.png"),
   license_back_image: File.open("./app/assets/images/licence.png"),
-  approval: '承認',
+  approval: '承認済',
   email: 'abc@abc.com',
   password: 'testtest',
 )
@@ -73,7 +73,7 @@ User.create!(
   license_expiration: '20221231',
   license_front_image: File.open("./app/assets/images/licence.png"),
   license_back_image: File.open("./app/assets/images/licence.png"),
-  approval: '承認',
+  approval: '承認済',
   email: 'musuka@msk.com',
   password: 'testtest',
 )
