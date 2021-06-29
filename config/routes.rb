@@ -1,16 +1,28 @@
 Rails.application.routes.draw do
 
-  devise_for :admins, :controllers => {
-    :sessions => 'admins/sessions'
-  }
+  root :to => 'homes#top'
+  get 'homes/about'
+  get 'homes/registration'
+
+
+
+  devise_for :admins, skip: :all
+  devise_scope :admin do
+    get 'admins/sign_in' => 'admins/sessions#new', as: 'new_admin_session'
+    post 'admins/sign_in' => 'admins/sessions#create', as: 'admin_session'
+    delete 'admins/sign_out' => 'admins/sessions#destroy', as: 'destroy_admin_session'
+  end
 
   devise_scope :admin do
     get "sign_in", :to => "admins/sessions#new"
-    get "sign_out", :to => "admins/sessions#destroy"
+    delete "sign_out", :to => "admins/sessions#destroy"
   end
 
-  root :to => 'homes#top'
-  get 'homes/about'
+  namespace :admin do
+    resources :users, only: [:index,:show,:edit]
+    patch 'users/:id' => 'users#update'
+  end
+
 
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
@@ -19,8 +31,12 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get "sign_in", :to => "users/sessions#new"
-    get "sign_out", :to => "users/sessions#destroy"
+    delete "sign_out", :to => "users/sessions#destroy"
   end
+
+
+
+
 
   resources :bikes, only: [:edit, :create, :index, :show, :update, :destroy, :new] do
     member do
@@ -50,9 +66,6 @@ Rails.application.routes.draw do
 
   get '/map_request', to: 'maps#map', as: 'map_request'
 
-  namespace :admin do
-    resources :users, only: [:index,:show,:edit]
-    patch 'users/:id' => 'users#update'
-  end
+
 
 end

@@ -16,7 +16,7 @@
              <th>ユーザー名</th>
              <th>登録日</th>
              <th>承認</th>
-             <th>退会状況</th>
+             <th>退会フラグ</th>
              <th></th>
            </tr>
          </thead>
@@ -36,9 +36,9 @@
                 <td class="text-danger">未対応</td>
               <% end %>
               <% if user.id_deleted == true %>
-                <th><span>退会</span></th>
+                <th><p class="danger">退会</span></th>
               <% else %>
-                <th><font color="#008000">有効</font></th>
+                <th></th>
               <% end %>
              </td>
              <td><%= link_to '確認する', admin_user_path(user), class: "btn btn-sm btn-outline-dark" %></td>

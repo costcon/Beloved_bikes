@@ -11,7 +11,7 @@
           <li class="navbar-item"><%= link_to ' My Page',user_path(current_user) %></li>
           <li class="navbar-item"><%= link_to ' Index',bikes_path %></li>
           <li class="navbar-item"><%= link_to ' Exhibit',exhibit_bike_path(current_user) %></li>
-          <li class="navbar-item"><%= link_to ' Sign out', destroy_user_session_path, data: { confirm: "ログアウトしてよろしいですか？" }, method: :delete %></li>
+          <li class="navbar-item"><%= link_to ' Sign out',destroy_user_session_path, data: { confirm: "ログアウトしてよろしいですか？" }, method: :delete %></li>
         </ul>
       </div>
     <% elsif admin_signed_in? %>

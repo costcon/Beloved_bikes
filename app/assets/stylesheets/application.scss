@@ -112,6 +112,60 @@
 }
 
 
+#loader-bg {
+  background-color: #fff;
+  height: 200px;
+  left: 0px;
+  position: fixed;
+  top: 0px;
+  z-index: 10000;
+}
+
+
+// loading画面
+#loading {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  background: #D9E5FF;
+  z-index: 10000;
+}
+
+#loading-img {
+  left: 50%;
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+
+.animation {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #000;
+  -webkit-animation: loadinganimation 1500ms ease-out forwards infinite;
+  animation: loadinganimation 1500ms ease-out forwards infinite;
+}
+@keyframes loadinganimation {
+  from,to {
+		opacity: 0;
+  }
+  50% {
+		opacity: .5;
+  }
+}
+
+
+
+
 .top-image {
   height: 500px;
   width: 100%;

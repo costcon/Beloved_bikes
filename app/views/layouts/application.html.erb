@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700 rel="stylesheet"">
     <!-- スライドショー slickの呼び出し -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -30,7 +31,9 @@
 
   <footer>
     <div class='container mt-5'>
-      <a class="row right", href="#top"><i class="fas fa-arrow-up fa-3x"></i></a>
+      <div class="row right">
+        <a href="#top"><i class="fas fa-arrow-up fa-3x"></i></a>
+      </div>
       <div class='row'>
         <div class='footer mx-auto'>
           <h3 class="small">© Beloved Bikes.inc All rights reserved.</h3>
@@ -45,7 +48,7 @@
 <script>
   $('a[href^="#top"]').click(function() {
   // スクロールの速度
-  let speed = 400; // ミリ秒で記述
+  let speed = 1200; // ミリ秒で記述
   let href = $(this).attr("href");
   let target = $(href == "#" || href == "" ? 'html' : href);
   let position = target.offset().top;
