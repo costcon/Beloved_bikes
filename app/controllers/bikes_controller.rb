@@ -34,15 +34,14 @@ class BikesController < ApplicationController
   end
 
   def exhibit
+    # @bikes = current_user.bikes
     @bikes = Bike.where(user_id: current_user.id)
-    # @bike = Bike.find(params[:id])
+
   end
 
   def new
     @bike = Bike.new
     @bike.build_spot
-    # @lat = @bike.spot.latitude
-    # @lng = @bike.spot.longitude
     gon.lat = 35.6594666
     gon.lng = 139.7005536
   end

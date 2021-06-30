@@ -22,6 +22,7 @@
 //= require jquery.raty.js
 //= require underscore
 //= require gmaps/google
+//= require trix
 
 
 $(function() {

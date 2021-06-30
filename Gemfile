@@ -89,6 +89,9 @@ gem "gon"
 # PV数、ランキング
 gem 'impressionist', '~>1.6.1'
 
+# WYSIWYGエディター(textareaのリッチ化)
+gem 'trix'
+
 
 #デプロイ(環境変数)のための記述
 gem 'dotenv-rails'

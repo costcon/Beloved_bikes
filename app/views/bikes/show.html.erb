@@ -50,7 +50,7 @@
   <div class="row">
     <div class="mx-auto col-xs-12 col-sm-12 col-md-8 my-4">
       <span class="under">introduction</span><br>
-        <h4><%= @bike.introduction %></h4>
+        <p><%= sanitize @bike.introduction %></p>
     </div>
   </div>
 
