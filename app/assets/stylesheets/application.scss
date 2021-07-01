@@ -30,11 +30,11 @@
 }
 
 /*スマホ表示時*/
-@media (max-width: 568px) {
+@media (max-width: 576px) {
   p {
    font-size: 20px;
  }
- 
+
  .top-image {
     height: 200px;
     width: 100%;
@@ -42,13 +42,19 @@
     margin: 0 auto;
     object-fit: cover;
   }
-  
+
   .bike-image {
     height: 300px;
     width: 400px;
   }
-  
+
+  .card_img {
+    height: 250px;
+    width: 100%;
+  }
+
 }
+
 
 
 .row.hoge {
