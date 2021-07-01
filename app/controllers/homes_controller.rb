@@ -8,4 +8,5 @@ class HomesController < ApplicationController
   def registration
   end
 
+
 end

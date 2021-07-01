@@ -14,38 +14,38 @@
       </div>
 
       <div class="field">
-        <%= f.label :姓かな %><br />
-        <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class:'form-control' %>
-      </div>
-
-      <div class="field">
         <%= f.label :名 %><br />
-        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class:'form-control' %>
+        <%= f.text_field :last_name, autocomplete: "last_name", class:'form-control' %>
       </div>
 
       <div class="field">
-        <%= f.label :名かな %><br />
-        <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", class:'form-control' %>
+        <%= f.label :"姓(かな)" %><br />
+        <%= f.text_field :first_name_kana, autocomplete: "first_name_kana", class:'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"名(かな)" %><br />
+        <%= f.text_field :last_name_kana, autocomplete: "last_name_kana", class:'form-control' %>
       </div>
 
       <div class="field">
         <%= f.label :ニックネーム %><br />
-        <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", class:'form-control' %>
+        <%= f.text_field :nickname, autocomplete: "nickname", class:'form-control' %>
       </div>
 
       <div class="field">
         <%= f.label :郵便番号 %><br />
-        <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class:'form-control' %>
+        <%= f.text_field :postal_code, autocomplete: "postal_code", class:'form-control' %>
       </div>
 
       <div class="field">
         <%= f.label :現住所 %><br />
-        <%= f.text_field :address, autofocus: true, autocomplete: "address", class:'form-control' %>
+        <%= f.text_field :address, autocomplete: "address", class:'form-control' %>
       </div>
 
       <div class="field">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control' %>
+        <%= f.email_field :email, autocomplete: "email", class:'form-control' %>
       </div>
 
       <div class="field">
@@ -73,27 +73,27 @@
   <div class="row hoge col-12 p-5 row">
       <div class="field">
         <%= f.label :免許証番号 %><br />
-        <%= f.text_field :license_number, autofocus: true, autocomplete: "license_number", class:'form-control' %>
+        <%= f.text_field :license_number, autocomplete: "license_number", class:'form-control', placeholder:'12桁の数字' %>
       </div>
 
       <div class="field">
         <%= f.label :交付日 %><br />
-        <%= f.text_field :license_date, autofocus: true, autocomplete: "license_date", class:'form-control' %>
+        <%= f.text_field :license_date, autocomplete: "license_date", class:'form-control', placeholder:'年号〇年〇〇月〇〇日' %>
       </div>
 
       <div class="field">
         <%= f.label :有効期限 %><br />
-        <%= f.text_field :license_expiration, autofocus: true, autocomplete: "license_expiration", class:'form-control' %>
+        <%= f.text_field :license_expiration, autocomplete: "license_expiration", class:'form-control', placeholder:'年号〇年〇〇月〇〇日' %>
       </div>
 
       <div class="field">
         <%= f.label :'免許証(表)' %><br />
-        <%= f.file_field :license_front_image, autofocus: true, autocomplete: "license_front_image" %>
+        <%= f.file_field :license_front_image, autocomplete: "license_front_image" %>
       </div>
 
       <div class="field">
         <%= f.label :'免許証(裏)' %><br />
-        <%= f.file_field :license_back_image, autofocus: true, autocomplete: "license_back_image" %>
+        <%= f.file_field :license_back_image, autocomplete: "license_back_image" %>
       </div><br>
 
       <div class="actions m-3 col-12 row hoge">

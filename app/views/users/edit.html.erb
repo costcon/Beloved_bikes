@@ -41,20 +41,20 @@
 
         <tr>
           <th>免許証(表)画像</th>
-          <th><%= attachment_image_tag(@user, :license_front_image_1, height: "300", width: "400", fallback: "no_image.jpg") %></th>
+          <th><%= attachment_image_tag(@user, :license_front_image, height: "300", width: "400", fallback: "no_image.jpg") %></th>
         </tr>
         <tr>
            <td><lebel for='inputlicense_image'>免許証(表)画像</lebel></td>
-           <td><%= f.attachment_field :license_front_image_1 %></td>
+           <td><%= f.attachment_field :license_front_image %></td>
         </tr>
 
         <tr>
           <th>免許証(裏)画像</th>
-          <th><%= attachment_image_tag(@user, :license_front_image_2, height: "300", width: "400", fallback: "no_image.jpg") %></th>
+          <th><%= attachment_image_tag(@user, :license_back_image, height: "300", width: "400", fallback: "no_image.jpg") %></th>
         </tr>
         <tr>
            <td><lebel for='inputlicense_image'>免許証(裏)画像</lebel></td>
-           <td><%= f.attachment_field :license_front_image_2 %></td>
+           <td><%= f.attachment_field :license_back_image %></td>
         </tr>
 
         <tr>

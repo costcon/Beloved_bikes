@@ -45,17 +45,12 @@
   </body>
 
 <script>
-  $('a[href^="#top"]').click(function() {
-  // スクロールの速度
-  let speed = 1200; // ミリ秒で記述
-  let href = $(this).attr("href");
-  let target = $(href == "#" || href == "" ? 'html' : href);
-  let position = target.offset().top;
-  $('body,html').animate({
-    scrollTop: position
-  }, speed, 'swing');
-  return false;
-});
+  $('a[href^="#top"]').on('click',function(event){
+    $('body, html').animate({
+      scrollTop:0
+    }, 800);
+    event.preventDefault();
+  });
 </script>
 
 </html>
