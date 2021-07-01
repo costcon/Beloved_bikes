@@ -21,6 +21,7 @@ class NotificationMailer < ApplicationMailer
     @url  = 'http://beloved-bikes.site'
     mail to: @user.email, subject: '【Beloved_bikes】 ユーザー申請が承認されました'
   end
+  
   def user_disapproval(user)
     @user = user
     @url  = 'http://beloved-bikes.site'

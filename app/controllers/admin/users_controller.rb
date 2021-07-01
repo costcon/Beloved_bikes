@@ -14,12 +14,13 @@ class Admin::UsersController < ApplicationController
     if @user.update(user_params)
       if @user.approval =="承認済"
         NotificationMailer.user_approval(@user).deliver_now
-      elsif @user.approval =="キャンセル"
+        redirect_to request.referer, success: "ユーザーリクエストを承認しました"
+      elsif @user.approval ==""
         NotificationMailer.user_disapproval(@user).deliver_now
+        redirect_to request.referer, success: "ユーザーリクエストをブロックしました"
       end
-      redirect_to request.referer, success: "更新しました"
     else
-      flash.now[:danger] = '作成に失敗しました。'
+      flash.now[:danger] = '更新に失敗しました。'
       render :show
     end
   end
