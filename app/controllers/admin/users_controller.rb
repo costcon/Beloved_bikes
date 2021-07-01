@@ -15,7 +15,7 @@ class Admin::UsersController < ApplicationController
       if @user.approval =="承認済"
         NotificationMailer.user_approval(@user).deliver_now
         redirect_to request.referer, success: "ユーザーリクエストを承認しました"
-      elsif @user.approval ==""
+      elsif @user.approval =="非承認"
         NotificationMailer.user_disapproval(@user).deliver_now
         redirect_to request.referer, success: "ユーザーリクエストをブロックしました"
       end
