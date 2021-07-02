@@ -49,6 +49,10 @@ class BikesController < ApplicationController
   def create
     @bike = Bike.new(bike_params)
     if @bike.save
+      tags = Vision.get_image_data(@bike.bike_image)
+      tags.each do |tag|
+        list.tags.create(name: tag)
+      end
       redirect_to exhibit_bike_path(current_user), success: "作成しました"
     else
       flash.now[:danger] = '作成に失敗しました。'
@@ -70,6 +74,10 @@ class BikesController < ApplicationController
   def update
     @bike = Bike.find(params[:id])
     if @bike.update(bike_params)
+      tags = Vision.get_image_data(@bike.bike_image)
+      tags.each do |tag|
+        list.tags.create(name: tag)
+      end
       redirect_to exhibit_bike_path(current_user), success: "更新しました"
     else
       flash.now[:danger] = '作成に失敗しました。'

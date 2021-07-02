@@ -4,7 +4,7 @@ class CreateBikes < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.string :name
       t.string :bike_image_id
-      t.string :bike_images_id
+      t.string :vehicle_inspection_id
       t.string :maker
       t.string :displacement
       t.integer :price
@@ -15,7 +15,6 @@ class CreateBikes < ActiveRecord::Migration[5.2]
       t.string :cancel_fee24
       t.string :cancel_fee72
       t.integer :at_mt, null: false, default: 0
-      t.string :vehicle_inspection
       t.integer :impressions_count, default: 0
       t.integer :area, null: false, default: 0
       t.boolean :is_active

@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_06_27_091454) do
     t.integer "user_id"
     t.string "name"
     t.string "bike_image_id"
-    t.string "bike_images_id"
+    t.string "vehicle_inspection_id"
     t.string "maker"
     t.string "displacement"
     t.integer "price"
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 2021_06_27_091454) do
     t.string "cancel_fee24"
     t.string "cancel_fee72"
     t.integer "at_mt", default: 0, null: false
-    t.string "vehicle_inspection"
     t.integer "impressions_count", default: 0
     t.integer "area", default: 0, null: false
     t.boolean "is_active"

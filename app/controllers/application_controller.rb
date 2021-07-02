@@ -47,26 +47,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     if resource_class == User
-      devise_parameter_sanitizer.permit(
-      :profile_image,
-      :last_name,
-      :last_name_kana,
-      :first_name,
-      :first_name_kana,
-      :nickname,
-      :postal_code,
-      :address,
-      :telephone_number,
-      :profile_comment,
-      :email,
-      :license_number,
-      :license_date,
-      :license_expiration,
-      :license_front_image,
-      :license_back_image,
-      :approval,
-      :id_deleted
-    )
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana, :nickname, :postal_code, :address, :telephone_number, :license_number, :license_date, :license_expiration, :license_front_image, :license_back_image, :approval, :id_deleted])
     end
   end
 

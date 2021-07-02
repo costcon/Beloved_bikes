@@ -29,8 +29,10 @@ class Bike < ApplicationRecord
 
 
   attachment :bike_image
+  attachment :vehicle_inspection
+
   validates :name, presence: true
   validates :price, presence: true
   validates :introduction, presence: true
-  # validates :vehicle_inspection, presence: true
+  validates :vehicle_inspection, presence: true
 end
