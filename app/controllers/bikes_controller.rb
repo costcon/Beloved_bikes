@@ -48,11 +48,12 @@ class BikesController < ApplicationController
 
   def create
     @bike = Bike.new(bike_params)
+    @bike.score = Language.get_data(@bike.introduction)
     if @bike.save
-      tags = Vision.get_image_data(@bike.bike_image)
-      tags.each do |tag|
-        list.tags.create(name: tag)
-      end
+      # tags = Vision.get_image_data(@bike.bike_image)
+      # tags.each do |tag|
+      #   @bike.tags.create(name: tag)
+      # end
       redirect_to exhibit_bike_path(current_user), success: "作成しました"
     else
       flash.now[:danger] = '作成に失敗しました。'
@@ -73,11 +74,12 @@ class BikesController < ApplicationController
 
   def update
     @bike = Bike.find(params[:id])
+    @bike.score = Language.get_data(@bike.introduction)
     if @bike.update(bike_params)
-      tags = Vision.get_image_data(@bike.bike_image)
-      tags.each do |tag|
-        list.tags.create(name: tag)
-      end
+      # tags = Vision.get_image_data(@bike.bike_image)
+      # tags.each do |tag|
+      #   @bike.tags.create(name: tag)
+      # end
       redirect_to exhibit_bike_path(current_user), success: "更新しました"
     else
       flash.now[:danger] = '作成に失敗しました。'
@@ -102,7 +104,24 @@ class BikesController < ApplicationController
   private
 
   def bike_params
-    params.require(:bike).permit(:user_id, :vehicle_inspection, :bike_image, :name, :maker, :displacement, :mileage, :modek_year, :introduction, :price, :is_active, :cancel_fee_otd, :cancel_fee24, :cancel_fee72, :at_mt, spot_attributes: [:address, :latitude, :longitude])
+    params.require(:bike).permit(
+      :user_id,
+      :vehicle_inspection,
+      :bike_image,
+      :name,
+      :maker,
+      :displacement,
+      :mileage,
+      :modek_year,
+      :introduction,
+      :price,
+      :is_active,
+      :area,
+      :cancel_fee_otd,
+      :cancel_fee24,
+      :cancel_fee72,
+      :at_mt,
+      spot_attributes: [:id, :bike_id, :address, :latitude, :longitude])
   end
 
   def search_params

@@ -96,7 +96,6 @@
             <input onclick="codeAddress()", type="button", value="検索する"></input>
             <div class="map mx-auto", id="map", style="height: 350px; width: 95%;"></div>
             <% end %>
-            <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs9fDVYkB6NXDWJkai-szrQmfxEYEE6AQ&callback=initMap" async defer></script>-->
           </div>
         </div>
 
@@ -104,10 +103,11 @@
           <label for='inputIntroduction'>Introduction(バイク紹介文) ※2000字まで</label><br>
           <%= f.hidden_field :introduction, id: :bike_introduction %>
           <trix-editor input="bike_introduction", class="bg-white"></trix-editor>
+          <span class="sentiment-score">本文の感情分析スコア<%= @bike.score %></span>
         </div>
 
         <div class="row hoge m-3 col-12">
-          <%= f.submit 'Update', class:'btn btn-lg btn-outline-dark form-control' %>
+          <%= f.submit '出展登録する', class:'btn btn-lg btn-outline-dark form-control' %>
         </div>
 
       <% end %>
