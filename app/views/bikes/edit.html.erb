@@ -12,12 +12,12 @@
 
         <div class="mt-3">
           <label for='inputVehicleInspection'>車検証(必ず有効なものを添付してください)</label><br>
-          <%= f.file_field :vehicle_inspection, multiple: true, placeholder:'車検証' %>
+          <%= f.attachment_field :vehicle_inspection, placeholder:'車検証' %>
         </div>
 
         <div class="mt-3">
           <label for='inputImage'>バイク画像</label><br>
-          <%= f.file_field :bike_image, multiple: true, placeholder:'写真' %>
+          <%= f.attachment_field :bike_image, placeholder:'写真' %>
         </div>
 
         <div class="mt-3">
@@ -102,7 +102,7 @@
           <label for='inputIntroduction'>Introduction(バイク紹介文) ※2000字まで</label><br>
           <%= f.hidden_field :introduction, id: :bike_introduction %>
           <trix-editor input="bike_introduction", class="bg-white"></trix-editor>
-          <% if @bike.score <= -0.5 %>
+          <% if @bike.score <= -0.6 %>
             <div class="bg-warning">
               <p>
                 ※introduction内に不適切な表現がある可能性があります。<br>
