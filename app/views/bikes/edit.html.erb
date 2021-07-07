@@ -101,13 +101,13 @@
           <label for='inputIntroduction'>Introduction(バイク紹介文) ※2000字まで</label><br>
           <%= f.hidden_field :introduction, id: :bike_introduction %>
           <trix-editor input="bike_introduction", class="bg-white"></trix-editor>
-          <% if @bike.score <= -0.6 %>
-            <div class="bg-warning">
-              <p>
-                ※introduction内に不適切な表現がある可能性があります。<br>
-                ご確認の上、必要があれば修正してください。</p>
-            </div>
-          <% end %>
+          <!--<#% if @bike.score <= -0.6 %>-->
+          <!--  <div class="bg-warning">-->
+          <!--    <p>-->
+          <!--      ※introduction内に不適切な表現がある可能性があります。<br>-->
+          <!--      ご確認の上、必要があれば修正してください。</p>-->
+          <!--  </div>-->
+          <!--<#% end %>-->
           <span class="sentiment-score">本文の感情分析スコア<%= @bike.score %></span>
         </div>
 

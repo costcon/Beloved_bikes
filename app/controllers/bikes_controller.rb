@@ -48,7 +48,7 @@ class BikesController < ApplicationController
 
   def create
     @bike = Bike.new(bike_params)
-    # @bike.score = Language.get_data(@bike.introduction)
+    @bike.score = Language.get_data(@bike.introduction)
     if @bike.save
       # tags = Vision.get_image_data(@bike.bike_image)
       # tags.each do |tag|
