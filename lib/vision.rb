@@ -15,7 +15,7 @@ module Vision
       params = {
         requests: [{
           image: {
-            content: base64_image
+            content: "base64-encoded-image"
           },
           features: [
             {
@@ -34,10 +34,11 @@ module Vision
       response = https.request(request, params)
       response_body = JSON.parse(response.body)
       # APIレスポンス出力
-      if (error = response_body['responses'][0]['error']).present?
+      if (error = response_body['error']).present?
         raise error['message']
       else
-        response_body['responses'][0]['labelAnnotations'].pluck('description').take(3)
+        pp response_body
+        response_body['responses']
       end
     end
   end

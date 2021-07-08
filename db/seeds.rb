@@ -96,6 +96,8 @@ Bike.create!(
   vehicle_inspection: File.open("./app/assets/images/licence.png"),
   is_active: true,
   bike_image: File.open("./app/assets/images/YAMAHA FZR600.jpeg"),
+  score: 0.0,
+  magnitude: 0.0,
 )
 
 Spot.create!(
@@ -122,6 +124,8 @@ Bike.create!(
   area: '東京都',
   is_active: true,
   bike_image: File.open("./app/assets/images/YAMAHA XT500.jpeg"),
+  score: 0.0,
+  magnitude: 0.0,
 )
 
 Spot.create!(
@@ -148,6 +152,8 @@ Bike.create!(
   area: '東京都',
   is_active: true,
   bike_image: File.open("./app/assets/images/ハーレー.jpeg"),
+  score: 0.0,
+  magnitude: 0.0,
 )
 
 Spot.create!(
@@ -174,6 +180,8 @@ Bike.create!(
   area: '東京都',
   is_active: true,
   bike_image: File.open("./app/assets/images/Honda cub.jpeg"),
+  score: 0.0,
+  magnitude: 0.0,
 )
 
 Spot.create!(
@@ -201,6 +209,8 @@ Spot.create!(
     area: '東京都',
     is_active: true,
     bike_image: File.open("./app/assets/images/ハーレー２.jpeg"),
+    score: 0.0,
+    magnitude: 0.0,
   )
 end
 

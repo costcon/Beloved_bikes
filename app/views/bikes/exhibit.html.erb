@@ -27,7 +27,7 @@
               <%= attachment_image_tag(bike, :bike_image, :fill, 30, 30, fallback: "no_image_bike.png", size:'30x30') %>
               <%= bike.name %>
              </td>
-             <td><%= bike.price %></td>
+             <td><%= bike.price %>円</td>
              <td><%= bike.displacement %></td>
              <td>
               <%= link_to '編集する', edit_bike_path(bike), class: "btn btn-sm btn-outline-dark" %>

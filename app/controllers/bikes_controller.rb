@@ -48,7 +48,11 @@ class BikesController < ApplicationController
 
   def create
     @bike = Bike.new(bike_params)
-    @bike.score = Language.get_data(@bike.introduction)
+    rc = Language.get_data(@bike.introduction)
+
+    @bike.score = rc[0]['sentiment']['score']
+    @bike.magnitude = rc[0]['sentiment']['magnitude']
+
     if @bike.save
       # tags = Vision.get_image_data(@bike.bike_image)
       # tags.each do |tag|
@@ -74,9 +78,18 @@ class BikesController < ApplicationController
 
   def update
     @bike = Bike.find(params[:id])
-    @bike.score = Language.get_data(@bike.introduction)
+    rc = Language.get_data(@bike.introduction)
+    #　rc[0]＝ハッシュデータ全ての　['sentiment']の中の配列の　['score']　スコアを指定
+    @bike.score = rc[0]['sentiment']['score']
+    @bike.magnitude = rc[0]['sentiment']['magnitude']
+    rc.each do | word |
+      if ( word['sentiment']['score']< -0.5 )
+        # pp word['name'] + '=' + word['sentiment']['score']
+        @words = word['name'] + '=' + word['sentiment']['score']
+      end
+    end
     if @bike.update(bike_params)
-      # tags = Vision.get_image_data(@bike.bike_image)
+      # safe = Vision.get_image_data(@bike.bike_image)
       # tags.each do |tag|
       #   @bike.tags.create(name: tag)
       # end
