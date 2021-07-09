@@ -34,9 +34,7 @@ class BikesController < ApplicationController
   end
 
   def exhibit
-    # @bikes = current_user.bikes
     @bikes = Bike.where(user_id: current_user.id)
-
   end
 
   def new
@@ -109,7 +107,6 @@ class BikesController < ApplicationController
 
   def search
     @q = Bike.search(search_params)
-    # @q = Bike.ransack(params[:q]) #ransackの検索処理
     @bikes = @q.result(distinct: true).page(params[:page]).per(8)
     pp @bikes
   end
