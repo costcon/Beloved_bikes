@@ -222,3 +222,4 @@ end
     longitude: '139.7687578'
   )
 end
+
