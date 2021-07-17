@@ -11,6 +11,7 @@ class BikesController < ApplicationController
     @bikes_search = @q.result(distinct: true)
   end
 
+
   def show
     @bike = Bike.find(params[:id])
     @reservation = Reservation.new
