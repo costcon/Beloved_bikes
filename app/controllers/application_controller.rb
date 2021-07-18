@@ -23,11 +23,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def check_login_user
-    unless current_user.approval == "承認"
-      redirect_to request.referer, danger: "先にユーザー認証を済ませてください"
-    end
-  end
+  # def check_login_user
+  #   unless current_user.approval == "承認"
+  #     redirect_to request.referer, danger: "先にユーザー認証を済ませてください"
+  #   end
+  # end
 
 
 
