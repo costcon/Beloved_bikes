@@ -14,14 +14,7 @@ class Users::SessionsController < Devise::SessionsController
     end
   end
 
-  # ユーザー承認済かどうかの確認
-  def active_for_authentication?
-    if current_user.approval == "未対応"
-      redirect_to request.referer, danger: "まだ承認されていないアカウントです"
-    elsif current_user.approval == "非承認"
-      redirect_to request.referer, danger: "許可されていないアカウントです。再度ユーザー登録をお願い致します。"
-    end
-  end
+  
 
 
   # GET /resource/sign_in
