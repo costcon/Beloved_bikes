@@ -78,6 +78,27 @@ User.create!(
   password: 'testtest',
 )
 
+User.create!(
+  last_name: '藤原',
+  first_name: '竜也',
+  last_name_kana: 'ふじわら',
+  first_name_kana: 'たつや',
+  nickname: 'Tatsuya',
+  profile_image: File.open("./app/assets/images/face4.png"),
+  postal_code: '1111111',
+  address: '東京都名無し市無人町1-11-1',
+  telephone_number: '11111111111',
+  profile_comment: '常に刺激を与えてくれる 人たちが周りにいて、 新しいものにチャレンジ したいという自分がいます。',
+  license_number: '1111111111111',
+  license_date: '19801111',
+  license_expiration: '20221231',
+  license_front_image: File.open("./app/assets/images/licence.png"),
+  license_back_image: File.open("./app/assets/images/menkyo_old_man.png"),
+  approval: '未承認',
+  email: 'tatsuya@abc.com',
+  password: 'testtest',
+)
+
 
 Bike.create!(
   user_id: '1',
