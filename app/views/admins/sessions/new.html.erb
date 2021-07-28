@@ -28,5 +28,15 @@
       </div>
     <% end %>
 
+    <div class='row hoge col-12 mt-3'>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= f.hidden_field :email, value: 'admin@admin.com' %>
+        <%= f.hidden_field :password, value: 'adminadmin' %>
+        <div>
+          <%= f.submit 'テストログイン', class: "btn btn-lg btn-outline-info form-control" %>
+        </div>
+      <% end %>
+    </div>
+
   </div>
 </div>
