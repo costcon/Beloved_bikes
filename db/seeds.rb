@@ -94,7 +94,7 @@ User.create!(
   license_expiration: '20221231',
   license_front_image: File.open("./app/assets/images/licence.png"),
   license_back_image: File.open("./app/assets/images/menkyo_old_man.png"),
-  approval: '未承認',
+  approval: '未対応',
   email: 'tatsuya@abc.com',
   password: 'testtest',
 )
