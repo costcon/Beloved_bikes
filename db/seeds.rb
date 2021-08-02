@@ -31,7 +31,7 @@ User.create!(
   license_expiration: '20221131',
   license_front_image: File.open("./app/assets/images/licence.png"),
   license_back_image: File.open("./app/assets/images/menkyo_old_man.png"),
-  approval: '承認済',
+  approved: true,
   email: 'test@test.com',
   password: 'testtest',
 )
@@ -52,7 +52,7 @@ User.create!(
   license_expiration: '20221231',
   license_front_image: File.open("./app/assets/images/licence.png"),
   license_back_image: File.open("./app/assets/images/menkyo_old_man.png"),
-  approval: '承認済',
+  approved: true,
   email: 'abc@abc.com',
   password: 'testtest',
 )
@@ -73,7 +73,7 @@ User.create!(
   license_expiration: '20221231',
   license_front_image: File.open("./app/assets/images/licence.png"),
   license_back_image: File.open("./app/assets/images/menkyo_old_man.png"),
-  approval: '承認済',
+  approved: true,
   email: 'musuka@msk.com',
   password: 'testtest',
 )
@@ -94,7 +94,7 @@ User.create!(
   license_expiration: '20221231',
   license_front_image: File.open("./app/assets/images/licence.png"),
   license_back_image: File.open("./app/assets/images/menkyo_old_man.png"),
-  approval: '未対応',
+  approved: false,
   email: 'tatsuya@abc.com',
   password: 'testtest',
 )

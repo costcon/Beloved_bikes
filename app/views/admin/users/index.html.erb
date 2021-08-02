@@ -28,13 +28,12 @@
               (<%= user.last_name_kana %> <%= user.first_name_kana %>)
              </td>
              <td><%= user.created_at %></td>
-              <% if user.approval == "承認済" %>
+              <% if user.approved == true %>
                 <td class="text-success">承認済</td>
-              <% elsif user.approval == "非承認" %>
-                <td class="text-secondary">非承認</td>
               <% else %>
-                <td class="text-danger">未対応</td>
+                <td class="text-danger">未承認</td>
               <% end %>
+              
               <% if user.id_deleted == true %>
                 <th><p class="danger">退会</span></th>
               <% else %>

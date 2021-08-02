@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
   before_action :reject_inactive_user, only: [:create]
 
   def reject_inactive_user
@@ -13,8 +12,6 @@ class Users::SessionsController < Devise::SessionsController
       end
     end
   end
-
-
 
 
 

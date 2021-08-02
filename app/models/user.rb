@@ -10,9 +10,11 @@ class User < ApplicationRecord
   has_many :user_rooms, dependent: :destroy
 
 
-  enum approval: {
-    '未対応':0, '承認済':1, '非承認':2
-  }
+  # enum approval: {
+  #   '未対応':0, '承認済':1, '非承認':2
+  # }
+
+
 
 
   validates :last_name, presence: true
@@ -34,19 +36,19 @@ class User < ApplicationRecord
 
   # ユーザー承認済かどうかの確認
   # def active_for_authentication?
-  #   if current_user.approval == "未対応"
-  #     redirect_to request.referer, danger: "まだ承認されていないアカウントです"
-  #   elsif current_user.approval == "非承認"
-  #     redirect_to request.referer, danger: "許可されていないアカウントです。再度ユーザー登録をお願い致します。"
+  #   if super && (approval == "非承認" )
+  #     redirect_to root_path, danger: "まだ承認されていないアカウントです"
+  #   elsif super &&  (approval == "未対応" )
+  #     redirect_to root_path, danger: "許可されていないアカウントです。再度ユーザー登録をお願い致します。"
   #   end
   # end
 
   def active_for_authentication?
-    if super && (approval == "非承認" )
-      redirect_to root_path, danger: "まだ承認されていないアカウントです"
-    elsif super &&  (approval == "未対応" )
-      redirect_to root_path, danger: "許可されていないアカウントです。再度ユーザー登録をお願い致します。"
-    end
+    super && approved?
+  end
+
+  def inactive_message
+    approved? ? super : :not_approved
   end
 
 end

@@ -93,6 +93,9 @@ gem 'impressionist', '~>1.6.1'
 # WYSIWYGエディター(textareaのリッチ化)
 gem 'trix'
 
+# devise日本語化
+gem 'devise-i18n'
+
 
 #デプロイ(環境変数)のための記述
 gem 'dotenv-rails'

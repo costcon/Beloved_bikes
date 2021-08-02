@@ -69,26 +69,20 @@
         <th><%= @user.license_expiration %></th>
       </tr>
     </table>
-    <% if @user.approval == "承認済" %>
+    <% if @user.approved == true %>
       <div class="text-center col-10 bg-success text-white">有効なユーザーです</div>
-    <% elsif @user.approval == "非承認"  %>
-      <div class="text-center col-10 bg-secondary text-white">無効なユーザーです</div>
     <% else %>
       <div class="mt-5">
       <%= form_with model:@user, url: admin_path(@user), method: :patch, local: true do |f| %>
         <div class="field row hoge">
-          <label class="reservation_status bg-info text-white px-4">予約ステータス</label><br>
+          <label class="reservation_status bg-info text-white px-4">ユーザー承認</label><br>
           <div class="radio-inline ml-5 mr-3">
-            <%= f.radio_button :approval, :未対応 %>
-            <%= f.label :未対応, class: "approval" %>
+            <%= f.radio_button :approved, false %>
+            <%= f.label :未承認, class: "approved" %>
           </div>
           <div class="radio-inline mr-3">
-            <%= f.radio_button :approval, :承認済 %>
-            <%= f.label :承認, class: "approval" %>
-          </div>
-          <div class="radio-inline mr-3">
-            <%= f.radio_button :approval, :非承認 %>
-            <%= f.label :非承認, class: "approval" %>
+            <%= f.radio_button :approved, true %>
+            <%= f.label :承認, class: "approved" %>
           </div>
         </div>
         <div class="my-3">
