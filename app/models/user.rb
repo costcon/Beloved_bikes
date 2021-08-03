@@ -51,4 +51,8 @@ class User < ApplicationRecord
     approved? ? super : :not_approved
   end
 
+  def after_inactive_sign_up_path_for(resource)
+    redirect_to homes_registration_path
+  end
+
 end

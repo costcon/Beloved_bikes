@@ -58,7 +58,7 @@ ja:
         send_me_reset_password_instructions: "パスワードの再設定方法を送信する"
     registrations:
       user:
-          signed_up_but_not_approved: 'サインアップは成功しましたが、アカウントはまだ管理者によって承認されていません'
+          signed_up_but_not_approved: 'アカウント申請が完了しました。承認通知メールが届くとログイン可能になります。'
       failure:
         not_approved: 'アカウントはまだ管理者によって承認されていません。'
       edit:
